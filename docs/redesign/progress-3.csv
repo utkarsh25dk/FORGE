@@ -1,0 +1,9 @@
+phase,item,change,files,status,notes
+A,1,Coach tip collapses to one line by default,FORGE/Features/Home/CoachTipCard.swift,done,tap to expand full message; loading/setup states unchanged
+A,2,Hydration: 8 circles -> single segmented meter,FORGE/Features/Home/HomeCards.swift,done,same tap-per-segment interaction, Capsule row instead of 8 bordered/scaled circles
+A,3,Sleep logging collapses by default,FORGE/Features/Home/HomeCards.swift,done,summary row (hrs logged or "Log sleep" prompt) with chevron; quality dots/slider/confirm only shown when expanded
+A,4,Weekly Goal + Level tiles: drop redundant static labels,FORGE/Features/Home/HomeCards.swift,done,each tile now icon/ring/number + exactly one dynamic caption line - matches Streak tile's existing pattern
+A,6,Home section spacing bumped (Space.lg -> Space.xl),FORGE/Features/Home/HomeView.swift,done,
+B,5,Train shows Today+Tomorrow by default; rest of week collapses,FORGE/Features/Train/TrainView.swift,todo,
+C,7,Progress: BodyMeasurementsView collapses by default like PersonalRecordsView already does,FORGE/Features/Progress/ProgressDashboardView.swift; BodyMeasurementsView.swift,todo,also fix AddMeasurementSheet's untethemed Form (same bug as round 2 Train phase)
+D,8,Smaller icon badges in list rows (vs grid tiles),FORGE/Features/Suggest/ExerciseListView.swift; other list-row CategoryIcon usages,todo,

@@ -10,6 +10,7 @@ struct CoachTipCard: View {
     @State private var status: CoachAvailability = .unavailable
     @State private var tip: CoachTip?
     @State private var isLoading = true
+    @State private var isExpanded = false
 
     var body: some View {
         Group {
@@ -51,22 +52,33 @@ struct CoachTipCard: View {
     }
 
     private func tipCard(_ tip: CoachTip) -> some View {
-        HStack(alignment: .top, spacing: Space.md) {
-            ZStack {
-                Circle().fill(forge.raised).frame(width: 36, height: 36)
-                Image(systemName: icon(for: tip.tone))
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundStyle(forge.accent)
+        Button {
+            withAnimation(.easeInOut(duration: 0.2)) { isExpanded.toggle() }
+        } label: {
+            HStack(alignment: isExpanded ? .top : .center, spacing: Space.md) {
+                ZStack {
+                    Circle().fill(forge.raised).frame(width: 32, height: 32)
+                    Image(systemName: icon(for: tip.tone))
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(forge.accent)
+                }
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Coach").font(.forgeCaption(11)).foregroundStyle(forge.textTertiary)
+                    Text(tip.message)
+                        .font(.forgeBodyMedium(14))
+                        .foregroundStyle(forge.textPrimary)
+                        .lineLimit(isExpanded ? nil : 1)
+                        .truncationMode(.tail)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.down")
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(forge.textTertiary)
+                    .rotationEffect(.degrees(isExpanded ? 180 : 0))
             }
-            VStack(alignment: .leading, spacing: 3) {
-                Text("Coach").font(.forgeCaption(11)).foregroundStyle(forge.textTertiary)
-                Text(tip.message)
-                    .font(.forgeBodyMedium(14))
-                    .foregroundStyle(forge.textPrimary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            Spacer(minLength: 0)
+            .contentShape(Rectangle())
         }
+        .buttonStyle(.plain)
         .forgeCard(padding: Space.md, cornerRadius: Radius.md)
     }
 

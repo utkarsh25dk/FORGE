@@ -11,7 +11,7 @@ struct HomeView: View {
 
     var body: some View {
         ScrollView {
-            LazyVStack(alignment: .leading, spacing: Space.lg) {
+            LazyVStack(alignment: .leading, spacing: Space.xl) {
                 header
                 CoachTipCard()
                 TodayCard()
