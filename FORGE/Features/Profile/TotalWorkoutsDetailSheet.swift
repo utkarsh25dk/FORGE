@@ -55,7 +55,7 @@ struct TotalWorkoutsDetailSheet: View {
         case .cardio: return Color(hex: "5CA8FF")
         case .hiit: return Color(hex: "FF5CB0")
         case .flexibility: return Color(hex: "5CE0D8")
-        case .recovery: return Color(hex: "FFD35C")
+        case .recovery: return Color(hex: "FA5F4A")
         case .activity: return Color(hex: "FF9166")
         case .sports: return Color(hex: "8CA0FF")
         case .warmUp, .coolDown, .other: return Color(hex: "9BA69C")
