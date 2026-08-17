@@ -35,30 +35,13 @@ struct WeeklyRecapCard: View {
         return appState.weeklyWorkedDays(containing: lastWeekDate)
     }
 
-    private var weekCategoryBreakdown: [(category: WorkoutCategory, count: Int)] {
-        let entries = appState.userData.entries.filter {
-            $0.isCompleted && !$0.isWarmUp && !$0.isCoolDown && $0.date >= weekInterval.start && $0.date < weekInterval.end
-        }
-        var counts: [WorkoutCategory: Int] = [:]
-        for e in entries { counts[e.category, default: 0] += 1 }
-        return counts.sorted { $0.value > $1.value }.map { (category: $0.key, count: $0.value) }
-    }
-
-    private var weekPRs: [PersonalRecord] {
-        appState.userData.personalRecords.values
-            .filter { $0.date >= weekInterval.start && $0.date < weekInterval.end }
-            .sorted { $0.date > $1.date }
-    }
-
-    private var weightUnit: String { appState.userData.unitSystem.weightUnit }
-
     var body: some View {
-        VStack(spacing: 26) {
+        VStack(spacing: 30) {
             VStack(spacing: 6) {
-                Text("FORGE").font(.forgeDisplay(30)).foregroundStyle(forge.fireGradient)
+                Text("FORGE").font(.forgeDisplay(30)).foregroundStyle(forge.textPrimary)
                 Text(weekRange).font(.forgeCaption(15)).foregroundStyle(forge.textSecondary)
             }
-            .padding(.top, 56)
+            .padding(.top, 64)
 
             VStack(spacing: 10) {
                 HStack(spacing: 8) {
@@ -91,32 +74,14 @@ struct WeeklyRecapCard: View {
             }
             .padding(.horizontal, 60)
 
-            if !weekCategoryBreakdown.isEmpty {
-                VStack(alignment: .leading, spacing: 14) {
-                    ForEach(weekCategoryBreakdown.prefix(4), id: \.category) { item in
-                        HStack(spacing: 12) {
-                            CategoryIcon(systemName: item.category.icon, size: 15)
-                            Text(item.category.rawValue).font(.forgeBodyMedium(15)).foregroundStyle(forge.textPrimary)
-                            Spacer(minLength: 0)
-                            Text("\(item.count)").font(.forgeBodySemibold(15)).foregroundStyle(forge.textSecondary)
-                        }
-                    }
-                }
-                .padding(.horizontal, 70)
-            }
-
-            if !weekPRs.isEmpty {
-                prSection
-            }
-
             Spacer(minLength: 0)
 
             Text("Every rep feeds the fire.")
                 .font(.forgeCaption(14))
                 .foregroundStyle(forge.textTertiary)
-                .padding(.bottom, 44)
+                .padding(.bottom, 48)
         }
-        .frame(width: 1080, height: 1620)
+        .frame(width: 1080, height: 1360)
         .background(forge.backgroundGradient)
     }
 
@@ -164,9 +129,9 @@ struct WeeklyRecapCard: View {
             .frame(height: 118, alignment: .bottom)
 
             HStack(spacing: 18) {
-                legendDot(color: DayStatus.worked.color ?? forge.accent, label: "Worked")
-                legendDot(color: DayStatus.rest.color ?? forge.warning, label: "Rest")
-                legendDot(color: DayStatus.missed.color ?? forge.danger, label: "Missed")
+                legendDot(color: DayStatus.worked.color(forge) ?? forge.textPrimary, label: "Worked")
+                legendDot(color: DayStatus.rest.color(forge) ?? forge.textTertiary, label: "Rest")
+                legendDot(color: DayStatus.missed.color(forge) ?? forge.textTertiary.opacity(0.5), label: "Missed")
             }
         }
         .padding(.horizontal, 60)
@@ -180,7 +145,7 @@ struct WeeklyRecapCard: View {
     }
 
     private func barColor(for status: DayStatus) -> Color {
-        status.color ?? forge.textTertiary.opacity(0.25)
+        status.color(forge) ?? forge.textTertiary.opacity(0.2)
     }
 
     private func barHeight(for status: DayStatus) -> CGFloat {
@@ -190,24 +155,5 @@ struct WeeklyRecapCard: View {
         case .missed: return 26
         case .none: return 8
         }
-    }
-
-    private var prSection: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            HStack(spacing: 8) {
-                Image(systemName: "trophy.fill").font(.system(size: 15)).foregroundStyle(forge.fireGradient)
-                Text("New PRs This Week").font(.forgeBodySemibold(15)).foregroundStyle(forge.textPrimary)
-            }
-            ForEach(weekPRs.prefix(3), id: \.exerciseName) { pr in
-                HStack(spacing: 12) {
-                    Text(pr.exerciseName).font(.forgeBodyMedium(15)).foregroundStyle(forge.textPrimary)
-                    Spacer(minLength: 0)
-                    Text("\(Int(pr.weight)) \(weightUnit) × \(pr.reps)")
-                        .font(.forgeBodySemibold(15))
-                        .foregroundStyle(forge.accent)
-                }
-            }
-        }
-        .padding(.horizontal, 70)
     }
 }

@@ -70,7 +70,7 @@ struct MonthCalendarView: View {
                         bottomTrailingRadius: joinRight ? 0 : radius,
                         topTrailingRadius: joinRight ? 0 : radius
                     )
-                    .fill(status.color?.opacity(0.35) ?? Color.clear)
+                    .fill(status.color(forge)?.opacity(0.35) ?? Color.clear)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: radius)
@@ -95,7 +95,7 @@ struct MonthCalendarView: View {
                         .fill(isToday ? forge.accent.opacity(0.12) : Color.clear)
                 )
                 .overlay {
-                    if let color = status.color {
+                    if let color = status.color(forge) {
                         Circle()
                             .fill(color)
                             .frame(width: 7, height: 7)

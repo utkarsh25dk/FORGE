@@ -8,7 +8,7 @@ struct ProgressDashboardView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Space.lg) {
-                Text("Progress").font(.forgeHeading(34)).foregroundStyle(forge.fireGradient).padding(.top, Space.md)
+                Text("Progress").font(.forgeHeading(34)).foregroundStyle(forge.textPrimary).padding(.top, Space.md)
                 CalendarHeatmapView(zoom: $zoom, anchor: $anchor)
                 WeeklyChartsView(zoom: zoom, anchor: anchor)
                 PersonalRecordsView()

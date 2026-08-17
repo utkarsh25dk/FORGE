@@ -1,103 +1,128 @@
 import SwiftUI
 
-struct StreakCard: View {
-    @EnvironmentObject private var appState: AppState
+/// Streak, weekly goal, and level as one continuous surface with hairline
+/// dividers instead of three separate glowing cards — plus the hydration
+/// and sleep check-ins below their own divider. This is "Today."
+struct TodayCard: View {
     @Environment(\.forge) private var forge
 
-    private var fireGlow: RadialGradient {
-        RadialGradient(colors: [Color(hex: "FF5C2E").opacity(0.22), Color(hex: "FF5C2E").opacity(0.1)], center: .center, startRadius: 0, endRadius: 40)
-    }
-
     var body: some View {
-        VStack(spacing: Space.sm) {
-            ZStack {
-                Circle().fill(fireGlow).frame(width: 64, height: 64)
-                Image(systemName: "flame.fill")
-                    .foregroundStyle(forge.fireGradient)
-                    .font(.system(size: 28))
-                    .symbolEffect(.bounce, value: appState.currentStreak)
-            }
-            Text("\(appState.currentStreak) day\(appState.currentStreak == 1 ? "" : "s")")
-                .font(.forgeNumeric(28))
-                .foregroundStyle(forge.fireGradient)
-                .monospacedDigit()
-                .contentTransition(.numericText())
-                .animation(.default, value: appState.currentStreak)
+        VStack(spacing: 0) {
+            StatRow()
+            Divider().overlay(forge.divider).padding(.vertical, Space.md)
+            HydrationSection()
+            Divider().overlay(forge.divider).padding(.vertical, Space.md)
+            SleepSection()
         }
-        .frame(maxWidth: .infinity)
         .forgeCard()
     }
 }
 
-struct WeeklyGoalCard: View {
+private struct StatRow: View {
     @EnvironmentObject private var appState: AppState
     @Environment(\.forge) private var forge
 
     var body: some View {
+        HStack(spacing: 0) {
+            streakTile
+            statDivider
+            weeklyGoalTile
+            statDivider
+            LevelTile()
+        }
+    }
+
+    private var statDivider: some View {
+        Rectangle().fill(forge.divider).frame(width: 1).padding(.vertical, 4)
+    }
+
+    /// The app's one reserved hero moment — everything else on this screen is flat.
+    private var streakTile: some View {
+        VStack(spacing: 6) {
+            Image(systemName: "flame.fill")
+                .foregroundStyle(forge.fireGradient)
+                .font(.system(size: 22))
+                .symbolEffect(.bounce, value: appState.currentStreak)
+            Text("\(appState.currentStreak)")
+                .font(.forgeNumeric(30))
+                .foregroundStyle(forge.fireGradient)
+                .monospacedDigit()
+                .contentTransition(.numericText())
+                .animation(.default, value: appState.currentStreak)
+            Text(appState.currentStreak == 1 ? "day streak" : "day streak")
+                .font(.forgeCaption(11))
+                .foregroundStyle(forge.textSecondary)
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    private var weeklyGoalTile: some View {
         let worked = appState.weeklyWorkedDays()
-        VStack(spacing: Space.sm) {
+        return VStack(spacing: 6) {
             ZStack {
-                ProgressRing(progress: appState.weeklyProgress, lineWidth: 7)
-                    .frame(width: 48, height: 48)
+                ProgressRing(progress: appState.weeklyProgress, lineWidth: 6)
+                    .frame(width: 40, height: 40)
                 Text("\(worked)/\(appState.userData.weeklyGoal)")
-                    .font(.forgeCaption(11))
+                    .font(.forgeCaption(10))
                     .foregroundStyle(forge.textPrimary)
                     .monospacedDigit()
                     .contentTransition(.numericText())
                     .animation(.default, value: worked)
             }
-            Text("Weekly goal").font(.forgeBodySemibold(14)).foregroundStyle(forge.textPrimary)
             Text(appState.weeklyProgress >= 1 ? "Goal hit" : "\(appState.userData.weeklyGoal - worked) to go")
                 .font(.forgeCaption(11))
                 .foregroundStyle(forge.textSecondary)
+                .lineLimit(1)
+            Text("Weekly goal")
+                .font(.forgeCaption(11))
+                .foregroundStyle(forge.textTertiary)
         }
         .frame(maxWidth: .infinity)
-        .forgeCard(padding: Space.md, cornerRadius: Radius.md)
     }
+
 }
 
-struct LevelCard: View {
+private struct LevelTile: View {
     @EnvironmentObject private var appState: AppState
     @Environment(\.forge) private var forge
     @State private var showDetail = false
 
     var body: some View {
         let progress = appState.levelProgress
-        VStack(spacing: Space.sm) {
-            ZStack {
-                Circle().fill(forge.accentGlow).frame(width: 48, height: 48)
-                Text("\(progress.level)")
-                    .font(.forgeHeading(18))
-                    .foregroundStyle(forge.accent)
-                    .monospacedDigit()
-                    .contentTransition(.numericText())
-                    .animation(.default, value: progress.level)
-            }
-            Text("Level \(progress.level)").font(.forgeBodySemibold(14)).foregroundStyle(forge.textPrimary)
-            Text("\(progress.xpToNext) XP to next")
+        VStack(spacing: 6) {
+            Text("\(progress.level)")
+                .font(.forgeNumeric(30))
+                .foregroundStyle(forge.accent)
+                .monospacedDigit()
+                .contentTransition(.numericText())
+                .animation(.default, value: progress.level)
+            Text("Level")
                 .font(.forgeCaption(11))
                 .foregroundStyle(forge.textSecondary)
+            Text("\(progress.xpToNext) XP to next")
+                .font(.forgeCaption(11))
+                .foregroundStyle(forge.textTertiary)
                 .monospacedDigit()
                 .contentTransition(.numericText())
                 .animation(.default, value: progress.xpToNext)
         }
         .frame(maxWidth: .infinity)
-        .forgeCard(padding: Space.md, cornerRadius: Radius.md)
         .contentShape(Rectangle())
         .onTapGesture { showDetail = true }
         .sheet(isPresented: $showDetail) { LevelDetailSheet() }
     }
 }
 
-struct HydrationCard: View {
+private struct HydrationSection: View {
     @EnvironmentObject private var appState: AppState
     @Environment(\.forge) private var forge
 
     var body: some View {
         let count = appState.checkIn(on: Date()).hydrationCount
         VStack(alignment: .leading, spacing: Space.md) {
-            HStack {
-                Text("💧 Stay hydrated").font(.forgeBodySemibold(15)).foregroundStyle(forge.textPrimary)
+            HStack(spacing: 6) {
+                Image(systemName: "drop.fill").font(.system(size: 13)).foregroundStyle(forge.accent)
+                Text("Stay hydrated").font(.forgeBodySemibold(15)).foregroundStyle(forge.textPrimary)
                 Spacer(minLength: 0)
                 Text("\(count)/\(DailyCheckIn.hydrationGoal)")
                     .font(.forgeCaption())
@@ -109,7 +134,7 @@ struct HydrationCard: View {
             HStack(spacing: 6) {
                 ForEach(1...DailyCheckIn.hydrationGoal, id: \.self) { i in
                     Circle()
-                        .fill(i <= count ? AnyShapeStyle(forge.accent) : AnyShapeStyle(.ultraThinMaterial))
+                        .fill(i <= count ? AnyShapeStyle(forge.accent) : AnyShapeStyle(forge.raised))
                         .overlay(
                             Circle().stroke(forge.textTertiary.opacity(i <= count ? 0 : 0.3), lineWidth: 1)
                         )
@@ -126,11 +151,10 @@ struct HydrationCard: View {
             .sensoryFeedback(.selection, trigger: count)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .forgeCard()
     }
 }
 
-struct SleepCard: View {
+private struct SleepSection: View {
     @EnvironmentObject private var appState: AppState
     @Environment(\.forge) private var forge
     @State private var quality: Int = 3
@@ -140,8 +164,9 @@ struct SleepCard: View {
     var body: some View {
         let checkIn = appState.checkIn(on: Date())
         VStack(alignment: .leading, spacing: Space.md) {
-            HStack {
-                Text("😴 Sleep").font(.forgeBodySemibold(15)).foregroundStyle(forge.textPrimary)
+            HStack(spacing: 6) {
+                Image(systemName: "moon.zzz.fill").font(.system(size: 13)).foregroundStyle(forge.accent)
+                Text("Sleep").font(.forgeBodySemibold(15)).foregroundStyle(forge.textPrimary)
                 Spacer(minLength: 0)
                 if checkIn.sleepConfirmed {
                     Label("Logged", systemImage: "checkmark.circle.fill")
@@ -155,7 +180,7 @@ struct SleepCard: View {
             HStack(spacing: 8) {
                 ForEach(1...5, id: \.self) { i in
                     Circle()
-                        .fill(i <= quality ? AnyShapeStyle(forge.accent) : AnyShapeStyle(.ultraThinMaterial))
+                        .fill(i <= quality ? AnyShapeStyle(forge.accent) : AnyShapeStyle(forge.raised))
                         .overlay(
                             Circle().stroke(forge.textTertiary.opacity(i <= quality ? 0 : 0.3), lineWidth: 1)
                         )
@@ -198,7 +223,6 @@ struct SleepCard: View {
             .sensoryFeedback(.success, trigger: checkIn.sleepConfirmed)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .forgeCard()
         .onAppear {
             guard !initialized else { return }
             initialized = true
@@ -207,4 +231,3 @@ struct SleepCard: View {
         }
     }
 }
-

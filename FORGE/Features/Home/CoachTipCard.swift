@@ -53,7 +53,7 @@ struct CoachTipCard: View {
     private func tipCard(_ tip: CoachTip) -> some View {
         HStack(alignment: .top, spacing: Space.md) {
             ZStack {
-                Circle().fill(forge.accentGlow).frame(width: 36, height: 36)
+                Circle().fill(forge.raised).frame(width: 36, height: 36)
                 Image(systemName: icon(for: tip.tone))
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundStyle(forge.accent)

@@ -40,7 +40,7 @@ struct SuggestView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: Space.lg) {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Suggest").font(.forgeHeading(34)).foregroundStyle(forge.fireGradient)
+                    Text("Suggest").font(.forgeHeading(34)).foregroundStyle(forge.textPrimary)
                     Text("Train. Track. Level up.")
                         .font(.forgeBody(14)).foregroundStyle(forge.textSecondary)
                 }

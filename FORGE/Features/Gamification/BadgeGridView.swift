@@ -13,7 +13,7 @@ struct BadgeGridView: View {
                 VStack(spacing: 6) {
                     ZStack {
                         Circle()
-                            .fill(earned ? AnyShapeStyle(forge.accentGlow) : AnyShapeStyle(forge.raised))
+                            .fill(earned ? AnyShapeStyle(forge.accentSoft) : AnyShapeStyle(forge.raised))
                             .frame(width: 56, height: 56)
                         Image(systemName: badge.icon)
                             .font(.system(size: 20, weight: .semibold))

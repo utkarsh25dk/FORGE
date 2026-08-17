@@ -15,7 +15,7 @@ enum ForgeTab: Int, CaseIterable, Hashable {
 
     var icon: String {
         switch self {
-        case .home: return "flame.fill"
+        case .home: return "house.fill"
         case .train: return "checklist"
         case .suggest: return "sparkles"
         case .progress: return "chart.bar.fill"
@@ -49,7 +49,7 @@ struct MainTabView: View {
         }
         .sensoryFeedback(.selection, trigger: tab)
         .sensoryFeedback(.success, trigger: appState.toast)
-        .tint(Color(hex: "FF5C2E"))
+        .tint(forge.accent)
         .overlay(alignment: .bottom) {
             if let toast = appState.toast {
                 ForgeToast(message: toast)

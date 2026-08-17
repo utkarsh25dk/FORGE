@@ -12,7 +12,7 @@ struct LevelDetailSheet: View {
                 VStack(spacing: Space.xl) {
                     VStack(spacing: Space.sm) {
                         ZStack {
-                            Circle().fill(forge.accentGlow).frame(width: 96, height: 96)
+                            Circle().fill(forge.raised).frame(width: 96, height: 96)
                             Text("\(progress.level)")
                                 .font(.forgeDisplay(36))
                                 .foregroundStyle(forge.accent)

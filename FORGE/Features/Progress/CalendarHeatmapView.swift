@@ -99,9 +99,9 @@ struct CalendarHeatmapView: View {
 
     private var legend: some View {
         HStack(spacing: Space.lg) {
-            legendItem(color: DayStatus.worked.color, label: "Worked out")
-            legendItem(color: DayStatus.rest.color, label: "Rest")
-            legendItem(color: DayStatus.missed.color, label: "Missed")
+            legendItem(color: DayStatus.worked.color(forge), label: "Worked out")
+            legendItem(color: DayStatus.rest.color(forge), label: "Rest")
+            legendItem(color: DayStatus.missed.color(forge), label: "Missed")
         }
         .padding(.top, Space.xs)
     }

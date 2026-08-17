@@ -31,7 +31,7 @@ struct WeekCalendarView: View {
                     .font(.forgeBodySemibold(15))
                     .foregroundStyle(forge.textPrimary)
                     .frame(width: 38, height: 38)
-                    .background(Circle().fill(status.color?.opacity(0.35) ?? Color.clear))
+                    .background(Circle().fill(status.color(forge)?.opacity(0.35) ?? Color.clear))
                     .overlay(Circle().stroke(isToday ? forge.accent : Color.clear, lineWidth: 1.5))
             }
             .frame(maxWidth: .infinity)

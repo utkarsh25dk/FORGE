@@ -45,7 +45,7 @@ struct TrainView: View {
     private var header: some View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
-                Text("Train").font(.forgeHeading(34)).foregroundStyle(forge.fireGradient)
+                Text("Train").font(.forgeHeading(34)).foregroundStyle(forge.textPrimary)
                 Text("Ready to workout!").font(.forgeBody(14)).foregroundStyle(forge.textSecondary)
             }
             Spacer()

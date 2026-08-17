@@ -21,7 +21,7 @@ struct BadgeDetailSheet: View {
                             HStack(spacing: Space.md) {
                                 ZStack {
                                     Circle()
-                                        .fill(earned ? AnyShapeStyle(forge.accentGlow) : AnyShapeStyle(forge.raised))
+                                        .fill(earned ? AnyShapeStyle(forge.accentSoft) : AnyShapeStyle(forge.raised))
                                         .frame(width: 44, height: 44)
                                     Image(systemName: badge.icon)
                                         .font(.system(size: 17, weight: .semibold))

@@ -14,13 +14,7 @@ struct HomeView: View {
             LazyVStack(alignment: .leading, spacing: Space.lg) {
                 header
                 CoachTipCard()
-                StreakCard()
-                HStack(spacing: Space.md) {
-                    WeeklyGoalCard()
-                    LevelCard()
-                }
-                HydrationCard()
-                SleepCard()
+                TodayCard()
                 Spacer(minLength: 90)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -38,7 +32,7 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: Space.sm) {
             Text("\(MotivationContent.greeting()), \(appState.userData.characterName)")
                 .font(.forgeHeading(30 - 5 * collapseProgress))
-                .foregroundStyle(forge.fireGradient)
+                .foregroundStyle(forge.textPrimary)
             Text(appState.missedYesterday ? MotivationContent.comeback(for: Date()) : MotivationContent.rhyme(for: Date()))
                 .font(.forgeBody(15))
                 .foregroundStyle(forge.textSecondary)

@@ -119,7 +119,7 @@ struct WeeklyChartsView: View {
 
     private let sleepColor = Color(hex: "5CA8FF")
     private let hydrationColor = Color(hex: "5CE0D8")
-    private var missedColor: Color { DayStatus.missed.color ?? .red }
+    private var missedColor: Color { DayStatus.missed.color(forge) ?? forge.textTertiary }
 
     private var sectionTitle: String {
         switch zoom {

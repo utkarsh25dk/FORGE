@@ -55,8 +55,6 @@ struct ForgeColors {
     let backgroundGradMid: Color
     let backgroundGradBottom: Color
     let surface: Color
-    let surfaceGradTop: Color
-    let surfaceGradBottom: Color
     let surfaceBorder: Color
     let raised: Color
     let textPrimary: Color
@@ -74,16 +72,9 @@ struct ForgeColors {
         LinearGradient(colors: [backgroundGradTop, backgroundGradMid, backgroundGradBottom], startPoint: .topLeading, endPoint: .bottomTrailing)
     }
 
-    var cardGradient: LinearGradient {
-        LinearGradient(colors: [surfaceGradTop, surfaceGradBottom], startPoint: .topLeading, endPoint: .bottomTrailing)
-    }
-
-    /// Faint radial variation behind icon "bubbles" — a hint of depth, not a glow.
-    var accentGlow: RadialGradient {
-        RadialGradient(colors: [accent.opacity(0.18), accent.opacity(0.13)], center: .center, startRadius: 0, endRadius: 34)
-    }
-
-    /// Brand fire gradient — streak flame, widgets, and (per this pass) the big screen headings.
+    /// Brand fire gradient. Reserved for exactly one hero moment per screen —
+    /// the streak flame/number — never applied to headings, icons, or other
+    /// numbers by default. Everything else uses flat `accent` or `textPrimary`.
     var fireGradient: LinearGradient {
         LinearGradient(
             colors: [Color(hex: "FFB03C"), Color(hex: "FF5C2E"), Color(hex: "FF2D3E")],
@@ -101,8 +92,6 @@ struct ForgeColors {
         backgroundGradMid: Color(hex: "14120E"),
         backgroundGradBottom: Color(hex: "060706"),
         surface: Color(hex: "15181A"),
-        surfaceGradTop: Color(hex: "1C211D"),
-        surfaceGradBottom: Color(hex: "111412"),
         surfaceBorder: Color.white.opacity(0.08),
         raised: Color(hex: "20241F"),
         textPrimary: Color(hex: "F4F7F3"),
@@ -123,8 +112,6 @@ struct ForgeColors {
         backgroundGradMid: Color(hex: "F6F3E9"),
         backgroundGradBottom: Color(hex: "E9EBE2"),
         surface: Color(hex: "FDFEFC"),
-        surfaceGradTop: Color(hex: "FFFFFF"),
-        surfaceGradBottom: Color(hex: "F0F2ED"),
         surfaceBorder: Color.black.opacity(0.06),
         raised: Color(hex: "E9ECE5"),
         textPrimary: Color(hex: "13160F"),
@@ -206,7 +193,7 @@ struct ForgeCardBackground: ViewModifier {
             .padding(padding)
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                    .fill(forge.cardGradient)
+                    .fill(forge.surface)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)

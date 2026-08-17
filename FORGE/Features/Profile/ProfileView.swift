@@ -56,14 +56,14 @@ struct ProfileView: View {
     }
 
     private var header: some View {
-        Text("Profile").font(.forgeHeading(34)).foregroundStyle(forge.fireGradient).padding(.top, Space.md)
+        Text("Profile").font(.forgeHeading(34)).foregroundStyle(forge.textPrimary).padding(.top, Space.md)
     }
 
     private var accountCard: some View {
         VStack(alignment: .leading, spacing: Space.md) {
             HStack {
                 ZStack {
-                    Circle().fill(forge.accentGlow).frame(width: 56, height: 56)
+                    Circle().fill(forge.raised).frame(width: 56, height: 56)
                     Text(String(appState.userData.characterName.prefix(1)).uppercased())
                         .font(.forgeHeading(20)).foregroundStyle(forge.accent)
                 }
