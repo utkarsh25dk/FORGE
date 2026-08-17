@@ -78,7 +78,7 @@ private struct LiveWorkoutBannerView: View {
     var body: some View {
         HStack(spacing: 14) {
             ZStack {
-                Circle().fill(Color.white.opacity(0.1)).frame(width: 46, height: 46)
+                Circle().fill(Color(activityHex: "FFB03C").opacity(0.14)).frame(width: 46, height: 46)
                 Image(systemName: "flame.fill")
                     .foregroundStyle(activityFireGradient)
                     .font(.system(size: 20))

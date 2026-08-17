@@ -171,7 +171,7 @@ struct ForgeWaterWidgetView: View {
                 .font(.system(size: iconSize, weight: .bold))
                 .foregroundStyle(Color.black)
                 .frame(width: size, height: size)
-                .background(Circle().fill(isComplete ? Color.green : waterColor))
+                .background(Circle().fill(waterColor))
         }
         .buttonStyle(.plain)
     }
