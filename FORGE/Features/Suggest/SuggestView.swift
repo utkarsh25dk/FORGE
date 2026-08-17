@@ -7,16 +7,16 @@ import SwiftUI
 extension WorkoutCategory {
     var fireTint: Color {
         switch self {
-        case .upperBody: return Color(hex: "FFC24D")
-        case .lowerBody: return Color(hex: "FFA83C")
-        case .fullBody: return Color(hex: "FF8F3D")
-        case .core: return Color(hex: "FF7A4D")
-        case .cardio: return Color(hex: "FF6550")
-        case .hiit: return Color(hex: "F4523F")
-        case .flexibility: return Color(hex: "E0784A")
-        case .recovery: return Color(hex: "D98B3F")
-        case .activity: return Color(hex: "C97A2E")
-        case .sports: return Color(hex: "E8A33C")
+        case .upperBody: return Color(hex: "F5923C")
+        case .lowerBody: return Color(hex: "FF8144")
+        case .fullBody: return Color(hex: "FF7048")
+        case .core: return Color(hex: "FA5F4A")
+        case .cardio: return Color(hex: "F5504A")
+        case .hiit: return Color(hex: "EB4141")
+        case .flexibility: return Color(hex: "D9713F")
+        case .recovery: return Color(hex: "C77A32")
+        case .activity: return Color(hex: "B86A28")
+        case .sports: return Color(hex: "E0862F")
         case .warmUp, .coolDown, .other: return Color(hex: "FFB03C")
         }
     }
