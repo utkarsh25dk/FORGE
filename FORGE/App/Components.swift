@@ -260,6 +260,6 @@ struct ForgeToast: View {
         .padding(.vertical, Space.md)
         .background(Capsule().fill(forge.raised))
         .overlay(Capsule().stroke(forge.surfaceBorder, lineWidth: 1))
-        .shadow(color: .black.opacity(0.25), radius: 12, y: 4)
+        .shadow(color: .black.opacity(0.16), radius: 8, y: 3)
     }
 }

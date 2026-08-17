@@ -1,0 +1,11 @@
+phase,item,change,files,status,notes
+A,2,Radius scale tightened (10/16/22 -> 8/12/16),FORGE/App/DesignSystem.swift,done,
+A,8,ForgeToast shadow softened to match flat/hairline language,FORGE/App/Components.swift,done,also audited chips/text fields/empty state - already consistent, no change needed
+A,10,WeeklyChartsView hardcoded sleep/hydration hex -> ForgeColors tokens,FORGE/App/DesignSystem.swift; FORGE/Features/Progress/WeeklyChartsView.swift,done,new dataSleep/dataHydration tokens with distinct light/dark values
+B,4,Train screens pass,FORGE/Features/Train/TrainView.swift; DaySectionView.swift; WorkoutRow.swift; AddWorkoutSheet.swift; CopyDaySheet.swift,todo,
+C,5,Suggest screens pass,FORGE/Features/Suggest/SuggestView.swift; ExerciseListView.swift; ExerciseDetailSheet.swift; SubgroupListView.swift,todo,
+D,3,Detail sheets pass,FORGE/Features/Progress/DayDetailSheet.swift; HydrationDetailSheet.swift; SleepDetailSheet.swift; WorkoutBreakdownSheet.swift; TotalWorkoutsDetailSheet.swift,todo,
+E,6,Badges: weight-based earned/unearned instead of color+opacity,FORGE/Features/Gamification/BadgeGridView.swift; FORGE/Features/Profile/BadgeDetailSheet.swift,todo,
+F,7,Live workout / rest timer pass,FORGE/Features/LiveWorkout/LiveWorkoutView.swift; RestTimerView.swift,todo,
+G,1,Widgets brought in line (lock/home screen + Live Activity),ForgeWidget/ForgeWidget.swift; ForgeWaterWidget.swift; LiveWorkoutActivityWidget.swift,todo,
+H,9,Motion recalibration (bounce/spring intensity audit),app-wide,todo,done last, once visuals settle

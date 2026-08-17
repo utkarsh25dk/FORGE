@@ -117,8 +117,8 @@ struct WeeklyChartsView: View {
         return 0...max(4, maxValue + 1)
     }
 
-    private let sleepColor = Color(hex: "5CA8FF")
-    private let hydrationColor = Color(hex: "5CE0D8")
+    private var sleepColor: Color { forge.dataSleep }
+    private var hydrationColor: Color { forge.dataHydration }
     private var missedColor: Color { DayStatus.missed.color(forge) ?? forge.textTertiary }
 
     private var sectionTitle: String {

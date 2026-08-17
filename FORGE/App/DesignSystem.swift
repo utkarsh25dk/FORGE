@@ -67,6 +67,10 @@ struct ForgeColors {
     let warning: Color
     let danger: Color
     let divider: Color
+    /// Data-series colors for the weekly charts — semantic per-metric hues,
+    /// deliberately distinct from `accent` (dataviz: series color != brand accent).
+    let dataSleep: Color
+    let dataHydration: Color
 
     var backgroundGradient: LinearGradient {
         LinearGradient(colors: [backgroundGradTop, backgroundGradMid, backgroundGradBottom], startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -103,7 +107,9 @@ struct ForgeColors {
         success: Color(hex: "FFB03C"),
         warning: Color(hex: "FFC65C"),
         danger: Color(hex: "FF6B5C"),
-        divider: Color.white.opacity(0.07)
+        divider: Color.white.opacity(0.07),
+        dataSleep: Color(hex: "5CA8FF"),
+        dataHydration: Color(hex: "5CE0D8")
     )
 
     static let light = ForgeColors(
@@ -123,7 +129,9 @@ struct ForgeColors {
         success: Color(hex: "C2410C"),
         warning: Color(hex: "9C7217"),
         danger: Color(hex: "B84438"),
-        divider: Color.black.opacity(0.05)
+        divider: Color.black.opacity(0.05),
+        dataSleep: Color(hex: "2B6CB0"),
+        dataHydration: Color(hex: "0E8074")
     )
 }
 
@@ -176,9 +184,9 @@ enum Space {
 }
 
 enum Radius {
-    static let sm: CGFloat = 10
-    static let md: CGFloat = 16
-    static let lg: CGFloat = 22
+    static let sm: CGFloat = 8
+    static let md: CGFloat = 12
+    static let lg: CGFloat = 16
     static let pill: CGFloat = 999
 }
 
