@@ -15,7 +15,7 @@ enum ForgeTab: Int, CaseIterable, Hashable {
 
     var icon: String {
         switch self {
-        case .home: return "house.fill"
+        case .home: return "flame.fill"
         case .train: return "checklist"
         case .suggest: return "sparkles"
         case .progress: return "chart.bar.fill"
