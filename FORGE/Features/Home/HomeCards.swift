@@ -140,7 +140,7 @@ private struct HydrationSection: View {
                         )
                         .frame(width: 36, height: 36)
                         .scaleEffect(i <= count ? 1 : 0.9)
-                        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: count)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.8), value: count)
                         .contentShape(Rectangle())
                         .onTapGesture {
                             appState.setHydration(count == i ? i - 1 : i)
@@ -186,7 +186,7 @@ private struct SleepSection: View {
                         )
                         .frame(width: 44, height: 44)
                         .scaleEffect(i <= quality ? 1 : 0.9)
-                        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: quality)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.8), value: quality)
                         .contentShape(Rectangle())
                         .onTapGesture {
                             quality = i
