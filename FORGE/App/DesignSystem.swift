@@ -92,9 +92,9 @@ struct ForgeColors {
 
     static let dark = ForgeColors(
         background: Color(hex: "0A0B0A"),
-        backgroundGradTop: Color(hex: "241D15"),
-        backgroundGradMid: Color(hex: "14120E"),
-        backgroundGradBottom: Color(hex: "060706"),
+        backgroundGradTop: Color(hex: "1C211D"),
+        backgroundGradMid: Color(hex: "15181A"),
+        backgroundGradBottom: Color(hex: "0A0B0A"),
         surface: Color(hex: "15181A"),
         surfaceBorder: Color.white.opacity(0.08),
         raised: Color(hex: "20241F"),
@@ -114,9 +114,9 @@ struct ForgeColors {
 
     static let light = ForgeColors(
         background: Color(hex: "F2F4EF"),
-        backgroundGradTop: Color(hex: "FFF9EE"),
-        backgroundGradMid: Color(hex: "F6F3E9"),
-        backgroundGradBottom: Color(hex: "E9EBE2"),
+        backgroundGradTop: Color(hex: "FDFEFC"),
+        backgroundGradMid: Color(hex: "F7F8F5"),
+        backgroundGradBottom: Color(hex: "F0F1ED"),
         surface: Color(hex: "FDFEFC"),
         surfaceBorder: Color.black.opacity(0.06),
         raised: Color(hex: "E9ECE5"),
