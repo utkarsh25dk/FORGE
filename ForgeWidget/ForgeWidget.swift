@@ -19,7 +19,7 @@ private let fireBgGradient = RadialGradient(
     colors: [Color(hex: "5A2A1A"), Color(hex: "241D15"), Color(hex: "060706")],
     center: .topLeading, startRadius: 0, endRadius: 280
 )
-private let accent = Color(hex: "FFB03C")
+private let accent = Color(hex: "FA5F4A")
 private let hydrationColor = Color(hex: "5CE0D8")
 private let sleepColor = Color(hex: "5CA8FF")
 private let textPrimary = Color(hex: "F4F7F3")
