@@ -1,0 +1,11 @@
+phase,item,change,files,status,notes
+1,1,Single-accent discipline (fireGradient reserved for one hero use per screen),FORGE/App/DesignSystem.swift,todo,
+1,3,Drop glow halos + gradient card fill for flat surface + hairline border,FORGE/App/DesignSystem.swift,todo,
+1,4,No emoji as UI icons (SF Symbols only rule),FORGE/App/DesignSystem.swift,todo,rule enforced in later phases
+1,6,Typography over color for hierarchy,FORGE/App/DesignSystem.swift,todo,
+2,2,Collapse 5 Home cards into one Today surface with hairline dividers,FORGE/Features/Home/HomeView.swift; HomeCards.swift,todo,depends on phase 1
+2,5,Numeral-led chrome-free stat tiles for Streak/Level/WeeklyGoal,FORGE/Features/Home/HomeCards.swift,todo,depends on phase 1
+3,7,Calendar heatmap: grayscale + single accent for today,FORGE/Features/Progress/CalendarHeatmapView.swift; MonthCalendarView.swift; WeekCalendarView.swift,todo,depends on phase 1
+4,8,Quiet unified tab bar icon weight + subtle selected state,FORGE/Features/Root/MainTabView.swift,todo,independent
+5,9,Pare back Weekly Recap card to graph + streak + comparison only,FORGE/Features/Profile/WeeklyRecapCard.swift,todo,independent
+6,10,Editorial type-led Auth/Onboarding layout,FORGE/Features/Auth/AuthContainerView.swift; OnboardingView.swift; LoginView.swift; SignUpView.swift,todo,independent; build last
