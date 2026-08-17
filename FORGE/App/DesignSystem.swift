@@ -71,6 +71,10 @@ struct ForgeColors {
     /// deliberately distinct from `accent` (dataviz: series color != brand accent).
     let dataSleep: Color
     let dataHydration: Color
+    /// Calendar day-status colors — worked/rest are distinct hues (missed reuses
+    /// `danger`) so the streak calendar reads at a glance instead of by weight.
+    let dayWorked: Color
+    let dayRest: Color
 
     var backgroundGradient: LinearGradient {
         LinearGradient(colors: [backgroundGradTop, backgroundGradMid, backgroundGradBottom], startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -109,7 +113,9 @@ struct ForgeColors {
         danger: Color(hex: "FF6B5C"),
         divider: Color.white.opacity(0.07),
         dataSleep: Color(hex: "5CA8FF"),
-        dataHydration: Color(hex: "5CE0D8")
+        dataHydration: Color(hex: "5CE0D8"),
+        dayWorked: Color(hex: "FFB03C"),
+        dayRest: Color(hex: "8A7A63")
     )
 
     static let light = ForgeColors(
@@ -131,7 +137,9 @@ struct ForgeColors {
         danger: Color(hex: "B84438"),
         divider: Color.black.opacity(0.05),
         dataSleep: Color(hex: "2B6CB0"),
-        dataHydration: Color(hex: "0E8074")
+        dataHydration: Color(hex: "0E8074"),
+        dayWorked: Color(hex: "C97A1E"),
+        dayRest: Color(hex: "A69072")
     )
 }
 

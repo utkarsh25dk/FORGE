@@ -5,13 +5,13 @@ import WidgetKit
 enum DayStatus {
     case worked, rest, missed, none
 
-    /// Grayscale weight instead of a status hue — "today" is the only accent
-    /// moment on the calendar (an accent ring, applied at the call site).
+    /// Distinct hue per status so the calendar reads at a glance. "Today" still
+    /// gets its own accent ring on top of this fill, applied at the call site.
     func color(_ forge: ForgeColors) -> Color? {
         switch self {
-        case .worked: return forge.textPrimary
-        case .rest: return forge.textTertiary
-        case .missed: return forge.textTertiary.opacity(0.5)
+        case .worked: return forge.dayWorked
+        case .rest: return forge.dayRest
+        case .missed: return forge.danger
         case .none: return nil
         }
     }
