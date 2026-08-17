@@ -21,11 +21,11 @@ struct BadgeDetailSheet: View {
                             HStack(spacing: Space.md) {
                                 ZStack {
                                     Circle()
-                                        .fill(earned ? AnyShapeStyle(forge.accentSoft) : AnyShapeStyle(forge.raised))
+                                        .fill(forge.raised)
                                         .frame(width: 44, height: 44)
                                     Image(systemName: badge.icon)
                                         .font(.system(size: 17, weight: .semibold))
-                                        .foregroundStyle(earned ? forge.accent : forge.textTertiary)
+                                        .foregroundStyle(earned ? forge.textPrimary : forge.textTertiary)
                                 }
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text(badge.name)
@@ -37,12 +37,11 @@ struct BadgeDetailSheet: View {
                                 }
                                 Spacer(minLength: 0)
                                 Image(systemName: earned ? "checkmark.circle.fill" : "lock.fill")
-                                    .foregroundStyle(earned ? forge.accent : forge.textTertiary)
+                                    .foregroundStyle(earned ? forge.textPrimary : forge.textTertiary)
                                     .font(.system(size: earned ? 18 : 14))
                             }
                             .padding(.vertical, Space.sm)
                             .padding(.horizontal, Space.md)
-                            .opacity(earned ? 1 : 0.7)
                         }
                     }
                     .forgeCard(padding: 0, cornerRadius: Radius.md)

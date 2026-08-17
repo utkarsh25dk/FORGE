@@ -13,11 +13,11 @@ struct BadgeGridView: View {
                 VStack(spacing: 6) {
                     ZStack {
                         Circle()
-                            .fill(earned ? AnyShapeStyle(forge.accentSoft) : AnyShapeStyle(forge.raised))
+                            .fill(forge.raised)
                             .frame(width: 56, height: 56)
                         Image(systemName: badge.icon)
                             .font(.system(size: 20, weight: .semibold))
-                            .foregroundStyle(earned ? forge.accent : forge.textTertiary)
+                            .foregroundStyle(earned ? forge.textPrimary : forge.textTertiary)
                     }
                     Text(badge.name)
                         .font(.forgeCaption(11))
@@ -25,7 +25,6 @@ struct BadgeGridView: View {
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
                 }
-                .opacity(earned ? 1 : 0.55)
             }
         }
     }
