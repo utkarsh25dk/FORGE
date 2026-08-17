@@ -8,7 +8,7 @@ struct SubgroupListView: View {
         ScrollView {
             VStack(spacing: Space.md) {
                 HStack(spacing: Space.md) {
-                    CategoryIcon(systemName: category.icon, size: 22)
+                    CategoryIcon(systemName: category.icon, size: 22, tint: category.fireTint)
                     VStack(alignment: .leading, spacing: 2) {
                         Text(category.rawValue).font(.forgeHeading(20)).foregroundStyle(forge.textPrimary)
                         Text("Pick a muscle group to see exercises").font(.forgeCaption()).foregroundStyle(forge.textSecondary)

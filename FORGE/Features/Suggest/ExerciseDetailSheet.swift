@@ -63,7 +63,7 @@ struct ExerciseDetailSheet: View {
 
     private var header: some View {
         VStack(spacing: 6) {
-            CategoryIcon(systemName: template.category.icon, size: 26)
+            CategoryIcon(systemName: template.category.icon, size: 26, tint: template.category.fireTint)
             Text(template.name).font(.forgeHeading(22)).foregroundStyle(forge.textPrimary).multilineTextAlignment(.center)
             Text("\(template.subgroup) · \(template.equipment)").font(.forgeCaption()).foregroundStyle(forge.textSecondary)
         }

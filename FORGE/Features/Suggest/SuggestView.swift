@@ -1,5 +1,27 @@
 import SwiftUI
 
+/// A warm, categorical palette reserved for the Suggest tab's category icons -
+/// distinct from `forge.accent` so categories read apart from each other, but
+/// kept in the amber/orange/red "fire" family rather than a full rainbow (that's
+/// TotalWorkoutsDetailSheet's job, for its donut chart legend).
+extension WorkoutCategory {
+    var fireTint: Color {
+        switch self {
+        case .upperBody: return Color(hex: "FFC24D")
+        case .lowerBody: return Color(hex: "FFA83C")
+        case .fullBody: return Color(hex: "FF8F3D")
+        case .core: return Color(hex: "FF7A4D")
+        case .cardio: return Color(hex: "FF6550")
+        case .hiit: return Color(hex: "F4523F")
+        case .flexibility: return Color(hex: "E0784A")
+        case .recovery: return Color(hex: "D98B3F")
+        case .activity: return Color(hex: "C97A2E")
+        case .sports: return Color(hex: "E8A33C")
+        case .warmUp, .coolDown, .other: return Color(hex: "FFB03C")
+        }
+    }
+}
+
 struct SuggestView: View {
     @EnvironmentObject private var appState: AppState
     @Environment(\.forge) private var forge
@@ -50,7 +72,7 @@ struct SuggestView: View {
                     ForEach(WorkoutCategory.browsable) { category in
                         NavigationLink(value: category) {
                             VStack(spacing: Space.md) {
-                                CategoryIcon(systemName: category.icon, size: 38)
+                                CategoryIcon(systemName: category.icon, size: 38, tint: category.fireTint)
                                 Text(category.rawValue)
                                     .font(.forgeBodySemibold(16))
                                     .foregroundStyle(forge.textPrimary)
@@ -82,7 +104,7 @@ struct SuggestView: View {
                             selectedResult = template
                         } label: {
                             HStack(spacing: Space.md) {
-                                CategoryIcon(systemName: template.category.icon, size: 16)
+                                CategoryIcon(systemName: template.category.icon, size: 16, tint: template.category.fireTint)
                                 VStack(alignment: .leading, spacing: 3) {
                                     Text(template.name).font(.forgeBodySemibold(15)).foregroundStyle(forge.textPrimary)
                                     Text("\(template.category.rawValue) · \(template.subgroup)")
