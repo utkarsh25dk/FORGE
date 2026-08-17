@@ -6,7 +6,7 @@ struct SleepDetailSheet: View {
     @Environment(\.dismiss) private var dismiss
     var date: Date
 
-    private let sleepColor = Color(hex: "5CA8FF")
+    private var sleepColor: Color { forge.dataSleep }
 
     var body: some View {
         let checkIn = appState.checkIn(on: date)

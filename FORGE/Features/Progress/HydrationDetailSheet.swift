@@ -6,7 +6,7 @@ struct HydrationDetailSheet: View {
     @Environment(\.dismiss) private var dismiss
     var date: Date
 
-    private let hydrationColor = Color(hex: "5CE0D8")
+    private var hydrationColor: Color { forge.dataHydration }
 
     var body: some View {
         let count = appState.checkIn(on: date).hydrationCount
