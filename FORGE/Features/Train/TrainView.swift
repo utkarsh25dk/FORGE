@@ -7,6 +7,7 @@ struct TrainView: View {
     @State private var quickStartCategory: WorkoutCategory?
     @State private var showTemplates = false
     @State private var pastExpanded = false
+    @State private var upcomingExpanded = false
 
     private var today: Date { Date().startOfDay }
     private var tomorrow: Date { Calendar.forge.date(byAdding: .day, value: 1, to: today)! }
@@ -25,9 +26,7 @@ struct TrainView: View {
                 quickStart
                 DaySectionView(date: today, label: "Today")
                 DaySectionView(date: tomorrow, label: "Tomorrow")
-                ForEach(upcomingDates, id: \.self) { date in
-                    DaySectionView(date: date, label: date.formatted(.dateTime.weekday(.wide).month().day()))
-                }
+                upcomingSection
                 pastSection
                 Spacer(minLength: 90)
             }
@@ -80,6 +79,29 @@ struct TrainView: View {
                         .forgeCard(padding: Space.sm, cornerRadius: Radius.md)
                     }
                     .buttonStyle(.plain)
+                }
+            }
+        }
+    }
+
+    private var upcomingSection: some View {
+        VStack(alignment: .leading, spacing: Space.sm) {
+            Button {
+                withAnimation { upcomingExpanded.toggle() }
+            } label: {
+                HStack {
+                    Text("This Week").font(.forgeHeadingMedium(17)).foregroundStyle(forge.textPrimary)
+                    Spacer()
+                    Image(systemName: upcomingExpanded ? "chevron.up" : "chevron.down")
+                        .foregroundStyle(forge.textSecondary)
+                }
+                .frame(minHeight: 44)
+            }
+            .buttonStyle(.plain)
+
+            if upcomingExpanded {
+                ForEach(upcomingDates, id: \.self) { date in
+                    DaySectionView(date: date, label: date.formatted(.dateTime.weekday(.wide).month().day()))
                 }
             }
         }
