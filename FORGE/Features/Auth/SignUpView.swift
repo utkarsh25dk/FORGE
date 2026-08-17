@@ -14,7 +14,7 @@ struct SignUpView: View {
     @State private var errorMessage: String?
 
     var body: some View {
-        VStack(spacing: Space.lg) {
+        VStack(alignment: .leading, spacing: Space.lg) {
             VStack(spacing: Space.md) {
                 TextField("Character name", text: $displayName)
                     .textFieldStyle(ForgeTextFieldStyle())

@@ -6,16 +6,18 @@ struct AuthContainerView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            VStack(spacing: Space.sm) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text("FORGE")
-                    .font(.forgeDisplay(40))
+                    .font(.forgeDisplay(52))
                     .foregroundStyle(forge.textPrimary)
                 Text("Every rep feeds the fire.")
                     .font(.forgeBody(15))
                     .foregroundStyle(forge.textSecondary)
             }
-            .padding(.top, Space.xxl)
-            .padding(.bottom, Space.xl)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, Space.xl)
+            .padding(.top, Space.xxl + Space.md)
+            .padding(.bottom, Space.xxl)
 
             if showSignUp {
                 SignUpView(switchToLogin: { withAnimation(.easeInOut(duration: 0.2)) { showSignUp = false } })

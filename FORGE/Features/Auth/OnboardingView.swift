@@ -65,35 +65,31 @@ struct OnboardingView: View {
     }
 
     private var welcomeStep: some View {
-        VStack(spacing: Space.md) {
-            Image(systemName: "flame.fill")
-                .font(.system(size: 44))
-                .foregroundStyle(forge.accent)
-            Text("Welcome to FORGE").font(.forgeHeading(26)).foregroundStyle(forge.textPrimary)
+        VStack(alignment: .leading, spacing: Space.md) {
+            Text("Welcome to FORGE").font(.forgeHeading(32)).foregroundStyle(forge.textPrimary)
             Text("A few quick questions so your plan fits how you train.")
-                .font(.forgeBody(15))
+                .font(.forgeBody(16))
                 .foregroundStyle(forge.textSecondary)
-                .multilineTextAlignment(.center)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var goalStep: some View {
-        VStack(spacing: Space.lg) {
-            Text("Weekly goal").font(.forgeHeading(24)).foregroundStyle(forge.textPrimary)
+        VStack(alignment: .leading, spacing: Space.lg) {
+            Text("Weekly goal").font(.forgeHeading(28)).foregroundStyle(forge.textPrimary)
             Text("How many days a week are you aiming to train?")
-                .font(.forgeBody(15)).foregroundStyle(forge.textSecondary)
-                .multilineTextAlignment(.center)
-            Text("\(Int(weeklyGoal)) days").font(.forgeNumeric(40)).foregroundStyle(forge.accent)
+                .font(.forgeBody(16)).foregroundStyle(forge.textSecondary)
+            Text("\(Int(weeklyGoal)) days").font(.forgeNumeric(44)).foregroundStyle(forge.accent)
             Slider(value: $weeklyGoal, in: 2...7, step: 1).tint(forge.accent)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var unitStep: some View {
-        VStack(spacing: Space.lg) {
-            Text("Units").font(.forgeHeading(24)).foregroundStyle(forge.textPrimary)
+        VStack(alignment: .leading, spacing: Space.lg) {
+            Text("Units").font(.forgeHeading(28)).foregroundStyle(forge.textPrimary)
             Text("How should we display weight and distance?")
-                .font(.forgeBody(15)).foregroundStyle(forge.textSecondary)
-                .multilineTextAlignment(.center)
+                .font(.forgeBody(16)).foregroundStyle(forge.textSecondary)
             HStack(spacing: Space.md) {
                 ForEach(UnitSystem.allCases) { system in
                     Button {
@@ -106,14 +102,14 @@ struct OnboardingView: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var themeStep: some View {
-        VStack(spacing: Space.lg) {
-            Text("Appearance").font(.forgeHeading(24)).foregroundStyle(forge.textPrimary)
+        VStack(alignment: .leading, spacing: Space.lg) {
+            Text("Appearance").font(.forgeHeading(28)).foregroundStyle(forge.textPrimary)
             Text("Pick your look — you can change this anytime in Profile.")
-                .font(.forgeBody(15)).foregroundStyle(forge.textSecondary)
-                .multilineTextAlignment(.center)
+                .font(.forgeBody(16)).foregroundStyle(forge.textSecondary)
             VStack(spacing: Space.sm) {
                 ForEach(ThemeMode.allCases) { mode in
                     Button {
@@ -134,6 +130,7 @@ struct OnboardingView: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private func finish() {

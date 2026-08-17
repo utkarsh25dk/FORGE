@@ -12,7 +12,7 @@ struct LoginView: View {
     @State private var errorMessage: String?
 
     var body: some View {
-        VStack(spacing: Space.lg) {
+        VStack(alignment: .leading, spacing: Space.lg) {
             VStack(spacing: Space.md) {
                 TextField("Email", text: $email)
                     .textFieldStyle(ForgeTextFieldStyle())
