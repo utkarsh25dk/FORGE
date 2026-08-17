@@ -125,18 +125,15 @@ private struct HydrationSection: View {
                     .contentTransition(.numericText())
                     .animation(.default, value: count)
             }
-            HStack(spacing: 4) {
-                ForEach(1...DailyCheckIn.hydrationGoal, id: \.self) { i in
-                    Capsule()
-                        .fill(i <= count ? AnyShapeStyle(forge.accent) : AnyShapeStyle(forge.raised))
-                        .frame(height: 10)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            appState.setHydration(count == i ? i - 1 : i)
-                        }
-                }
-            }
-            .animation(.spring(response: 0.3, dampingFraction: 0.8), value: count)
+            Slider(
+                value: Binding(
+                    get: { Double(count) },
+                    set: { appState.setHydration(Int($0.rounded())) }
+                ),
+                in: 0...Double(DailyCheckIn.hydrationGoal),
+                step: 1
+            )
+            .tint(forge.accent)
             .sensoryFeedback(.selection, trigger: count)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
