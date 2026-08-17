@@ -47,6 +47,8 @@ struct SaveTemplateSheet: View {
                     TextField("e.g. Push Day", text: $name)
                 }
             }
+            .scrollContentBackground(.hidden)
+            .forgeScreenBackground()
             .navigationTitle("Save Template")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

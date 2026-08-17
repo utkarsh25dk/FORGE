@@ -65,6 +65,8 @@ struct AddWorkoutSheet: View {
                         .lineLimit(2...4)
                 }
             }
+            .scrollContentBackground(.hidden)
+            .forgeScreenBackground()
             .navigationTitle(isEditing ? "Edit Workout" : "Add Workout")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
