@@ -81,7 +81,7 @@ struct WeeklyRecapCard: View {
                 .foregroundStyle(forge.textTertiary)
                 .padding(.bottom, 48)
         }
-        .frame(width: 1080, height: 1360)
+        .frame(width: 1080, height: 1180)
         .background(forge.backgroundGradient)
     }
 

@@ -136,7 +136,7 @@ private struct HydrationSection: View {
                     Circle()
                         .fill(i <= count ? AnyShapeStyle(forge.accent) : AnyShapeStyle(forge.raised))
                         .overlay(
-                            Circle().stroke(forge.textTertiary.opacity(i <= count ? 0 : 0.3), lineWidth: 1)
+                            Circle().stroke(forge.textTertiary.opacity(i <= count ? 0 : 0.45), lineWidth: 1)
                         )
                         .frame(width: 36, height: 36)
                         .scaleEffect(i <= count ? 1 : 0.9)
@@ -182,7 +182,7 @@ private struct SleepSection: View {
                     Circle()
                         .fill(i <= quality ? AnyShapeStyle(forge.accent) : AnyShapeStyle(forge.raised))
                         .overlay(
-                            Circle().stroke(forge.textTertiary.opacity(i <= quality ? 0 : 0.3), lineWidth: 1)
+                            Circle().stroke(forge.textTertiary.opacity(i <= quality ? 0 : 0.45), lineWidth: 1)
                         )
                         .frame(width: 44, height: 44)
                         .scaleEffect(i <= quality ? 1 : 0.9)
