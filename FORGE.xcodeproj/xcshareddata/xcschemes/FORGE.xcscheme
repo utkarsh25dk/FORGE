@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1540"
+   LastUpgradeVersion = "2660"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FF5128F1A70E4A5FADED9DC1"
+               BlueprintIdentifier = "2DFC147D16EB14CBD13E6A36"
                BuildableName = "FORGE.app"
                BlueprintName = "FORGE"
                ReferencedContainer = "container:FORGE.xcodeproj">
@@ -43,7 +43,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FF5128F1A70E4A5FADED9DC1"
+            BlueprintIdentifier = "2DFC147D16EB14CBD13E6A36"
             BuildableName = "FORGE.app"
             BlueprintName = "FORGE"
             ReferencedContainer = "container:FORGE.xcodeproj">
