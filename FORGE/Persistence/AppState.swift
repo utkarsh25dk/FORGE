@@ -167,6 +167,7 @@ final class AppState: ObservableObject {
             }
         }
         recomputeBadges()
+        syncProgramCompletion(for: entry.date)
         evaluateEveningReminder(on: entry.date)
     }
 

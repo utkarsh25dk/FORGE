@@ -22,6 +22,7 @@ struct UserData: Codable {
     var onboardingComplete: Bool = false
     var seenExerciseIds: Set<String> = []
     var personalRecords: [String: PersonalRecord] = [:]
+    var programEnrollments: [ProgramEnrollment] = []
 
     static func fresh(accountId: String, characterName: String) -> UserData {
         UserData(accountId: accountId, characterName: characterName)
@@ -51,6 +52,7 @@ struct UserData: Codable {
         onboardingComplete = try c.decodeIfPresent(Bool.self, forKey: .onboardingComplete) ?? false
         seenExerciseIds = try c.decodeIfPresent(Set<String>.self, forKey: .seenExerciseIds) ?? []
         personalRecords = try c.decodeIfPresent([String: PersonalRecord].self, forKey: .personalRecords) ?? [:]
+        programEnrollments = try c.decodeIfPresent([ProgramEnrollment].self, forKey: .programEnrollments) ?? []
     }
 
     init(accountId: String, characterName: String) {

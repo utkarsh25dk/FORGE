@@ -40,7 +40,10 @@ struct ForgeChip: View {
             if let systemImage {
                 Image(systemName: systemImage).font(.system(size: 12, weight: .semibold))
             }
-            Text(label).font(.forgeBodyMedium(14))
+            Text(label)
+                .font(.forgeBodyMedium(14))
+                .lineLimit(1)
+                .fixedSize(horizontal: true, vertical: false)
         }
         .padding(.horizontal, Space.md)
         .padding(.vertical, 8)
