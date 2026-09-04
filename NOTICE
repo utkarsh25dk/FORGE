@@ -1,0 +1,18 @@
+FORGE
+Copyright (c) 2026 Utkarsh
+
+The MIT License in LICENSE covers the source code of this project.
+
+It does NOT cover the bundled font files, which are third-party works
+redistributed under their own terms:
+
+  FORGE/Resources/Fonts/Manrope-*.ttf
+      Copyright 2018 The Manrope Project Authors
+      SIL Open Font License 1.1 — see Manrope-OFL.txt
+
+  FORGE/Resources/Fonts/SpaceGrotesk-*.ttf
+      Copyright 2020 The Space Grotesk Project Authors
+      SIL Open Font License 1.1 — see SpaceGrotesk-OFL.txt
+
+The OFL permits redistribution provided the copyright notice and license
+accompany the fonts, so both license texts ship alongside them.
