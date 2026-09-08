@@ -13,6 +13,17 @@ struct ExerciseListView: View {
         ExerciseLibrary.exercises(category: category, subgroup: subgroup)
             .filter { !appState.userData.avoidExerciseIds.contains($0.id) }
     }
+    /// Exercises the user's equipment covers.
+    private var availableExercises: [ExerciseTemplate] {
+        guard appState.isFilteringByEquipment else { return libraryExercises }
+        return libraryExercises.filter { appState.canPerform($0) }
+    }
+    /// The rest — listed separately rather than hidden, so it's clear what
+    /// the equipment setting is holding back and why.
+    private var unavailableExercises: [ExerciseTemplate] {
+        guard appState.isFilteringByEquipment else { return [] }
+        return libraryExercises.filter { !appState.canPerform($0) }
+    }
     private var customEntries: [CustomExerciseEntry] {
         appState.customExercises(category: category, subgroup: subgroup)
     }
@@ -23,8 +34,15 @@ struct ExerciseListView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: Space.md) {
-                ForEach(libraryExercises) { template in
+                ForEach(availableExercises) { template in
                     exerciseRow(template, isCustom: false)
+                }
+                if availableExercises.isEmpty {
+                    Text("Nothing here matches your equipment yet.")
+                        .font(.forgeBody(14))
+                        .foregroundStyle(forge.textSecondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical, Space.sm)
                 }
                 if !customEntries.isEmpty {
                     Text("Your Additions")
@@ -34,6 +52,19 @@ struct ExerciseListView: View {
                         .padding(.top, Space.sm)
                     ForEach(customEntries) { entry in
                         exerciseRow(entry.asTemplate, isCustom: true, customEntry: entry)
+                    }
+                }
+                if !unavailableExercises.isEmpty {
+                    VStack(alignment: .leading, spacing: Space.md) {
+                        Text("Needs equipment you don't have")
+                            .font(.forgeCaption())
+                            .foregroundStyle(forge.textTertiary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.top, Space.sm)
+                        ForEach(unavailableExercises) { template in
+                            exerciseRow(template, isCustom: false)
+                                .opacity(0.45)
+                        }
                     }
                 }
                 if hiddenCount > 0 {
@@ -105,6 +136,18 @@ struct ExerciseListView: View {
                             Text("\(template.level.label) · \(template.kind.fieldSummary)")
                                 .font(.forgeCaption())
                                 .foregroundStyle(forge.textSecondary)
+                                .lineLimit(1)
+                        }
+                        // Own line: inline, this badge wrapped mid-sentence and
+                        // broke the row's alignment.
+                        if appState.hasSetUpEquipment && !appState.canPerform(template) {
+                            Text("Needs \(template.equipmentGroup.label.lowercased())")
+                                .font(.forgeCaption(10))
+                                .foregroundStyle(forge.warning)
+                                .lineLimit(1)
+                                .padding(.horizontal, 6).padding(.vertical, 2)
+                                .background(Capsule().stroke(forge.warning.opacity(0.5), lineWidth: 1))
+                                .padding(.top, 1)
                         }
                     }
                     Spacer()

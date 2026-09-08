@@ -23,6 +23,11 @@ struct UserData: Codable {
     var seenExerciseIds: Set<String> = []
     var personalRecords: [String: PersonalRecord] = [:]
     var programEnrollments: [ProgramEnrollment] = []
+    /// Equipment the user has said they own. Empty means "not set up yet",
+    /// which is treated as no filtering rather than as owning nothing.
+    var ownedEquipment: Set<EquipmentGroup> = []
+    /// Whether the exercise browser filters to what the user can actually do.
+    var filterByEquipment: Bool = false
 
     static func fresh(accountId: String, characterName: String) -> UserData {
         UserData(accountId: accountId, characterName: characterName)
@@ -53,6 +58,8 @@ struct UserData: Codable {
         seenExerciseIds = try c.decodeIfPresent(Set<String>.self, forKey: .seenExerciseIds) ?? []
         personalRecords = try c.decodeIfPresent([String: PersonalRecord].self, forKey: .personalRecords) ?? [:]
         programEnrollments = try c.decodeIfPresent([ProgramEnrollment].self, forKey: .programEnrollments) ?? []
+        ownedEquipment = try c.decodeIfPresent(Set<EquipmentGroup>.self, forKey: .ownedEquipment) ?? []
+        filterByEquipment = try c.decodeIfPresent(Bool.self, forKey: .filterByEquipment) ?? false
     }
 
     init(accountId: String, characterName: String) {

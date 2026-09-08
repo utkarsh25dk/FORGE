@@ -10,6 +10,7 @@ struct ProfileView: View {
     @State private var nameDraft = ""
     @State private var isEditingName = false
     @State private var showAvoidSheet = false
+    @State private var showEquipmentSheet = false
     @State private var showImporter = false
     @State private var exportURL: IdentifiableURL?
     @State private var importMessage: String?
@@ -26,6 +27,7 @@ struct ProfileView: View {
                 accountCard
                 statsRow
                 CompletedProgramsCard()
+                equipmentCard
                 preferencesCard
                 avoidCard
                 templatesCard
@@ -38,6 +40,7 @@ struct ProfileView: View {
         }
         .scrollIndicators(.hidden)
         .sheet(isPresented: $showAvoidSheet) { AvoidExercisesSheet() }
+        .sheet(isPresented: $showEquipmentSheet) { MyEquipmentSheet() }
         .sheet(isPresented: $showWorkoutsDetail) { TotalWorkoutsDetailSheet() }
         .sheet(isPresented: $showBadgesDetail) { BadgeDetailSheet() }
         .sheet(item: $exportURL) { url in
@@ -54,6 +57,31 @@ struct ProfileView: View {
         } message: {
             Text(importMessage ?? "")
         }
+    }
+
+    private var equipmentCard: some View {
+        Button { showEquipmentSheet = true } label: {
+            HStack(spacing: Space.md) {
+                CategoryIcon(systemName: "dumbbell.fill", size: 20, tint: forge.accent)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("My Equipment")
+                        .font(.forgeBodySemibold(16))
+                        .foregroundStyle(forge.textPrimary)
+                    Text(appState.hasSetUpEquipment
+                         ? "\(appState.availableExerciseCount) of \(ExerciseLibrary.all.count) exercises available"
+                         : "Tell FORGE what you have to train with")
+                        .font(.forgeCaption())
+                        .foregroundStyle(forge.textSecondary)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.right")
+                    .foregroundStyle(forge.textTertiary)
+                    .font(.system(size: 13, weight: .semibold))
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .forgeCard(padding: Space.md, cornerRadius: Radius.md)
+        }
+        .buttonStyle(.plain)
     }
 
     private var header: some View {
