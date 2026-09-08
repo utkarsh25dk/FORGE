@@ -64,6 +64,7 @@
 		BF6A44E0C8951595249B9EB3 /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B59DC110D7E1702FAD265B5 /* CheckIn.swift */; };
 		3B82ADCDCFF04B5E9AFAD5B5 /* CustomExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA7A6855A6B393698DE691 /* CustomExercise.swift */; };
 		0F4B323CE8887ACE70AD27E5 /* ExerciseAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2A1A21E85FDFD56CF2E532 /* ExerciseAttributes.swift */; };
+		B781541F9CCAA714A467E316 /* ExerciseForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06385311586BDCA18A637E3 /* ExerciseForm.swift */; };
 		02295C07D26DACB14BBD0169 /* ExerciseLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64EB5D85B93CFA89015BAD1 /* ExerciseLibrary.swift */; };
 		BEE5E1BCE6ACAF2E6A261ADC /* Gamification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D287E4D0084A2AB32A790F /* Gamification.swift */; };
 		70433F44BD4108CB60E36425 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E860F79EA28248EDCF3251 /* Program.swift */; };
@@ -332,6 +333,7 @@
 		5B59DC110D7E1702FAD265B5 /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
 		B4AA7A6855A6B393698DE691 /* CustomExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExercise.swift; sourceTree = "<group>"; };
 		AC2A1A21E85FDFD56CF2E532 /* ExerciseAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseAttributes.swift; sourceTree = "<group>"; };
+		F06385311586BDCA18A637E3 /* ExerciseForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseForm.swift; sourceTree = "<group>"; };
 		D64EB5D85B93CFA89015BAD1 /* ExerciseLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseLibrary.swift; sourceTree = "<group>"; };
 		12D287E4D0084A2AB32A790F /* Gamification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gamification.swift; sourceTree = "<group>"; };
 		A1E860F79EA28248EDCF3251 /* Program.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				5B59DC110D7E1702FAD265B5 /* CheckIn.swift */,
 				B4AA7A6855A6B393698DE691 /* CustomExercise.swift */,
 				AC2A1A21E85FDFD56CF2E532 /* ExerciseAttributes.swift */,
+				F06385311586BDCA18A637E3 /* ExerciseForm.swift */,
 				D64EB5D85B93CFA89015BAD1 /* ExerciseLibrary.swift */,
 				12D287E4D0084A2AB32A790F /* Gamification.swift */,
 				A1E860F79EA28248EDCF3251 /* Program.swift */,
@@ -652,6 +655,7 @@
 				BF6A44E0C8951595249B9EB3 /* CheckIn.swift in Sources */,
 				3B82ADCDCFF04B5E9AFAD5B5 /* CustomExercise.swift in Sources */,
 				0F4B323CE8887ACE70AD27E5 /* ExerciseAttributes.swift in Sources */,
+				B781541F9CCAA714A467E316 /* ExerciseForm.swift in Sources */,
 				02295C07D26DACB14BBD0169 /* ExerciseLibrary.swift in Sources */,
 				BEE5E1BCE6ACAF2E6A261ADC /* Gamification.swift in Sources */,
 				70433F44BD4108CB60E36425 /* Program.swift in Sources */,
