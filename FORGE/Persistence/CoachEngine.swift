@@ -74,9 +74,15 @@ enum CoachEngine {
         let total = appState.totalCompletedWorkouts
 
         var categoryCounts: [WorkoutCategory: Int] = [:]
+        var patternCounts: [MovementPattern: Int] = [:]
+        var muscleCounts: [MuscleGroup: Int] = [:]
         let cutoff = Calendar.forge.date(byAdding: .day, value: -14, to: Date()) ?? Date()
+        var recentCount = 0
         for entry in appState.userData.entries where entry.isCompleted && entry.date >= cutoff && !entry.isWarmUp && !entry.isCoolDown {
             categoryCounts[entry.category, default: 0] += 1
+            patternCounts[entry.movementPattern, default: 0] += 1
+            for muscle in entry.muscles { muscleCounts[muscle, default: 0] += 1 }
+            recentCount += 1
         }
         let topCategory = categoryCounts.max { $0.value < $1.value }?.key.rawValue
         let leastTrainedBrowsable = WorkoutCategory.browsable
@@ -93,6 +99,28 @@ enum CoachEngine {
         ]
         if let topCategory { lines.append("Most-trained category last 14 days: \(topCategory)") }
         if let leastTrainedBrowsable { lines.append("Not trained at all in last 14 days: \(leastTrainedBrowsable)") }
+
+        // Balance signals. Only included once there is enough recent work for them
+        // to mean anything — calling a 2-workout fortnight "push-heavy" is noise.
+        if recentCount >= 6 {
+            let push = patternCounts[.push, default: 0]
+            let pull = patternCounts[.pull, default: 0]
+            if push + pull >= 4 {
+                lines.append("Push exercises: \(push), pull exercises: \(pull) (last 14 days)")
+            }
+
+            let posterior = MuscleGroup.allCases.filter(\.isPosteriorChain)
+            let posteriorCount = posterior.reduce(0) { $0 + muscleCounts[$1, default: 0] }
+            lines.append("Posterior chain (back, hamstrings, glutes, lower back) worked \(posteriorCount) time\(posteriorCount == 1 ? "" : "s") in last 14 days")
+
+            let untrained = MuscleGroup.allCases
+                .filter { $0.isSpecificMuscle && muscleCounts[$0, default: 0] == 0 }
+                .map(\.label)
+            if !untrained.isEmpty {
+                lines.append("Muscle groups not trained at all in last 14 days: \(untrained.joined(separator: ", "))")
+            }
+        }
+
         return lines.joined(separator: "\n")
     }
 
@@ -110,8 +138,10 @@ enum CoachEngine {
             You are FORGE's on-device coach, speaking directly to the user in second person. \
             You're given a compact numeric summary of their recent workout, hydration, and sleep activity. \
             Write exactly one short coaching tip grounded in those numbers — celebrate real progress, \
-            gently nudge on real gaps, or share one specific, useful observation. Never invent numbers \
-            that weren't given to you. Keep it warm but plain-spoken, not corny.
+            gently nudge on real gaps, or share one specific, useful observation. If the summary shows a \
+            lopsided routine — far more pushing than pulling, a neglected posterior chain, or a muscle \
+            group untouched for two weeks — that is usually the most useful thing you can point out. \
+            Never invent numbers that weren't given to you. Keep it warm but plain-spoken, not corny.
             """
         )
 

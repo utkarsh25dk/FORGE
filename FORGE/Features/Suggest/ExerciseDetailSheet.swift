@@ -66,8 +66,27 @@ struct ExerciseDetailSheet: View {
             CategoryIcon(systemName: template.category.icon, size: 26, tint: template.category.fireTint)
             Text(template.name).font(.forgeHeading(22)).foregroundStyle(forge.textPrimary).multilineTextAlignment(.center)
             Text("\(template.subgroup) · \(template.equipment)").font(.forgeCaption()).foregroundStyle(forge.textSecondary)
+
+            HStack(spacing: Space.sm) {
+                ForgeChip(label: template.level.label, systemImage: template.level.icon)
+                ForgeChip(label: template.movementPattern.label, systemImage: "arrow.triangle.swap")
+            }
+            .padding(.top, 2)
+
+            Text(muscleLine)
+                .font(.forgeCaption(12))
+                .foregroundStyle(forge.textTertiary)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .frame(maxWidth: .infinity)
+    }
+
+    /// Primary muscles, with secondaries listed after them when there are any.
+    private var muscleLine: String {
+        let primary = template.primaryMuscles.map(\.label).joined(separator: ", ")
+        let secondary = template.secondaryMuscles.map(\.label).joined(separator: ", ")
+        return secondary.isEmpty ? primary : "\(primary)  ·  also \(secondary)"
     }
 
     private func banner(text: String, icon: String, tint: Color) -> some View {

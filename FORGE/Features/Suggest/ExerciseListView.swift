@@ -98,7 +98,14 @@ struct ExerciseListView: View {
                                     .background(Capsule().fill(forge.accent))
                             }
                         }
-                        Text(template.kind.fieldSummary).font(.forgeCaption()).foregroundStyle(forge.textSecondary)
+                        HStack(spacing: 6) {
+                            Image(systemName: template.level.icon)
+                                .font(.system(size: 10, weight: .semibold))
+                                .foregroundStyle(forge.textTertiary)
+                            Text("\(template.level.label) · \(template.kind.fieldSummary)")
+                                .font(.forgeCaption())
+                                .foregroundStyle(forge.textSecondary)
+                        }
                     }
                     Spacer()
                     Image(systemName: "chevron.right").foregroundStyle(forge.textTertiary).font(.system(size: 13, weight: .semibold))
