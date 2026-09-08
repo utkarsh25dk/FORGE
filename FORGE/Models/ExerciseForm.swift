@@ -588,3 +588,23 @@ extension ExerciseTemplate {
     var form: ExerciseForm? { ExerciseFormLibrary.form(for: id) }
     var hasForm: Bool { form != nil }
 }
+
+extension ExerciseLibrary {
+    /// Name-and-category index, so a logged entry can find the template it came
+    /// from. Built once rather than scanning 250 templates on every render.
+    private static let byNameIndex: [String: ExerciseTemplate] = {
+        Dictionary(all.map { ("\($0.category.rawValue)|\($0.name)", $0) }, uniquingKeysWith: { first, _ in first })
+    }()
+
+    static func template(named name: String, category: WorkoutCategory) -> ExerciseTemplate? {
+        byNameIndex["\(category.rawValue)|\(name)"]
+    }
+}
+
+extension WorkoutEntry {
+    /// Form guidance for a logged entry, resolved back through the library.
+    /// Custom exercises have no template and so no guidance, which is expected.
+    var form: ExerciseForm? {
+        ExerciseLibrary.template(named: name, category: category)?.form
+    }
+}

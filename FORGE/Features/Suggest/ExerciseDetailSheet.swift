@@ -18,6 +18,7 @@ struct ExerciseDetailSheet: View {
     @State private var rounds: Int = 5
     @State private var workSec: Int = 30
     @State private var restSec: Int = 30
+    @State private var showForm = true
 
     var body: some View {
         NavigationStack {
@@ -32,6 +33,36 @@ struct ExerciseDetailSheet: View {
                         banner(text: suggestion, icon: "chart.line.uptrend.xyaxis", tint: forge.accent)
                     } else {
                         banner(text: template.tip, icon: "lightbulb.fill", tint: forge.accent)
+                    }
+
+                    if let form = template.form {
+                        VStack(alignment: .leading, spacing: 0) {
+                            Button {
+                                withAnimation(.spring(response: 0.3, dampingFraction: 0.85)) { showForm.toggle() }
+                            } label: {
+                                HStack {
+                                    Text("How to do it")
+                                        .font(.forgeBodySemibold(15))
+                                        .foregroundStyle(forge.textPrimary)
+                                    Text("\(form.steps.count) steps")
+                                        .font(.forgeCaption(12))
+                                        .foregroundStyle(forge.textTertiary)
+                                    Spacer()
+                                    Image(systemName: "chevron.down")
+                                        .font(.system(size: 12, weight: .semibold))
+                                        .foregroundStyle(forge.textTertiary)
+                                        .rotationEffect(.degrees(showForm ? 0 : -90))
+                                }
+                            }
+                            .buttonStyle(.plain)
+
+                            if showForm {
+                                ExerciseFormView(form: form, showsStepsHeading: false)
+                                    .padding(.top, Space.lg)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .forgeCard(padding: Space.md, cornerRadius: Radius.md)
                     }
 
                     fieldsSection

@@ -14,6 +14,7 @@ struct LiveWorkoutView: View {
     @State private var repsInput = 10
     @State private var weightInput: Double = 0
     @State private var finished = false
+    @State private var formSheet: ExerciseFormPresentation? = nil
 
     private var currentEntry: WorkoutEntry? {
         guard index >= 0, index < orderedIds.count else { return nil }
@@ -47,6 +48,9 @@ struct LiveWorkoutView: View {
             }
             .forgeScreenBackground()
             .navigationBarTitleDisplayMode(.inline)
+            .sheet(item: $formSheet) { p in
+                ExerciseFormSheet(title: p.title, form: p.form)
+            }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button { dismiss() } label: { Image(systemName: "xmark") }
@@ -96,6 +100,21 @@ struct LiveWorkoutView: View {
                 Text(entry.name).font(.forgeHeading(24)).foregroundStyle(forge.textPrimary).multilineTextAlignment(.center)
                 if let subgroup = entry.subgroup {
                     Text(subgroup).font(.forgeCaption()).foregroundStyle(forge.textSecondary)
+                }
+
+                if let form = entry.form {
+                    Button {
+                        formSheet = ExerciseFormPresentation(title: entry.name, form: form)
+                    } label: {
+                        HStack(spacing: 5) {
+                            Image(systemName: "info.circle")
+                                .font(.system(size: 11, weight: .semibold))
+                            Text("How to do it").font(.forgeBodyMedium(13))
+                        }
+                        .foregroundStyle(forge.accent)
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.top, 2)
                 }
             }
 
@@ -233,4 +252,12 @@ struct LiveWorkoutView: View {
         }
         .padding(Space.xl)
     }
+}
+
+
+/// Identifiable wrapper so the form sheet can be presented with `.sheet(item:)`.
+struct ExerciseFormPresentation: Identifiable {
+    let id = UUID()
+    let title: String
+    let form: ExerciseForm
 }
