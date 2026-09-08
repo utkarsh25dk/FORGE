@@ -1796,6 +1796,876 @@ enum ExerciseFormLibrary {
             harder: "Slow each direction to five counts and pause at each end."
         ),
 
+        // MARK: Cardio — Steady-State
+
+        "cardio-steady-1": ExerciseForm(  // Treadmill Jog
+            steps: [
+                "Start with a few minutes of walking before you pick up the pace.",
+                "Run in the middle of the belt, not crowding the console.",
+                "Keep your steps light and land under your hips rather than out in front.",
+                "Hold a pace you could just about talk at, and finish with a walking cool-down."
+            ],
+            breathing: "Steady and rhythmic. If you can't speak a short sentence, you're going too fast.",
+            mistakes: [
+                "Holding the handrails, which changes your gait and cuts the work.",
+                "Drifting to the back of the belt and then surging to catch up.",
+                "Setting a pace that only lasts five minutes of a thirty-minute run."
+            ],
+            easier: "Alternate jogging and walking in blocks rather than running the whole time.",
+            harder: "Add a one or two percent incline, which better matches running outdoors."
+        ),
+
+        "cardio-steady-2": ExerciseForm(  // Outdoor Run
+            steps: [
+                "Start slower than feels natural for the first five minutes.",
+                "Keep your posture tall with a slight forward lean from the ankles, not the waist.",
+                "Land with your foot under your hips and keep your steps quiet.",
+                "Ease off before you're spent, and walk the last few minutes."
+            ],
+            breathing: "Settle into a rhythm you can hold. Nose or mouth is fine; consistency matters more.",
+            mistakes: [
+                "Setting off at a pace set by how you feel in minute one.",
+                "Overstriding, reaching the foot far out in front, which brakes every step.",
+                "Adding distance faster than about ten percent a week."
+            ],
+            easier: "Run and walk in intervals, and build the running blocks over weeks.",
+            harder: "Add distance or introduce hills — one variable at a time, not both."
+        ),
+
+        "cardio-steady-3": ExerciseForm(  // Elliptical
+            steps: [
+                "Stand tall with your feet flat on the pedals and your weight through the middle of each foot.",
+                "Hold the moving handles lightly and drive with your legs.",
+                "Keep a smooth continuous stroke rather than surging and coasting.",
+                "Set resistance high enough that you're driving the pedals, not being carried by them."
+            ],
+            breathing: "Steady and rhythmic, matched to your stride.",
+            mistakes: [
+                "Leaning on the fixed handles, which takes your bodyweight out of the work.",
+                "Setting resistance so low that momentum does the pedalling.",
+                "Bouncing up onto the toes rather than keeping the feet flat."
+            ],
+            easier: "Reduce resistance and hold a comfortable stride rate.",
+            harder: "Raise the resistance, or drive backward for a set to shift the emphasis."
+        ),
+
+        "cardio-steady-4": ExerciseForm(  // Stationary Bike
+            steps: [
+                "Set the saddle so your knee stays slightly bent at the bottom of the stroke.",
+                "Sit upright with a relaxed grip and your elbows soft.",
+                "Pedal in smooth circles rather than stamping down.",
+                "Hold a cadence you can sustain, adjusting resistance rather than speed."
+            ],
+            breathing: "Steady throughout; you should be able to speak in short sentences.",
+            mistakes: [
+                "A saddle too low, which is the most common cause of sore knees on a bike.",
+                "Resistance so low the legs spin without effort.",
+                "Gripping the bars hard and hunching the shoulders."
+            ],
+            easier: "Lower the resistance and keep the cadence comfortable.",
+            harder: "Raise the resistance, or hold a higher cadence for timed blocks."
+        ),
+
+        "cardio-steady-5": ExerciseForm(  // Stair Climber
+            steps: [
+                "Stand tall and let your hands rest lightly on the rails for balance only.",
+                "Place your whole foot on each step, not just the toes.",
+                "Take full steps rather than short shuffling ones.",
+                "Keep the pace steady rather than chasing the machine."
+            ],
+            breathing: "Steady and controlled; this gets hard quickly if you go out fast.",
+            mistakes: [
+                "Leaning heavily on the rails, which removes most of the work.",
+                "Taking tiny quick steps to keep up with a speed that's too high.",
+                "Rising onto the toes so the calves take everything."
+            ],
+            easier: "Lower the speed and concentrate on full, flat steps.",
+            harder: "Take the steps two at a time, or let go of the rails entirely."
+        ),
+
+        // MARK: Cardio — Intervals
+
+        "cardio-int-1": ExerciseForm(     // Treadmill Sprints
+            steps: [
+                "Warm up for at least five minutes before the first hard effort.",
+                "Set the speed while straddling the belt with your feet on the side rails.",
+                "Step on carefully with the belt already moving, holding the rails until you're up to speed.",
+                "Step back off to the rails to rest rather than slowing the belt each time."
+            ],
+            breathing: "Breathe hard during the effort and recover fully between; don't cut the rest short.",
+            mistakes: [
+                "Jumping onto a fast-moving belt without holding on first.",
+                "Cutting rest intervals, which turns sprints into a mediocre steady run.",
+                "Skipping the warm-up, which is how hamstrings get pulled."
+            ],
+            easier: "Use a lower top speed and longer recovery between efforts.",
+            harder: "Increase speed or add an incline, and shorten the rest slightly."
+        ),
+
+        "cardio-int-2": ExerciseForm(     // Bike Intervals
+            steps: [
+                "Warm up for five minutes at an easy resistance.",
+                "For each effort, raise the resistance and hold a strong steady cadence.",
+                "Drop the resistance right down for the recovery — keep the legs turning.",
+                "Finish with several easy minutes."
+            ],
+            breathing: "Hard through the effort, and let it settle fully during recovery.",
+            mistakes: [
+                "Increasing cadence but not resistance, which spins the legs without loading them.",
+                "Stopping dead in the recovery, which makes the next effort worse.",
+                "Going so hard on the first interval that the last three collapse."
+            ],
+            easier: "Shorten the efforts and lengthen the recoveries.",
+            harder: "Raise the resistance for each effort, or shorten the recovery."
+        ),
+
+        "cardio-int-3": ExerciseForm(     // Rowing Intervals
+            steps: [
+                "Set the damper around 4 or 5 — higher is not harder, just slower and heavier.",
+                "Drive with the legs first, then swing the torso back, then pull the handle to your ribs.",
+                "Reverse that order on the recovery: arms away, torso forward, then bend the knees.",
+                "Hold that sequence at pace for each effort, and paddle lightly between."
+            ],
+            breathing: "Exhale on the drive, inhale on the recovery, and keep it rhythmic under fatigue.",
+            mistakes: [
+                "Pulling with the arms before the legs have driven — the single most common rowing fault.",
+                "Setting the damper to 10 in the belief it's a strength setting.",
+                "Rushing the recovery so the stroke rate climbs while power falls."
+            ],
+            easier: "Row at a lower rate with longer rests, focusing on the sequence.",
+            harder: "Extend the efforts, or hold a target split rather than just going hard."
+        ),
+
+        "cardio-int-4": ExerciseForm(     // Assault Bike Intervals
+            steps: [
+                "Set the seat height as you would for a normal bike.",
+                "Drive with both arms and legs together rather than favouring one.",
+                "Go hard from the first second of each effort — the fan builds resistance as you speed up.",
+                "Keep the legs turning slowly through the recovery."
+            ],
+            breathing: "Breathe hard; recovery on this machine takes longer than it feels like it should.",
+            mistakes: [
+                "Pacing the first effort as though it were a long ride.",
+                "Using only the legs and letting the arms go along for the ride.",
+                "Stopping completely in recovery, which makes restarting brutal."
+            ],
+            easier: "Shorter efforts with double the recovery time.",
+            harder: "Lengthen the effort by ten seconds at a time, not more."
+        ),
+
+        "cardio-int-5": ExerciseForm(     // Track Intervals
+            steps: [
+                "Warm up with at least ten minutes of easy running plus some strides.",
+                "Run each repetition at a pace you could hold for all of them, not just the first.",
+                "Jog or walk the recovery rather than standing still.",
+                "Cool down with easy running afterwards."
+            ],
+            breathing: "Hard through each repetition; use the recovery to bring it back under control.",
+            mistakes: [
+                "Running the first repetition far faster than the rest, which ruins the session.",
+                "Skipping the warm-up before fast running.",
+                "Standing still between efforts, which stiffens the legs."
+            ],
+            easier: "Fewer repetitions with longer recoveries.",
+            harder: "Add repetitions, or shorten the recovery while holding the same pace."
+        ),
+
+        // MARK: Cardio — Incline & Stairs
+
+        "cardio-incl-1": ExerciseForm(    // Incline Treadmill Walk
+            steps: [
+                "Start flat for a couple of minutes, then raise the incline.",
+                "Walk tall without leaning into the console.",
+                "Keep your whole foot landing on the belt, heel included.",
+                "Choose an incline you can walk at without holding on."
+            ],
+            breathing: "Steady; this should feel like sustained work, not an all-out effort.",
+            mistakes: [
+                "Gripping the rails, which removes most of the benefit of the incline.",
+                "Setting an incline so steep you have to hold on to stay on.",
+                "Rising onto the toes rather than keeping the heels down."
+            ],
+            easier: "Reduce the incline until you can walk hands-free comfortably.",
+            harder: "Raise the incline before you raise the speed."
+        ),
+
+        "cardio-incl-2": ExerciseForm(    // StairMaster
+            steps: [
+                "Stand tall with your hands resting lightly on the rails.",
+                "Put your whole foot on each step.",
+                "Take full steps and let the machine set a steady rhythm.",
+                "Keep your torso upright rather than folding over the console."
+            ],
+            breathing: "Steady and controlled — this climbs in difficulty faster than it looks.",
+            mistakes: [
+                "Leaning your bodyweight onto the rails, which is most of the work gone.",
+                "Short shuffling steps to keep up with too high a speed.",
+                "Staying on the toes, which loads the calves and nothing else."
+            ],
+            easier: "Slow the speed and concentrate on full flat steps.",
+            harder: "Take two steps at a time, or take your hands off the rails."
+        ),
+
+        "cardio-incl-3": ExerciseForm(    // Hill Sprints
+            steps: [
+                "Warm up thoroughly — at least ten minutes including some faster running.",
+                "Pick a hill steep enough to slow you down but not so steep you can't run tall.",
+                "Sprint up with short powerful steps and strong arm drive.",
+                "Walk all the way back down as recovery, and start the next only when ready."
+            ],
+            breathing: "All out during the climb; take as long as you need walking down.",
+            mistakes: [
+                "Skipping the warm-up, which is how hamstrings tear on the first rep.",
+                "Running the descent, which is where hill sessions cause injuries.",
+                "Adding reps until form falls apart rather than stopping while sharp."
+            ],
+            easier: "Use a gentler hill and fewer repetitions.",
+            harder: "Add repetitions gradually, or find a steeper hill — not both at once."
+        ),
+
+        "cardio-incl-4": ExerciseForm(    // Incline Bike
+            steps: [
+                "Set the saddle height so your knee stays slightly bent at the bottom.",
+                "Raise the resistance to simulate a climb rather than increasing cadence.",
+                "Stay seated for most of it, keeping your upper body still.",
+                "Drop the resistance for a few easy minutes at the end."
+            ],
+            breathing: "Steady and deep; climbing efforts reward a settled rhythm.",
+            mistakes: [
+                "Rocking the hips side to side as the resistance climbs.",
+                "Standing up on the pedals for long stretches, which tires you without adding much.",
+                "Choosing a resistance that drops your cadence below a turnable pace."
+            ],
+            easier: "Lower the resistance and hold a steady cadence.",
+            harder: "Raise the resistance in blocks, alternating with easier recovery minutes."
+        ),
+
+        "cardio-incl-5": ExerciseForm(    // Stadium Stairs
+            steps: [
+                "Warm up with a few easy laps or a gentle jog before climbing.",
+                "Drive up with your whole foot landing on each step.",
+                "Use your arms — they do more of the work than people expect.",
+                "Walk down carefully, taking the descent as recovery."
+            ],
+            breathing: "Hard on the way up; use the descent to bring your breathing back down.",
+            mistakes: [
+                "Running down the steps, which is where ankles get rolled.",
+                "Landing only on the toes, which fatigues the calves early.",
+                "Setting off at a pace only the first climb can sustain."
+            ],
+            easier: "Climb every other flight, walking the rest.",
+            harder: "Take two steps at a time, or reduce the rest between climbs."
+        ),
+
+        // MARK: Cardio — Cycling
+
+        "cardio-cycle-1": ExerciseForm(   // Spin Class
+            steps: [
+                "Set your saddle height and fore-aft position before the class starts.",
+                "Keep a firm but relaxed grip; your weight belongs on the pedals, not the bars.",
+                "Add resistance when told to rather than just spinning faster.",
+                "Sit back down and recover when you need to — the class pace is a guide, not a rule."
+            ],
+            breathing: "Follow the effort; hard in the intervals and settled in the recoveries.",
+            mistakes: [
+                "Riding with almost no resistance and very high cadence, which bounces you in the saddle.",
+                "Not setting the bike up before the lights go down.",
+                "Standing for long stretches with too little resistance to support you."
+            ],
+            easier: "Take the recoveries fully and skip the standing sections.",
+            harder: "Add resistance during the efforts rather than chasing the cadence."
+        ),
+
+        "cardio-cycle-2": ExerciseForm(   // Road Cycling
+            steps: [
+                "Check tyres and brakes before you set off.",
+                "Ride with a relaxed upper body and soft elbows to absorb the road.",
+                "Keep a smooth cadence, changing gear before hills rather than during them.",
+                "Ride predictably in traffic and signal your turns clearly."
+            ],
+            breathing: "Steady on the flat, deeper on the climbs; settle it again on descents.",
+            mistakes: [
+                "Grinding a heavy gear at low cadence, which is hard on the knees.",
+                "Locking the elbows, so every bump goes straight into your shoulders.",
+                "Leaving gear changes until you're already on the climb."
+            ],
+            easier: "Ride flatter routes and shorter distances while you build up.",
+            harder: "Add distance or add hills, increasing by roughly ten percent a week."
+        ),
+
+        "cardio-cycle-3": ExerciseForm(   // Indoor Cycling
+            steps: [
+                "Set the saddle so your knee is slightly bent at the bottom of the stroke.",
+                "Sit upright with relaxed shoulders.",
+                "Pedal in smooth circles, thinking about pulling through the bottom as well as pushing down.",
+                "Use resistance rather than raw speed to make it harder."
+            ],
+            breathing: "Steady; you should be able to hold a short conversation on easy sections.",
+            mistakes: [
+                "Bouncing in the saddle, which means the resistance is too low for the cadence.",
+                "A saddle set too low, which is the usual cause of knee pain.",
+                "Holding the bars tightly and hunching over them."
+            ],
+            easier: "Lower resistance, shorter sessions, and build the time first.",
+            harder: "Add resistance blocks, or hold a higher cadence at the same resistance."
+        ),
+
+        "cardio-cycle-4": ExerciseForm(   // Hill Cycling
+            steps: [
+                "Shift into an easier gear before the gradient starts.",
+                "Stay seated where you can, sliding slightly back to use the glutes.",
+                "Stand only for short steep sections, keeping the bike steady beneath you.",
+                "Settle back into a rhythm as soon as the gradient eases."
+            ],
+            breathing: "Deep and steady; panic breathing on a climb usually means the gear is too big.",
+            mistakes: [
+                "Changing gear mid-climb under load, which is hard on the drivetrain and your legs.",
+                "Standing for the entire climb and burning out halfway.",
+                "Starting the climb at a pace set by the flat road before it."
+            ],
+            easier: "Use easier gears and take climbs at a pace you could talk at.",
+            harder: "Ride longer climbs, or hold a seated position where you'd normally stand."
+        ),
+
+        "cardio-cycle-5": ExerciseForm(   // Recovery Ride
+            steps: [
+                "Set an easy gear and keep resistance low throughout.",
+                "Spin at a comfortable cadence without pushing.",
+                "Keep your breathing entirely conversational.",
+                "Finish feeling looser than when you started, not tired."
+            ],
+            breathing: "Easy and conversational the whole way. If it isn't, you're riding too hard.",
+            mistakes: [
+                "Turning a recovery ride into a moderate one because you feel good.",
+                "Chasing segments or other riders.",
+                "Riding long enough that it stops being recovery."
+            ],
+            easier: "Ride for less time; the intensity is already as low as it should be.",
+            harder: "There is no harder version — that's the point of the session."
+        ),
+
+        // MARK: Cardio — Rowing
+
+        "cardio-row-1": ExerciseForm(     // Rowing Machine Steady
+            steps: [
+                "Set the damper around 4 or 5 and strap your feet so the strap crosses the ball of the foot.",
+                "Start compressed with shins vertical, arms straight, shoulders in front of the hips.",
+                "Drive with the legs, then swing the torso back, then pull the handle to the bottom of your ribs.",
+                "Recover in reverse: arms away, torso forward, then bend the knees."
+            ],
+            breathing: "Exhale on the drive, inhale on the recovery.",
+            mistakes: [
+                "Pulling with the arms before the legs have driven, which is the classic rowing error.",
+                "Cranking the damper to 10 thinking it makes the workout harder.",
+                "Rushing the recovery so the ratio inverts and the stroke rate climbs pointlessly."
+            ],
+            easier: "Row at a low rate and focus purely on the order of the sequence.",
+            harder: "Hold a target split for the whole piece rather than letting it drift."
+        ),
+
+        "cardio-row-2": ExerciseForm(     // Rowing Sprints
+            steps: [
+                "Warm up with several easy minutes and a few build strokes.",
+                "Start each sprint from a controlled catch rather than a lunge at the handle.",
+                "Drive hard with the legs; the arms finish the stroke, they don't start it.",
+                "Paddle lightly between efforts rather than stopping."
+            ],
+            breathing: "Hard through the effort; recover fully before the next.",
+            mistakes: [
+                "Winding the rate up while power drops, so the split gets worse as you row faster.",
+                "Yanking with the arms and back at the catch.",
+                "Sitting still between sprints, which stiffens the legs."
+            ],
+            easier: "Shorter sprints with double the rest.",
+            harder: "Lengthen the sprints, or hold a target split across all of them."
+        ),
+
+        "cardio-row-3": ExerciseForm(     // Rowing Pyramid
+            steps: [
+                "Plan the ladder before you start — for example 250, 500, 750, 500, 250 metres.",
+                "Hold the same technique at every distance; only the pace changes.",
+                "Rest in proportion to the piece just finished.",
+                "Row the descending half at least as fast as the ascending half."
+            ],
+            breathing: "Match the effort of each piece; the longer ones should feel controlled.",
+            mistakes: [
+                "Going out too hard on the short pieces and fading through the middle.",
+                "Letting technique slip on the longest piece.",
+                "Cutting rest as the pyramid descends, which turns it into a grind."
+            ],
+            easier: "Use a shorter ladder with more rest between pieces.",
+            harder: "Extend the ladder, or keep rest fixed regardless of piece length."
+        ),
+
+        "cardio-row-4": ExerciseForm(     // SkiErg
+            steps: [
+                "Stand a comfortable arm's length from the machine with feet hip width.",
+                "Reach up and grip the handles high, then hinge at the hips as you pull down.",
+                "Drive the pull through your torso and lats rather than just your arms.",
+                "Stand back up and reach tall for the next stroke."
+            ],
+            breathing: "Exhale on the pull down, inhale as you reach back up.",
+            mistakes: [
+                "Pulling with the arms alone and leaving the hips out of it.",
+                "Squatting rather than hinging, which shortens the pull.",
+                "Not reaching tall at the top, which cuts the stroke short."
+            ],
+            easier: "Shorter intervals, focusing on the hinge and full reach.",
+            harder: "Longer pieces, or hold a target split throughout."
+        ),
+
+        "cardio-row-5": ExerciseForm(     // Row + Bike Combo
+            steps: [
+                "Set both machines up before you start so transitions are quick.",
+                "Row the first block at a controlled pace you can repeat.",
+                "Move straight to the bike and keep the legs turning from the first second.",
+                "Alternate for the planned number of rounds, finishing with easy minutes on either."
+            ],
+            breathing: "Steady across both; the transition is where breathing usually gets ragged.",
+            mistakes: [
+                "Attacking the row and having nothing left for the bike.",
+                "Taking a long break at each transition, which breaks the session's purpose.",
+                "Letting rowing technique fall apart once the legs are tired from the bike."
+            ],
+            easier: "Shorter blocks on each machine, with a minute of easy work between.",
+            harder: "Extend the blocks, or remove the transition rest entirely."
+        ),
+
+        // MARK: Flexibility — Static Stretching
+
+        "flex-static-1": ExerciseForm(    // Hamstring Stretch
+            steps: [
+                "Sit or stand with one leg straight and the foot flexed.",
+                "Hinge forward from the hips, keeping your back flat rather than rounding.",
+                "Stop where you feel a strong but tolerable stretch behind the thigh.",
+                "Hold, easing slightly deeper on each exhale."
+            ],
+            breathing: "Breathe slowly. Ease deeper on the exhale rather than forcing on the inhale.",
+            mistakes: [
+                "Rounding the back to reach further, which stretches the spine instead of the hamstring.",
+                "Bouncing in and out of the position.",
+                "Pushing to the point of pain, which makes the muscle guard against the stretch."
+            ],
+            easier: "Bend the knee slightly, or loop a strap around the foot.",
+            harder: "Hold longer rather than pushing deeper — time does more here than force."
+        ),
+
+        "flex-static-2": ExerciseForm(    // Quad Stretch
+            steps: [
+                "Stand tall and hold a wall or chair for balance.",
+                "Bend one knee and take that ankle behind you.",
+                "Keep your knees level with each other and your hips square.",
+                "Gently push the hip forward until you feel the front of the thigh lengthen."
+            ],
+            breathing: "Slow and steady; don't hold your breath to hold the balance.",
+            mistakes: [
+                "Letting the bent knee drift out to the side, which loses the stretch.",
+                "Arching the lower back to feel more, rather than tucking the pelvis.",
+                "Pulling the heel hard into the glute, which strains the knee."
+            ],
+            easier: "Lie on your side to do it, which removes the balance element.",
+            harder: "Tuck the pelvis under before pushing the hip forward."
+        ),
+
+        "flex-static-3": ExerciseForm(    // Chest Doorway Stretch
+            steps: [
+                "Place your forearm on a doorframe with your elbow at about shoulder height.",
+                "Step forward through the doorway until you feel the chest open.",
+                "Keep your ribs down and your shoulder blade drawn back, not shrugged.",
+                "Hold, then repeat with the elbow higher and lower to reach different fibres."
+            ],
+            breathing: "Breathe into the ribs; the stretch eases as the chest relaxes.",
+            mistakes: [
+                "Letting the ribs flare and the lower back arch to get further.",
+                "Shrugging the shoulder up toward the ear.",
+                "Cranking hard into it rather than stepping through gradually."
+            ],
+            easier: "Step through less far and hold for longer.",
+            harder: "Rotate the torso slightly away from the arm at the end range."
+        ),
+
+        "flex-static-4": ExerciseForm(    // Shoulder Cross-Body Stretch
+            steps: [
+                "Bring one arm across your chest at about shoulder height.",
+                "Use the opposite forearm to draw it closer, hooking above the elbow.",
+                "Keep the shoulder of the stretching arm down, not lifted toward your ear.",
+                "Hold, then swap sides."
+            ],
+            breathing: "Slow and relaxed; tension in the neck defeats the stretch.",
+            mistakes: [
+                "Pulling on the elbow joint itself rather than above it.",
+                "Letting the stretching shoulder ride up toward the ear.",
+                "Rotating the torso to fake more range."
+            ],
+            easier: "Take the arm slightly lower across the body.",
+            harder: "Hold longer, or add a gentle rotation away at the end."
+        ),
+
+        "flex-static-5": ExerciseForm(    // Calf Wall Stretch
+            steps: [
+                "Stand facing a wall with hands on it at chest height.",
+                "Step one foot back, keeping that leg straight and the heel down.",
+                "Lean into the wall until you feel the calf lengthen.",
+                "Then bend the back knee slightly to shift the stretch lower toward the achilles."
+            ],
+            breathing: "Slow and steady throughout the hold.",
+            mistakes: [
+                "Letting the back heel lift, which removes the stretch entirely.",
+                "Turning the back foot out, which lets the ankle avoid the range.",
+                "Only doing the straight-leg version and skipping the bent-knee one."
+            ],
+            easier: "Step back less far and keep the lean gentle.",
+            harder: "Step further back, or do it with the ball of the foot on a step."
+        ),
+
+        // MARK: Flexibility — Dynamic Mobility
+
+        "flex-dyn-1": ExerciseForm(       // Leg Swings
+            steps: [
+                "Hold a wall or post for balance and stand tall.",
+                "Swing one leg forward and back in a controlled arc.",
+                "Start small and let the range grow over the first several swings.",
+                "Switch to side-to-side swings, then repeat on the other leg."
+            ],
+            breathing: "Breathe normally; this is a warm-up, not a held stretch.",
+            mistakes: [
+                "Starting at full range on the first swing.",
+                "Letting the torso swing to throw the leg higher.",
+                "Swinging so fast the leg is being flung rather than moved."
+            ],
+            easier: "Keep the range small and the pace slow.",
+            harder: "Increase the range gradually, and add the side-to-side direction."
+        ),
+
+        "flex-dyn-2": ExerciseForm(       // Arm Circles
+            steps: [
+                "Stand tall with your arms out to the sides at shoulder height.",
+                "Make small circles forward, gradually growing them.",
+                "Reverse the direction and repeat.",
+                "Keep your shoulders down rather than letting them creep up."
+            ],
+            breathing: "Breathe normally throughout.",
+            mistakes: [
+                "Starting with large circles before the shoulders are warm.",
+                "Shrugging the shoulders toward the ears as the circles grow.",
+                "Arching the lower back as the arms travel behind you."
+            ],
+            easier: "Keep the circles small throughout.",
+            harder: "Grow to full range in both directions, and slow the tempo down."
+        ),
+
+        "flex-dyn-3": ExerciseForm(       // Walking Lunges with Twist
+            steps: [
+                "Step forward into a lunge, lowering until the back knee is just off the floor.",
+                "With the front foot planted, rotate your torso toward the front leg.",
+                "Rotate back to centre, then drive up and step into the next lunge.",
+                "Alternate sides as you travel forward."
+            ],
+            breathing: "Exhale as you rotate, inhale as you return to centre.",
+            mistakes: [
+                "Rotating from the shoulders alone rather than through the whole torso.",
+                "Letting the front knee drift inward under load.",
+                "Rushing so the rotation never really happens."
+            ],
+            easier: "Do it stationary rather than walking, and reduce the rotation.",
+            harder: "Hold a light weight at the chest while rotating."
+        ),
+
+        "flex-dyn-4": ExerciseForm(       // Hip Openers
+            steps: [
+                "Stand tall holding something for balance.",
+                "Lift one knee to hip height, then rotate it out to the side and back down.",
+                "Reverse the direction, taking the knee out to the side first.",
+                "Keep the torso upright rather than leaning away."
+            ],
+            breathing: "Breathe normally; this is preparation, not a stretch to hold.",
+            mistakes: [
+                "Leaning the torso away to get the knee higher.",
+                "Rushing so the rotation is a swing rather than a controlled circle.",
+                "Only going in one direction."
+            ],
+            easier: "Lower the knee height and keep the circles small.",
+            harder: "Do it without holding on, which adds a balance demand."
+        ),
+
+        "flex-dyn-5": ExerciseForm(       // World's Greatest Stretch
+            steps: [
+                "Step into a deep lunge with your front foot flat and hands on the floor inside it.",
+                "Drop the back knee toward the floor to open the hip flexor.",
+                "Place the inside hand down and rotate the outside arm up toward the ceiling.",
+                "Return the hand down, then straighten the front leg into a hamstring stretch before switching sides."
+            ],
+            breathing: "Exhale as you rotate open, inhale as you return.",
+            mistakes: [
+                "Rushing through the positions rather than pausing in each one.",
+                "Rotating from the arm rather than the torso.",
+                "Skipping the hamstring portion at the end, which is half the value."
+            ],
+            easier: "Drop the back knee to the floor and skip the rotation at first.",
+            harder: "Hold each position for several breaths before moving on."
+        ),
+
+        // MARK: Flexibility — Yoga Flow
+
+        "flex-yoga-1": ExerciseForm(      // Sun Salutation Flow
+            steps: [
+                "Start standing tall, then reach overhead on an inhale.",
+                "Fold forward on the exhale, then half-lift the chest on the next inhale.",
+                "Step or jump back to a plank, lower down, then press to upward dog.",
+                "Push back to downward dog, hold for a breath or two, then step forward and rise."
+            ],
+            breathing: "One movement per breath. The breath sets the pace, not the other way round.",
+            mistakes: [
+                "Moving faster than the breath, which turns a flow into a rushed circuit.",
+                "Letting the hips sag in plank and upward dog.",
+                "Locking the knees in the forward fold rather than keeping a soft bend."
+            ],
+            easier: "Step rather than jump between positions, and bend the knees in the fold.",
+            harder: "Slow it down and add a breath in each position rather than speeding up."
+        ),
+
+        "flex-yoga-2": ExerciseForm(      // Vinyasa Flow
+            steps: [
+                "Begin with a few rounds of sun salutation to warm up.",
+                "Link each posture to a breath, moving continuously.",
+                "Hold the standing postures for several breaths before transitioning.",
+                "Finish lying still for a few minutes."
+            ],
+            breathing: "Continuous and even. If you're holding your breath, the pace is too fast.",
+            mistakes: [
+                "Pushing into end range in every posture rather than finding a sustainable one.",
+                "Losing the breath rhythm and turning it into a workout.",
+                "Skipping the final rest, which is part of the practice."
+            ],
+            easier: "Take a child's pose whenever you need one; it's always available.",
+            harder: "Hold each posture longer rather than adding more of them."
+        ),
+
+        "flex-yoga-3": ExerciseForm(      // Restorative Yoga Flow
+            steps: [
+                "Set up each posture with whatever props you have — cushions, blankets, a rolled towel.",
+                "Get into the position so it requires no muscular effort to stay there.",
+                "Hold for several minutes rather than seconds.",
+                "Move slowly between postures with no rush."
+            ],
+            breathing: "Slow, quiet and nasal if comfortable. The breath is the point of the session.",
+            mistakes: [
+                "Treating it like stretching and pushing into range.",
+                "Holding postures for too short a time to have any effect.",
+                "Skipping props, which makes relaxing into the shape impossible."
+            ],
+            easier: "Use more support under the hips, knees and head.",
+            harder: "Extend the holds; there is no intensity to add here, only time."
+        ),
+
+        "flex-yoga-4": ExerciseForm(      // Power Yoga Flow
+            steps: [
+                "Warm up with several rounds of sun salutation.",
+                "Move through standing and balancing postures, holding each for several breaths.",
+                "Keep the transitions controlled rather than dropping into each shape.",
+                "Finish with floor postures and a few minutes lying still."
+            ],
+            breathing: "Steady and strong; expect to be working, but not gasping.",
+            mistakes: [
+                "Chasing the deepest version of every posture rather than a stable one.",
+                "Holding the breath through the harder holds.",
+                "Skipping the cool-down because the session already felt like a workout."
+            ],
+            easier: "Take the modified version of each posture and rest when you need to.",
+            harder: "Hold the standing postures for longer before transitioning."
+        ),
+
+        "flex-yoga-5": ExerciseForm(      // Yin Yoga Flow
+            steps: [
+                "Take each posture to about seventy percent of your available range.",
+                "Settle in and stop actively stretching — let gravity do the work.",
+                "Hold for two to five minutes per posture.",
+                "Come out of each shape slowly, and rest before the next."
+            ],
+            breathing: "Slow and quiet. Long exhales help the tissue release.",
+            mistakes: [
+                "Going to full range immediately, which makes long holds impossible.",
+                "Fidgeting and readjusting, which resets the hold every time.",
+                "Coming out of a long hold quickly, which the joints don't appreciate."
+            ],
+            easier: "Use props to support the shape and shorten the holds.",
+            harder: "Extend the holds toward five minutes rather than deepening the position."
+        ),
+
+        // MARK: Flexibility — Foam Rolling
+
+        "flex-roll-1": ExerciseForm(      // Foam Roll Quads
+            steps: [
+                "Lie face down with the roller under the front of one thigh.",
+                "Support your weight on your forearms and the other leg.",
+                "Roll slowly from just above the knee to the top of the thigh.",
+                "Pause on any tender spot and breathe until it eases."
+            ],
+            breathing: "Breathe steadily. Holding your breath on a tender spot keeps the muscle tense.",
+            mistakes: [
+                "Rolling fast, which does little beyond feeling busy.",
+                "Rolling directly over the kneecap or the hip bone.",
+                "Pushing into pain rather than pressure you can breathe through."
+            ],
+            easier: "Take more weight through your forearms to reduce the pressure.",
+            harder: "Stack the other leg on top, or pause longer on tender spots."
+        ),
+
+        "flex-roll-2": ExerciseForm(      // Foam Roll Back
+            steps: [
+                "Lie on your back with the roller across your upper back.",
+                "Support your head with your hands and lift your hips slightly.",
+                "Roll between the shoulder blades and the mid back only.",
+                "Stop before you reach the lower back."
+            ],
+            breathing: "Breathe out as you roll over a tight area.",
+            mistakes: [
+                "Rolling the lower back, which has no rib support and doesn't want the pressure.",
+                "Letting the head drop back unsupported.",
+                "Rolling the neck, which should never take a roller."
+            ],
+            easier: "Keep the hips on the floor to reduce the pressure.",
+            harder: "Pause and gently extend over the roller at the tightest point."
+        ),
+
+        "flex-roll-3": ExerciseForm(      // Foam Roll IT Band
+            steps: [
+                "Lie on your side with the roller under the outside of your thigh.",
+                "Cross the top leg over in front for support and to control the pressure.",
+                "Roll slowly from just above the knee to just below the hip.",
+                "Pause on tender areas and breathe rather than gritting through."
+            ],
+            breathing: "Slow and deliberate; this one is notoriously uncomfortable.",
+            mistakes: [
+                "Loading full bodyweight straight away, which makes it unbearable rather than useful.",
+                "Rolling over the knee joint or the hip bone.",
+                "Expecting it to feel comfortable quickly — this takes weeks."
+            ],
+            easier: "Put more weight through the top foot to lighten the pressure.",
+            harder: "Stack the legs to increase pressure, once the area tolerates it."
+        ),
+
+        "flex-roll-4": ExerciseForm(      // Foam Roll Calves
+            steps: [
+                "Sit with the roller under one calf and your hands on the floor behind you.",
+                "Lift your hips to load the calf onto the roller.",
+                "Roll slowly from just above the ankle to just below the knee.",
+                "Rotate the leg in and out to reach the inner and outer calf."
+            ],
+            breathing: "Steady throughout; pause and breathe on tight spots.",
+            mistakes: [
+                "Rolling straight over without rotating, which misses most of the muscle.",
+                "Rolling over the back of the knee.",
+                "Going so fast the tissue never actually releases."
+            ],
+            easier: "Keep the hips on the floor for less pressure.",
+            harder: "Cross the other leg on top to add weight."
+        ),
+
+        "flex-roll-5": ExerciseForm(      // Foam Roll Glutes
+            steps: [
+                "Sit on the roller with one ankle crossed over the opposite knee.",
+                "Lean toward the crossed side to target that glute.",
+                "Roll slowly in small ranges rather than long sweeps.",
+                "Shift side to side to cover the whole muscle."
+            ],
+            breathing: "Breathe out as you settle onto a tender spot.",
+            mistakes: [
+                "Long fast sweeps that skip over the areas that need it.",
+                "Rolling directly on the sit bone.",
+                "Sitting square rather than leaning into the side being rolled."
+            ],
+            easier: "Reduce the lean and keep more weight on your hands.",
+            harder: "Lean further into the crossed side, or use a ball for more focused pressure."
+        ),
+
+        // MARK: Flexibility — Hip & Shoulder Mobility
+
+        "flex-hip-1": ExerciseForm(       // 90/90 Hip Stretch
+            steps: [
+                "Sit with your front leg bent at 90 degrees in front and your back leg bent at 90 degrees to the side.",
+                "Sit up tall rather than collapsing back onto your hands.",
+                "Lean gently forward over the front shin to deepen the stretch.",
+                "Switch sides, then try rotating between the two positions without using your hands."
+            ],
+            breathing: "Slow, easing forward on each exhale.",
+            mistakes: [
+                "Rounding the back to fold further, which stretches the spine instead of the hip.",
+                "Letting the front knee collapse inward from 90 degrees.",
+                "Forcing the back leg into position rather than working within your range."
+            ],
+            easier: "Sit on a cushion to raise the hips, and keep the torso upright.",
+            harder: "Rotate between sides without using your hands for support."
+        ),
+
+        "flex-hip-2": ExerciseForm(       // Pigeon Pose
+            steps: [
+                "From all fours, bring one knee forward behind the same-side wrist.",
+                "Angle the shin toward the opposite hand as far as is comfortable.",
+                "Extend the back leg straight behind you with the hip pointing down.",
+                "Stay upright or fold forward, and support the hip with a cushion if it doesn't reach the floor."
+            ],
+            breathing: "Slow and even. Fold a little further on the exhale, never on the inhale.",
+            mistakes: [
+                "Letting the hips tilt so all the weight falls onto one side.",
+                "Forcing the front shin parallel before the hip allows it.",
+                "Skipping the support under the hip, which is why this pose hurts knees."
+            ],
+            easier: "Put a cushion or block under the front hip, and keep the shin angled back.",
+            harder: "Bring the shin closer to parallel and fold forward over it."
+        ),
+
+        "flex-hip-3": ExerciseForm(       // Shoulder Dislocates
+            steps: [
+                "Hold a band or stick with a very wide grip in front of your thighs.",
+                "Keeping your arms straight, raise it overhead and continue back behind you.",
+                "Go only as far as you can without bending the elbows or shrugging.",
+                "Return along the same path."
+            ],
+            breathing: "Exhale as the arms travel back, inhale as they return.",
+            mistakes: [
+                "Gripping too narrow, which forces the elbows to bend or the shoulders to strain.",
+                "Arching the lower back to get the arms further behind.",
+                "Rushing, when this movement rewards slow control."
+            ],
+            easier: "Widen the grip. If it's still hard, widen it further — there's no prize for a narrow grip.",
+            harder: "Narrow the grip gradually over weeks, never in one session."
+        ),
+
+        "flex-hip-4": ExerciseForm(       // Couch Stretch
+            steps: [
+                "Kneel with your back foot up against a wall or couch, shin vertical.",
+                "Bring the other foot forward into a half-kneeling position.",
+                "Tuck your pelvis under and squeeze the glute of the back leg.",
+                "Bring your torso upright only as far as you can hold the pelvic tuck."
+            ],
+            breathing: "Slow and steady; this one is intense and breath control keeps it tolerable.",
+            mistakes: [
+                "Arching the lower back to get upright, which fakes the range entirely.",
+                "Going straight to a fully upright torso before the hip allows it.",
+                "Holding so long it becomes unpleasant rather than useful."
+            ],
+            easier: "Keep the torso leaning forward, and put a cushion under the back knee.",
+            harder: "Work the torso more upright while keeping the pelvis tucked."
+        ),
+
+        "flex-hip-5": ExerciseForm(       // Thread the Needle
+            steps: [
+                "Start on all fours with your hands under your shoulders.",
+                "Slide one arm under your body and across, palm facing up.",
+                "Lower that shoulder and the side of your head toward the floor.",
+                "Hold, then unwind slowly and repeat on the other side."
+            ],
+            breathing: "Exhale as you thread through, breathe steadily in the hold.",
+            mistakes: [
+                "Letting the hips drift away from over the knees, which loses the rotation.",
+                "Pushing the head into the floor rather than letting it rest.",
+                "Coming out of the position quickly."
+            ],
+            easier: "Thread less far and keep more weight on the supporting arm.",
+            harder: "Reach the top arm overhead as you thread, to add more rotation."
+        ),
+
     ]
 }
 
