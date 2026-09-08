@@ -50,6 +50,7 @@
 		C739E24D426481A6476DBC8A /* WorkoutBreakdownSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F83821B1BDA65E5C014A05B /* WorkoutBreakdownSheet.swift */; };
 		856053F3E027C8D6A750B472 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824BB2A427275906E012FA30 /* MainTabView.swift */; };
 		EF7046F43C35DE1ED605ECC4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E716521C5F43273B5057B4 /* RootView.swift */; };
+		1AAF6D29CA8E5976A8CBDFCD /* SetupIntakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1721E27902A504B1EEF63044 /* SetupIntakeView.swift */; };
 		B7FC916AF35D26A421309A3F /* AddCustomExerciseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB329018F8027DBE14A59A5 /* AddCustomExerciseSheet.swift */; };
 		75BD44D19BF12A49EEE55AA2 /* ExerciseDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17EF3434DF6ADC812FAD7E /* ExerciseDetailSheet.swift */; };
 		BCD0A95E137DE424D407D3A8 /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF12769A42462F9D8299DF68 /* ExerciseListView.swift */; };
@@ -71,6 +72,7 @@
 		02295C07D26DACB14BBD0169 /* ExerciseLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64EB5D85B93CFA89015BAD1 /* ExerciseLibrary.swift */; };
 		BEE5E1BCE6ACAF2E6A261ADC /* Gamification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D287E4D0084A2AB32A790F /* Gamification.swift */; };
 		70433F44BD4108CB60E36425 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E860F79EA28248EDCF3251 /* Program.swift */; };
+		89DC89D097E491C1C490057D /* ProgramGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D76FE75DCC19B3CC552EF8 /* ProgramGenerator.swift */; };
 		9F51C8B526B8C0D8DEA3A6CD /* ProgramLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B814CCEF3314DA797B1E0D /* ProgramLibrary.swift */; };
 		B9AEBDFD8D9AF9BC6845A79D /* TrainingProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78690607C9F7675E9A5B0D31 /* TrainingProfile.swift */; };
 		10009F57924C2030633F2DB9 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A65E9297936E960FC61B303 /* UserData.swift */; };
@@ -296,6 +298,15 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
+		1721E27902A504B1EEF63044 /* SetupIntakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupIntakeView.swift; sourceTree = "<group>"; };
+		7A08472FEA2CE827F2C0D539 /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				1721E27902A504B1EEF63044 /* SetupIntakeView.swift */,
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
 		BDB329018F8027DBE14A59A5 /* AddCustomExerciseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomExerciseSheet.swift; sourceTree = "<group>"; };
 		6F17EF3434DF6ADC812FAD7E /* ExerciseDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailSheet.swift; sourceTree = "<group>"; };
 		DF12769A42462F9D8299DF68 /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
@@ -347,6 +358,7 @@
 				05947B387B478B763B6449B4 /* Programs */,
 				B81D697481EB0106052664CE /* Progress */,
 				EDBF58975F3A821F99D35327 /* Root */,
+				7A08472FEA2CE827F2C0D539 /* Setup */,
 				9EBF31D0494BF583B063E304 /* Suggest */,
 				87207DDFA4AF616113349DE3 /* Train */,
 			);
@@ -363,6 +375,7 @@
 		D64EB5D85B93CFA89015BAD1 /* ExerciseLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseLibrary.swift; sourceTree = "<group>"; };
 		12D287E4D0084A2AB32A790F /* Gamification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gamification.swift; sourceTree = "<group>"; };
 		A1E860F79EA28248EDCF3251 /* Program.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
+		C5D76FE75DCC19B3CC552EF8 /* ProgramGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramGenerator.swift; sourceTree = "<group>"; };
 		19B814CCEF3314DA797B1E0D /* ProgramLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramLibrary.swift; sourceTree = "<group>"; };
 		78690607C9F7675E9A5B0D31 /* TrainingProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingProfile.swift; sourceTree = "<group>"; };
 		9A65E9297936E960FC61B303 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -379,6 +392,7 @@
 				D64EB5D85B93CFA89015BAD1 /* ExerciseLibrary.swift */,
 				12D287E4D0084A2AB32A790F /* Gamification.swift */,
 				A1E860F79EA28248EDCF3251 /* Program.swift */,
+				C5D76FE75DCC19B3CC552EF8 /* ProgramGenerator.swift */,
 				19B814CCEF3314DA797B1E0D /* ProgramLibrary.swift */,
 				78690607C9F7675E9A5B0D31 /* TrainingProfile.swift */,
 				9A65E9297936E960FC61B303 /* UserData.swift */,
@@ -672,6 +686,7 @@
 				C739E24D426481A6476DBC8A /* WorkoutBreakdownSheet.swift in Sources */,
 				856053F3E027C8D6A750B472 /* MainTabView.swift in Sources */,
 				EF7046F43C35DE1ED605ECC4 /* RootView.swift in Sources */,
+				1AAF6D29CA8E5976A8CBDFCD /* SetupIntakeView.swift in Sources */,
 				B7FC916AF35D26A421309A3F /* AddCustomExerciseSheet.swift in Sources */,
 				75BD44D19BF12A49EEE55AA2 /* ExerciseDetailSheet.swift in Sources */,
 				BCD0A95E137DE424D407D3A8 /* ExerciseListView.swift in Sources */,
@@ -693,6 +708,7 @@
 				02295C07D26DACB14BBD0169 /* ExerciseLibrary.swift in Sources */,
 				BEE5E1BCE6ACAF2E6A261ADC /* Gamification.swift in Sources */,
 				70433F44BD4108CB60E36425 /* Program.swift in Sources */,
+				89DC89D097E491C1C490057D /* ProgramGenerator.swift in Sources */,
 				9F51C8B526B8C0D8DEA3A6CD /* ProgramLibrary.swift in Sources */,
 				B9AEBDFD8D9AF9BC6845A79D /* TrainingProfile.swift in Sources */,
 				10009F57924C2030633F2DB9 /* UserData.swift in Sources */,

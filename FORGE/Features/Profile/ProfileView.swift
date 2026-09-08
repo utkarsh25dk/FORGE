@@ -11,6 +11,7 @@ struct ProfileView: View {
     @State private var isEditingName = false
     @State private var showAvoidSheet = false
     @State private var showEquipmentSheet = false
+    @State private var showIntake = false
     @State private var showImporter = false
     @State private var exportURL: IdentifiableURL?
     @State private var importMessage: String?
@@ -28,6 +29,7 @@ struct ProfileView: View {
                 statsRow
                 CompletedProgramsCard()
                 equipmentCard
+                buildPlanCard
                 preferencesCard
                 avoidCard
                 templatesCard
@@ -41,6 +43,7 @@ struct ProfileView: View {
         .scrollIndicators(.hidden)
         .sheet(isPresented: $showAvoidSheet) { AvoidExercisesSheet() }
         .sheet(isPresented: $showEquipmentSheet) { MyEquipmentSheet() }
+        .sheet(isPresented: $showIntake) { SetupIntakeView() }
         .sheet(isPresented: $showWorkoutsDetail) { TotalWorkoutsDetailSheet() }
         .sheet(isPresented: $showBadgesDetail) { BadgeDetailSheet() }
         .sheet(item: $exportURL) { url in
@@ -72,6 +75,32 @@ struct ProfileView: View {
                          : "Tell FORGE what you have to train with")
                         .font(.forgeCaption())
                         .foregroundStyle(forge.textSecondary)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.right")
+                    .foregroundStyle(forge.textTertiary)
+                    .font(.system(size: 13, weight: .semibold))
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .forgeCard(padding: Space.md, cornerRadius: Radius.md)
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var buildPlanCard: some View {
+        Button { showIntake = true } label: {
+            HStack(spacing: Space.md) {
+                CategoryIcon(systemName: "wand.and.stars", size: 20, tint: forge.accent)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(appState.hasCompletedIntake ? "Rebuild My Plan" : "Build My Plan")
+                        .font(.forgeBodySemibold(16))
+                        .foregroundStyle(forge.textPrimary)
+                    Text(appState.hasCompletedIntake
+                         ? "Answers changed? Generate a fresh plan"
+                         : "Answer a few questions and get a plan built around you")
+                        .font(.forgeCaption())
+                        .foregroundStyle(forge.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer(minLength: 0)
                 Image(systemName: "chevron.right")

@@ -63,3 +63,44 @@ extension AppState {
 
     var availableExerciseCount: Int { availableExerciseCount(for: userData.ownedEquipment) }
 }
+
+// MARK: - Training profile
+
+extension AppState {
+
+    var trainingProfile: TrainingProfile { userData.trainingProfile }
+
+    func setDumbbellUnit(_ unit: WeightUnit) {
+        guard userData.trainingProfile.dumbbells.unit != unit else { return }
+        // Weights are unit-specific options, so switching clears the selection
+        // rather than silently reinterpreting 20 lb as 20 kg.
+        userData.trainingProfile.dumbbells.unit = unit
+        userData.trainingProfile.dumbbells.weights = []
+    }
+
+    func toggleDumbbellWeight(_ weight: Double) {
+        var weights = userData.trainingProfile.dumbbells.weights
+        if let i = weights.firstIndex(of: weight) { weights.remove(at: i) } else { weights.append(weight) }
+        userData.trainingProfile.dumbbells.weights = weights.sorted()
+    }
+
+    func setExperience(_ e: TrainingExperience) { userData.trainingProfile.experience = e }
+    func setCurrentSessions(_ n: Int) { userData.trainingProfile.currentSessionsPerWeek = n }
+    func setTargetSessions(_ n: Int) { userData.trainingProfile.targetSessionsPerWeek = n }
+    func setSessionLength(_ l: SessionLength) { userData.trainingProfile.sessionLength = l }
+    func setGoal(_ g: TrainingGoal) { userData.trainingProfile.goal = g }
+
+    /// Builds a plan from the intake answers and the user's equipment, honouring
+    /// the avoid list so a generated plan never suggests something they've
+    /// explicitly ruled out.
+    func generatePlan() -> Program? {
+        userData.trainingProfile.completedAt = Date()
+        return ProgramGenerator.generate(
+            profile: userData.trainingProfile,
+            equipment: userData.ownedEquipment,
+            avoid: userData.avoidExerciseIds
+        )
+    }
+
+    var hasCompletedIntake: Bool { userData.trainingProfile.isComplete }
+}
