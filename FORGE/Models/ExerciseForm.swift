@@ -943,7 +943,268 @@ enum ExerciseFormLibrary {
             harder: "Pause for two counts just below the knee on the way up."
         ),
 
-        // MARK: Core
+        // MARK: Core — Upper Abs
+
+        "core-upper-1": ExerciseForm(     // Crunches
+            steps: [
+                "Lie on your back with knees bent and feet flat.",
+                "Rest your hands lightly behind your ears or cross them on your chest.",
+                "Curl your shoulder blades off the floor by shortening the distance between ribs and hips.",
+                "Lower under control without resting your head between reps."
+            ],
+            breathing: "Exhale as you curl up, inhale as you lower.",
+            mistakes: [
+                "Pulling on the neck with your hands, which is what makes people's necks ache the next day.",
+                "Bouncing off the floor to start each rep.",
+                "Trying to sit all the way up, which hands the work to the hip flexors."
+            ],
+            easier: "Cross your arms on your chest rather than putting your hands behind your head.",
+            harder: "Hold a plate on your chest, or pause two counts at the top."
+        ),
+
+        "core-upper-2": ExerciseForm(     // Sit-Ups
+            steps: [
+                "Lie on your back with knees bent and feet flat or anchored.",
+                "Curl up starting with your head and shoulders, one section of spine at a time.",
+                "Come up until your torso is close to vertical.",
+                "Lower with the same control rather than dropping back down."
+            ],
+            breathing: "Exhale as you come up, inhale as you lower.",
+            mistakes: [
+                "Yanking the head forward with the hands.",
+                "Throwing the arms to generate the momentum to get up.",
+                "Dropping flat onto the floor and bouncing into the next rep."
+            ],
+            easier: "Do crunches instead until you can curl up without momentum.",
+            harder: "Hold a weight at your chest, or slow the lowering to four counts."
+        ),
+
+        "core-upper-3": ExerciseForm(     // Cable Crunch
+            steps: [
+                "Kneel facing a high pulley, holding a rope beside your head.",
+                "Hinge slightly forward so there is tension before you start.",
+                "Crunch by rounding your spine and bringing your elbows toward your knees.",
+                "Keep your hips still — only your torso moves — then return under control."
+            ],
+            breathing: "Exhale as you crunch down, inhale as you return.",
+            mistakes: [
+                "Rocking at the hips, which turns an ab exercise into a hip hinge.",
+                "Pulling with the arms rather than rounding the spine.",
+                "Letting the stack drag you upright between reps."
+            ],
+            easier: "Reduce the weight and shorten the range until the hips stay locked.",
+            harder: "Pause two counts in the fully crunched position."
+        ),
+
+        "core-upper-4": ExerciseForm(     // Weighted Crunch
+            steps: [
+                "Lie on your back with knees bent, holding a dumbbell against your chest.",
+                "Curl your shoulder blades off the floor.",
+                "Keep the weight tight to your chest for the whole rep.",
+                "Lower under control."
+            ],
+            breathing: "Exhale as you curl up, inhale as you lower.",
+            mistakes: [
+                "Letting the weight drift away from the chest, which strains the neck.",
+                "Using the weight's momentum to start each rep.",
+                "Adding load before bodyweight crunches are clean."
+            ],
+            easier: "Drop the weight entirely until three sets of twenty bodyweight crunches feel easy.",
+            harder: "Hold the weight straight overhead rather than at your chest."
+        ),
+
+        "core-upper-5": ExerciseForm(     // Toe Touches
+            steps: [
+                "Lie on your back with your legs straight up toward the ceiling.",
+                "Reach your hands toward your toes by curling your shoulder blades off the floor.",
+                "Keep your legs still — they are a target, not a lever.",
+                "Lower under control."
+            ],
+            breathing: "Exhale as you reach up, inhale as you lower.",
+            mistakes: [
+                "Swinging the arms to reach further than the abs actually lift you.",
+                "Letting the legs drift back toward your head to shorten the distance.",
+                "Jerking off the floor rather than curling up."
+            ],
+            easier: "Bend your knees slightly to take the hamstring stretch out of it.",
+            harder: "Hold a light weight in both hands as you reach."
+        ),
+
+        // MARK: Core — Lower Abs
+
+        "core-lower-1": ExerciseForm(     // Leg Raises
+            steps: [
+                "Lie on your back with legs straight and hands under your glutes or flat at your sides.",
+                "Press your lower back into the floor and keep it there for every rep.",
+                "Raise your legs until they are vertical.",
+                "Lower slowly, stopping the moment your back starts to arch."
+            ],
+            breathing: "Exhale as you raise, inhale as you lower.",
+            mistakes: [
+                "Letting the lower back arch off the floor as the legs come down — that is the entire exercise.",
+                "Swinging the legs up with momentum.",
+                "Dropping the legs rather than lowering them."
+            ],
+            easier: "Bend your knees, or lower only as far as 45 degrees.",
+            harder: "Lower all the way to just above the floor and pause there."
+        ),
+
+        "core-lower-2": ExerciseForm(     // Reverse Crunch
+            steps: [
+                "Lie on your back with knees bent at 90 degrees and thighs vertical.",
+                "Press your lower back flat into the floor.",
+                "Curl your hips off the floor, bringing your knees toward your chest.",
+                "Lower under control without letting your feet touch down."
+            ],
+            breathing: "Exhale as you curl, inhale as you lower.",
+            mistakes: [
+                "Swinging the legs to generate momentum.",
+                "Pushing off the floor with your hands.",
+                "Lifting only the knees rather than curling the hips, which moves nothing."
+            ],
+            easier: "Keep the range small and concentrate on lifting the hips at all.",
+            harder: "Slow the lowering to three counts."
+        ),
+
+        "core-lower-3": ExerciseForm(     // Flutter Kicks
+            steps: [
+                "Lie on your back with hands under your glutes and legs straight, a few inches off the floor.",
+                "Press your lower back down into the floor.",
+                "Alternate small, quick kicks up and down.",
+                "Keep the movement small and the back flat throughout."
+            ],
+            breathing: "Breathe steadily rather than holding your breath — this set feels twice as hard if you do.",
+            mistakes: [
+                "Letting the lower back arch as fatigue sets in.",
+                "Kicking too high, which takes the tension off the abs.",
+                "Holding the breath, which shortens the set for no useful reason."
+            ],
+            easier: "Raise the legs higher, which shortens the leverage.",
+            harder: "Lower the legs closer to the floor, or extend the set."
+        ),
+
+        "core-lower-4": ExerciseForm(     // Hanging Knee Raise
+            steps: [
+                "Hang from a bar with straight arms and your shoulders pulled down away from your ears.",
+                "Without swinging, curl your knees up toward your chest.",
+                "Round your lower back slightly at the top to finish the movement with the abs.",
+                "Lower under control and stop any swing before the next rep."
+            ],
+            breathing: "Exhale as you raise, inhale as you lower.",
+            mistakes: [
+                "Swinging the body and using the backswing to throw the knees up.",
+                "Lifting only to hip height, which makes it a hip flexor exercise rather than an ab one.",
+                "Letting the shoulders shrug up toward the ears."
+            ],
+            easier: "Do them on a captain's chair with your forearms supported.",
+            harder: "Keep the legs straight, or pause two counts at the top."
+        ),
+
+        "core-lower-5": ExerciseForm(     // Bicycle Crunch
+            steps: [
+                "Lie on your back with hands lightly behind your ears and legs raised, knees bent.",
+                "Curl your shoulder blades off the floor and keep them there.",
+                "Bring one elbow toward the opposite knee while extending the other leg.",
+                "Alternate slowly and deliberately."
+            ],
+            breathing: "Exhale on each twist, inhale as you pass through the middle.",
+            mistakes: [
+                "Racing through reps, which turns it into an arm movement.",
+                "Pulling on the neck to get the elbow across.",
+                "Letting the shoulders drop back to the floor between reps."
+            ],
+            easier: "Keep both feet on the floor and just perform the twist.",
+            harder: "Slow each rep and pause where the elbow meets the knee."
+        ),
+
+        // MARK: Core — Obliques
+
+        "core-oblique-1": ExerciseForm(   // Russian Twist
+            steps: [
+                "Sit with your knees bent and feet on the floor or raised.",
+                "Lean back to around 45 degrees with your back flat, holding a dumbbell at your chest.",
+                "Rotate your torso side to side, moving from the ribs rather than just swinging your arms.",
+                "Touch the weight down beside each hip if your range allows."
+            ],
+            breathing: "Exhale on each rotation, inhale as you pass through the middle.",
+            mistakes: [
+                "Moving only the arms while the torso stays square — the most common way this is done wrong.",
+                "Rounding the lower back as you lean.",
+                "Going fast enough that the rotation becomes a swing."
+            ],
+            easier: "Keep your feet on the floor and use no weight at all.",
+            harder: "Raise your feet off the floor, or hold a heavier weight."
+        ),
+
+        "core-oblique-2": ExerciseForm(   // Side Plank
+            steps: [
+                "Lie on your side with your elbow directly under your shoulder.",
+                "Stack your feet, or stagger them for a wider base.",
+                "Lift your hips until your body forms a straight line from ankle to head.",
+                "Hold, keeping the hips from drifting down."
+            ],
+            breathing: "Breathe steadily — holding your breath shortens the hold for no benefit.",
+            mistakes: [
+                "Letting the hips sag toward the floor as the hold goes on.",
+                "Rotating the chest down toward the floor.",
+                "Propping on a shoulder that sits ahead of or behind the elbow."
+            ],
+            easier: "Drop to your bottom knee, keeping the line from knee to head.",
+            harder: "Raise the top leg, or rest a weight on your hip."
+        ),
+
+        "core-oblique-3": ExerciseForm(   // Woodchopper
+            steps: [
+                "Set a cable high or low and stand side-on with feet shoulder width.",
+                "Grip the handle with both hands and brace your midsection.",
+                "Rotate through your torso, pulling the handle diagonally across your body.",
+                "Let your hips pivot naturally with the rotation, then return under control."
+            ],
+            breathing: "Exhale through the chop, inhale as you return.",
+            mistakes: [
+                "Pulling with the arms rather than rotating through the torso.",
+                "Locking the hips so the lower back absorbs the rotation.",
+                "Letting the cable snap you back to the start."
+            ],
+            easier: "Reduce the weight and shorten the arc.",
+            harder: "Pause at the end of the chop for two counts."
+        ),
+
+        "core-oblique-4": ExerciseForm(   // Bicycle Crunch Oblique Focus
+            steps: [
+                "Set up as for a bicycle crunch, hands behind your ears and legs raised.",
+                "Rotate further than a standard bicycle crunch, driving the shoulder rather than the elbow toward the knee.",
+                "Pause briefly at the fully rotated position.",
+                "Alternate slowly, one side at a time."
+            ],
+            breathing: "Exhale on each twist, inhale between reps.",
+            mistakes: [
+                "Leading with the elbow instead of rotating the shoulder, which skips the obliques entirely.",
+                "Speeding up until the rotation disappears.",
+                "Pulling on the neck to get further round."
+            ],
+            easier: "Keep your feet on the floor and rotate without the leg action.",
+            harder: "Hold each rotated position for two counts."
+        ),
+
+        "core-oblique-5": ExerciseForm(   // Standing Oblique Crunch
+            steps: [
+                "Stand holding a dumbbell in one hand at your side.",
+                "Keep your hips square and facing forward throughout.",
+                "Bend sideways at the waist toward the weighted side.",
+                "Pull back up using the opposite obliques, then finish all reps before switching."
+            ],
+            breathing: "Exhale as you pull up, inhale as you bend down.",
+            mistakes: [
+                "Leaning forward or backward instead of straight out to the side.",
+                "Using a weight heavy enough that it simply drags you down.",
+                "Holding a dumbbell in each hand, which cancels the resistance out completely."
+            ],
+            easier: "Use a lighter dumbbell and a smaller range.",
+            harder: "Pause at the bottom of the stretch for two counts."
+        ),
+
+        // MARK: Core — Deep Core & Stability
 
         "core-deep-1": ExerciseForm(      // Plank
             steps: [
@@ -961,6 +1222,162 @@ enum ExerciseFormLibrary {
             easier: "Drop to your knees, keeping the straight line from knees to head.",
             harder: "Lift one foot a few inches, or reach one arm forward, alternating sides."
         ),
+
+        "core-deep-2": ExerciseForm(      // Dead Bug
+            steps: [
+                "Lie on your back with arms straight up and knees bent at 90 degrees over your hips.",
+                "Press your lower back flat into the floor and keep it there.",
+                "Slowly extend one arm overhead and the opposite leg toward the floor.",
+                "Return under control and repeat on the other side."
+            ],
+            breathing: "Exhale as you extend, inhale as you return.",
+            mistakes: [
+                "Letting the lower back lift off the floor as the limbs extend — that is the whole exercise.",
+                "Rushing, which turns a control drill into a stretch.",
+                "Extending further than you can hold the back down for."
+            ],
+            easier: "Move only the legs, keeping your arms still.",
+            harder: "Slow each extension to four counts, or hold a light weight in each hand."
+        ),
+
+        "core-deep-3": ExerciseForm(      // Bird Dog
+            steps: [
+                "Start on all fours with hands under your shoulders and knees under your hips.",
+                "Brace your midsection and set your back flat.",
+                "Extend one arm forward and the opposite leg back until both are level with your torso.",
+                "Hold, then return under control and switch sides."
+            ],
+            breathing: "Breathe steadily through the hold rather than bracing against a held breath.",
+            mistakes: [
+                "Letting the hips rotate open as the leg extends.",
+                "Arching the lower back to get the leg higher.",
+                "Rushing, so the position is never actually held."
+            ],
+            easier: "Extend only the leg, or only the arm, until the balance is there.",
+            harder: "Hold each rep longer, or draw the elbow and knee together under your body between reps."
+        ),
+
+        "core-deep-4": ExerciseForm(      // Pallof Press
+            steps: [
+                "Stand side-on to a cable set at chest height, holding the handle at your chest.",
+                "Step away until there is real tension trying to rotate you.",
+                "Brace, then press the handle straight out in front of you.",
+                "Resist the rotation the whole time, then return to your chest under control."
+            ],
+            breathing: "Exhale as you press out, inhale as you return.",
+            mistakes: [
+                "Letting the torso rotate toward the machine as you press.",
+                "Leaning away to counterbalance instead of bracing against the pull.",
+                "Going heavy enough that your feet shift position."
+            ],
+            easier: "Stand closer to the machine, which reduces the rotational pull.",
+            harder: "Step further away, or hold the pressed-out position for five counts."
+        ),
+
+        "core-deep-5": ExerciseForm(      // Hollow Body Hold
+            steps: [
+                "Lie on your back and press your lower back flat into the floor.",
+                "Lift your shoulder blades and your legs off the floor at the same time.",
+                "Reach your arms past your ears if you can hold the position there.",
+                "Keep the lower back pressed down for the entire hold."
+            ],
+            breathing: "Breathe shallowly and steadily — the position makes deep breaths difficult by design.",
+            mistakes: [
+                "Letting the lower back arch, which is the moment the hold stops doing anything.",
+                "Lifting the head with the neck rather than raising the shoulders.",
+                "Holding on past the point where the position has already broken."
+            ],
+            easier: "Tuck your knees and keep your arms by your sides.",
+            harder: "Extend the arms overhead and lower the legs closer to the floor."
+        ),
+
+        // MARK: Core — Lower Back
+
+        "core-lowback-1": ExerciseForm(   // Superman
+            steps: [
+                "Lie face down with your arms extended overhead.",
+                "Squeeze your glutes before you lift.",
+                "Raise your arms, chest and legs off the floor at the same time.",
+                "Hold, then lower under control."
+            ],
+            breathing: "Breathe steadily; don't hold your breath in the lifted position.",
+            mistakes: [
+                "Cranking the neck back to get the head higher.",
+                "Lifting only the legs and leaving the chest on the floor.",
+                "Bouncing between reps rather than holding each one."
+            ],
+            easier: "Lift only the arms, or only the legs, alternating between reps.",
+            harder: "Hold each rep longer, or hold a light weight in your hands."
+        ),
+
+        "core-lowback-2": ExerciseForm(   // Back Extension
+            steps: [
+                "Set the pad just below your hip bones so you can hinge freely.",
+                "Cross your arms on your chest, or hold a plate there.",
+                "Hinge down at the hips with a flat back.",
+                "Raise until your body forms a straight line, and stop there."
+            ],
+            breathing: "Inhale as you lower, exhale as you rise.",
+            mistakes: [
+                "Hyperextending past straight at the top, which compresses the lower back.",
+                "Rounding the back on the way down instead of hinging.",
+                "Setting the pad too high, which blocks the hip hinge entirely."
+            ],
+            easier: "Use no weight and a smaller range until the hinge is clean.",
+            harder: "Hold a plate at your chest, or pause two counts at the top."
+        ),
+
+        "core-lowback-3": ExerciseForm(   // Good Morning
+            steps: [
+                "Set the bar on your upper back, feet hip width, knees soft.",
+                "Brace hard before you move at all.",
+                "Push your hips straight back and hinge with a flat back.",
+                "Stop when your hamstrings limit the range, then drive the hips forward to stand."
+            ],
+            breathing: "Breath at the top, hold and stay braced through the hinge, exhale once standing.",
+            mistakes: [
+                "Adding weight before the hinge pattern is automatic.",
+                "Letting the back round, which is exactly what makes this lift risky.",
+                "Bending the knees enough that it becomes a squat."
+            ],
+            easier: "Do it with your hands crossed on your chest and no bar at all.",
+            harder: "Add five pounds at a time, and pause briefly at the bottom."
+        ),
+
+        "core-lowback-4": ExerciseForm(   // Bird Dog Row
+            steps: [
+                "Set up with one hand and both knees down, or in a three-point stance with a dumbbell in one hand.",
+                "Brace so your back stays flat and your hips stay square to the floor.",
+                "Row the dumbbell to your hip.",
+                "Lower under control without letting the torso rotate."
+            ],
+            breathing: "Exhale as you row, inhale as you lower.",
+            mistakes: [
+                "Rotating the torso to lift a heavier weight, which defeats the anti-rotation purpose.",
+                "Letting the hips drop or twist during the row.",
+                "Rushing, so the bracing never really happens."
+            ],
+            easier: "Use a lighter dumbbell and concentrate on keeping the hips square.",
+            harder: "Extend the opposite leg, or pause at the top of every row."
+        ),
+
+        "core-lowback-5": ExerciseForm(   // Cat-Cow
+            steps: [
+                "Start on all fours with hands under your shoulders and knees under your hips.",
+                "Exhale and round your spine, tucking your chin and your pelvis.",
+                "Inhale and reverse it, lifting your chest and tailbone.",
+                "Move slowly between the two positions."
+            ],
+            breathing: "Exhale into the rounded position, inhale into the arched one — the breath sets the pace.",
+            mistakes: [
+                "Rushing, so the spine never moves through its full range.",
+                "Moving only the lower back and leaving the upper spine stiff.",
+                "Forcing the range rather than easing into it."
+            ],
+            easier: "Reduce the range and move only within what feels comfortable.",
+            harder: "Slow each direction to five counts and pause at each end."
+        ),
+
     ]
 }
 
