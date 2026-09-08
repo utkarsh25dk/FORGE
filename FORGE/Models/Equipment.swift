@@ -14,6 +14,10 @@ enum EquipmentGroup: String, Codable, CaseIterable, Hashable, Identifiable {
     case kettlebell
     case resistanceBands
     case pullUpBar
+    case dipBars
+    case bench
+    case adjustableBench
+    case squatRack
     case mat
     case foamRoller
     case jumpRope
@@ -34,6 +38,10 @@ enum EquipmentGroup: String, Codable, CaseIterable, Hashable, Identifiable {
         case .kettlebell: return "Kettlebell"
         case .resistanceBands: return "Resistance bands"
         case .pullUpBar: return "Pull-up bar"
+        case .dipBars: return "Dip bars"
+        case .bench: return "Flat bench"
+        case .adjustableBench: return "Adjustable bench"
+        case .squatRack: return "Squat rack"
         case .mat: return "Mat"
         case .foamRoller: return "Foam roller"
         case .jumpRope: return "Jump rope"
@@ -54,6 +62,10 @@ enum EquipmentGroup: String, Codable, CaseIterable, Hashable, Identifiable {
         case .kettlebell: return "Any single bell"
         case .resistanceBands: return "Loop or tube bands"
         case .pullUpBar: return "Doorway or mounted"
+        case .dipBars: return "Parallel bars or a dip station"
+        case .bench: return "Any sturdy flat bench or box"
+        case .adjustableBench: return "Tilts for incline work"
+        case .squatRack: return "Rack or stands to unrack a loaded bar"
         case .mat: return "For floor and yoga work"
         case .foamRoller: return "For rolling and release work"
         case .jumpRope: return "Any rope"
@@ -74,6 +86,10 @@ enum EquipmentGroup: String, Codable, CaseIterable, Hashable, Identifiable {
         case .kettlebell: return "figure.cross.training"
         case .resistanceBands: return "line.diagonal"
         case .pullUpBar: return "figure.play"
+        case .dipBars: return "figure.parallel.bars"
+        case .bench: return "chair.lounge.fill"
+        case .adjustableBench: return "chair.lounge"
+        case .squatRack: return "square.split.2x1"
         case .mat: return "rectangle.portrait"
         case .foamRoller: return "cylinder.fill"
         case .jumpRope: return "figure.jumprope"
@@ -88,6 +104,15 @@ enum EquipmentGroup: String, Codable, CaseIterable, Hashable, Identifiable {
 
     /// Everything a user can actually toggle. `noneNeeded` is implicit.
     static var selectable: [EquipmentGroup] { allCases.filter { $0 != .noneNeeded } }
+
+    /// Groups this one also satisfies. An adjustable bench is a flat bench with
+    /// a hinge, so owning one shouldn't mean ticking both.
+    var implies: Set<EquipmentGroup> {
+        switch self {
+        case .adjustableBench: return [.bench]
+        default: return []
+        }
+    }
 }
 
 enum EquipmentMap {
@@ -137,8 +162,50 @@ enum EquipmentMap {
     static var knownEquipment: Set<String> { Set(map.keys) }
 }
 
+/// Equipment an exercise needs *in addition* to its primary tag.
+///
+/// The library records one equipment string per exercise, which is not enough:
+/// an Incline Dumbbell Press is tagged "Dumbbell" but is impossible without an
+/// adjustable bench, and Pull-Ups are tagged "Bodyweight" but need a bar. Telling
+/// someone with a pair of dumbbells and no bench that they can do it is worse
+/// than not filtering at all.
+enum ExerciseRequirements {
+
+    static let additional: [String: [EquipmentGroup]] = [
+        // Bench work
+        "ub-chest-1":  [.bench, .squatRack],   // Barbell Bench Press
+        "ub-chest-2":  [.adjustableBench],     // Incline Dumbbell Press
+        "ub-chest-5":  [.bench],               // Dumbbell Pullover
+        "ub-back-5":   [.bench],               // Single-Arm Dumbbell Row
+        "ub-biceps-3": [.adjustableBench],     // Incline Dumbbell Curl
+        "ub-biceps-5": [.bench],               // Concentration Curl
+        "ub-triceps-1":[.bench, .squatRack],   // Close-Grip Bench Press
+        "ub-triceps-3":[.bench],               // Skull Crushers
+        "lb-glutes-1": [.bench],               // Hip Thrust
+        "lb-glutes-5": [.bench],               // Step-Ups — a bench doubles as the box
+        "lb-quads-5":  [.bench],               // Bulgarian Split Squat
+
+        // A loaded bar on your back has to come off something
+        "lb-quads-1":  [.squatRack],           // Barbell Back Squat
+        "lb-hams-3":   [.squatRack],           // Good Mornings
+        "core-lowback-3": [.squatRack],        // Good Morning
+
+        // Tagged bodyweight, but you cannot do them on the floor
+        "ub-back-1":   [.pullUpBar],           // Pull-Ups
+        "ub-triceps-5":[.dipBars],             // Dips
+    ]
+
+    static func requirements(for id: String) -> [EquipmentGroup] { additional[id] ?? [] }
+}
+
 extension ExerciseTemplate {
     var equipmentGroup: EquipmentGroup { EquipmentMap.group(for: equipment) }
+    /// Everything needed to perform this: the primary group plus any extras.
+    var requiredEquipment: Set<EquipmentGroup> {
+        var set = Set(ExerciseRequirements.requirements(for: id))
+        if !needsNoEquipment { set.insert(equipmentGroup) }
+        return set
+    }
     /// True when the exercise needs nothing anyone would have to buy.
     var needsNoEquipment: Bool { equipmentGroup == .noneNeeded }
 }

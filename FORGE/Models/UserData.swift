@@ -28,6 +28,8 @@ struct UserData: Codable {
     var ownedEquipment: Set<EquipmentGroup> = []
     /// Whether the exercise browser filters to what the user can actually do.
     var filterByEquipment: Bool = false
+    /// Answers from the setup intake, used to tailor generated plans.
+    var trainingProfile: TrainingProfile = TrainingProfile()
 
     static func fresh(accountId: String, characterName: String) -> UserData {
         UserData(accountId: accountId, characterName: characterName)
@@ -60,6 +62,7 @@ struct UserData: Codable {
         programEnrollments = try c.decodeIfPresent([ProgramEnrollment].self, forKey: .programEnrollments) ?? []
         ownedEquipment = try c.decodeIfPresent(Set<EquipmentGroup>.self, forKey: .ownedEquipment) ?? []
         filterByEquipment = try c.decodeIfPresent(Bool.self, forKey: .filterByEquipment) ?? false
+        trainingProfile = try c.decodeIfPresent(TrainingProfile.self, forKey: .trainingProfile) ?? TrainingProfile()
     }
 
     init(accountId: String, characterName: String) {
