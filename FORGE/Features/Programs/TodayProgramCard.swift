@@ -5,6 +5,7 @@ import SwiftUI
 struct TodayProgramCard: View {
     @EnvironmentObject private var appState: AppState
     @Environment(\.forge) private var forge
+    @State private var showSchedule = false
 
     private var day: ResolvedProgramDay? { appState.currentProgramDay }
     private var program: Program? { appState.activeProgram }
@@ -17,15 +18,21 @@ struct TodayProgramCard: View {
     var body: some View {
         if let program, let day, let enrollment = appState.activeEnrollment {
             VStack(alignment: .leading, spacing: Space.md) {
-                HStack(alignment: .firstTextBaseline) {
-                    Text(program.name)
-                        .font(.forgeHeading(18))
-                        .foregroundStyle(forge.textPrimary)
-                    Spacer()
-                    Text("Day \(day.dayNumber) of \(program.totalDays)")
-                        .font(.forgeCaption(12))
-                        .foregroundStyle(forge.textSecondary)
+                Button { showSchedule = true } label: {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(program.name)
+                            .font(.forgeHeading(18))
+                            .foregroundStyle(forge.textPrimary)
+                        Spacer()
+                        Text("Day \(day.dayNumber) of \(program.totalDays)")
+                            .font(.forgeCaption(12))
+                            .foregroundStyle(forge.textSecondary)
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 11, weight: .semibold))
+                            .foregroundStyle(forge.textTertiary)
+                    }
                 }
+                .buttonStyle(.plain)
 
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
@@ -57,6 +64,9 @@ struct TodayProgramCard: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .forgeCard()
+            .sheet(isPresented: $showSchedule) {
+                NavigationStack { ProgramScheduleView(program: program) }
+            }
         }
     }
 

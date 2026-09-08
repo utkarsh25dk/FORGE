@@ -30,8 +30,10 @@
 		793D1C8FDCAB244B97287723 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1A0C0A861D14453B68AD0 /* ProfileView.swift */; };
 		BA89DF1FC05A2ED66CB7564E /* TotalWorkoutsDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B95A9F863309300A32117F0 /* TotalWorkoutsDetailSheet.swift */; };
 		E172778FF54B4C1E52C2C822 /* WeeklyRecapCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87996C5E3695E49866D2C164 /* WeeklyRecapCard.swift */; };
+		8F197BF4A7327D02D75EF443 /* CompletedProgramsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDE0B46E173A8C01CDB17C5 /* CompletedProgramsCard.swift */; };
 		60A5F129E265521869B88FA8 /* ProgramDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3125FAC460AA286514AB9484 /* ProgramDetailSheet.swift */; };
 		D2F1B09228A1CAA24D73A122 /* ProgramListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465F90C3F9433251DAA6B3A /* ProgramListView.swift */; };
+		DD76835A98B84C3CF13FCAB7 /* ProgramScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223BE78E41DCB343F05DA91A /* ProgramScheduleView.swift */; };
 		54E294A49B808A6A26332FF1 /* TodayProgramCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C68E0FD73317D8490618A /* TodayProgramCard.swift */; };
 		317942F8A0DE68EB730B0E39 /* BodyMeasurementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87FF2A9873D7E3D31450192 /* BodyMeasurementsView.swift */; };
 		3E87D935FAB7949C9445B232 /* CalendarHeatmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E15F4B15E9A5981D23EFCC /* CalendarHeatmapView.swift */; };
@@ -212,14 +214,18 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		7FDE0B46E173A8C01CDB17C5 /* CompletedProgramsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedProgramsCard.swift; sourceTree = "<group>"; };
 		3125FAC460AA286514AB9484 /* ProgramDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDetailSheet.swift; sourceTree = "<group>"; };
 		2465F90C3F9433251DAA6B3A /* ProgramListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramListView.swift; sourceTree = "<group>"; };
+		223BE78E41DCB343F05DA91A /* ProgramScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramScheduleView.swift; sourceTree = "<group>"; };
 		5D5C68E0FD73317D8490618A /* TodayProgramCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayProgramCard.swift; sourceTree = "<group>"; };
 		05947B387B478B763B6449B4 /* Programs */ = {
 			isa = PBXGroup;
 			children = (
+				7FDE0B46E173A8C01CDB17C5 /* CompletedProgramsCard.swift */,
 				3125FAC460AA286514AB9484 /* ProgramDetailSheet.swift */,
 				2465F90C3F9433251DAA6B3A /* ProgramListView.swift */,
+				223BE78E41DCB343F05DA91A /* ProgramScheduleView.swift */,
 				5D5C68E0FD73317D8490618A /* TodayProgramCard.swift */,
 			);
 			path = Programs;
@@ -374,10 +380,12 @@
 		548075263E2ED7518EE6DFEF /* Manrope-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Manrope-Bold.ttf; sourceTree = "<group>"; };
 		285B32C8568FD25246D068E8 /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Manrope-ExtraBold.ttf; sourceTree = "<group>"; };
 		7262C54998A277F6D73AB248 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Manrope-Medium.ttf; sourceTree = "<group>"; };
+		74799D152C010CA45257A37F /* Manrope-OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Manrope-OFL.txt; sourceTree = "<group>"; };
 		68CF2C83327F5F620FD803B2 /* Manrope-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Manrope-Regular.ttf; sourceTree = "<group>"; };
 		05CAA88391800EF8703C90A2 /* Manrope-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Manrope-SemiBold.ttf; sourceTree = "<group>"; };
 		1AD679C556D53E07B8D9D27F /* SpaceGrotesk-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SpaceGrotesk-Bold.ttf; sourceTree = "<group>"; };
 		F3D8838CDCB33C94281C8033 /* SpaceGrotesk-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SpaceGrotesk-Medium.ttf; sourceTree = "<group>"; };
+		C1F78D64C656A2E54C23F184 /* SpaceGrotesk-OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = SpaceGrotesk-OFL.txt; sourceTree = "<group>"; };
 		3C431773652E273525005734 /* SpaceGrotesk-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SpaceGrotesk-Regular.ttf; sourceTree = "<group>"; };
 		5D3AB1828FAEB43B1E4B2567 /* Fonts */ = {
 			isa = PBXGroup;
@@ -385,10 +393,12 @@
 				548075263E2ED7518EE6DFEF /* Manrope-Bold.ttf */,
 				285B32C8568FD25246D068E8 /* Manrope-ExtraBold.ttf */,
 				7262C54998A277F6D73AB248 /* Manrope-Medium.ttf */,
+				74799D152C010CA45257A37F /* Manrope-OFL.txt */,
 				68CF2C83327F5F620FD803B2 /* Manrope-Regular.ttf */,
 				05CAA88391800EF8703C90A2 /* Manrope-SemiBold.ttf */,
 				1AD679C556D53E07B8D9D27F /* SpaceGrotesk-Bold.ttf */,
 				F3D8838CDCB33C94281C8033 /* SpaceGrotesk-Medium.ttf */,
+				C1F78D64C656A2E54C23F184 /* SpaceGrotesk-OFL.txt */,
 				3C431773652E273525005734 /* SpaceGrotesk-Regular.ttf */,
 			);
 			path = Fonts;
@@ -605,8 +615,10 @@
 				793D1C8FDCAB244B97287723 /* ProfileView.swift in Sources */,
 				BA89DF1FC05A2ED66CB7564E /* TotalWorkoutsDetailSheet.swift in Sources */,
 				E172778FF54B4C1E52C2C822 /* WeeklyRecapCard.swift in Sources */,
+				8F197BF4A7327D02D75EF443 /* CompletedProgramsCard.swift in Sources */,
 				60A5F129E265521869B88FA8 /* ProgramDetailSheet.swift in Sources */,
 				D2F1B09228A1CAA24D73A122 /* ProgramListView.swift in Sources */,
+				DD76835A98B84C3CF13FCAB7 /* ProgramScheduleView.swift in Sources */,
 				54E294A49B808A6A26332FF1 /* TodayProgramCard.swift in Sources */,
 				317942F8A0DE68EB730B0E39 /* BodyMeasurementsView.swift in Sources */,
 				3E87D935FAB7949C9445B232 /* CalendarHeatmapView.swift in Sources */,
