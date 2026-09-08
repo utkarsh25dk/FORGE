@@ -486,7 +486,7 @@ enum ExerciseFormLibrary {
             harder: "Add weight with a dip belt, or pause for a count at the bottom."
         ),
 
-        // MARK: Lower body
+        // MARK: Lower body — Quads
 
         "lb-quads-1": ExerciseForm(       // Barbell Back Squat
             steps: [
@@ -506,6 +506,76 @@ enum ExerciseFormLibrary {
             harder: "Pause for two counts at the bottom, or move to a front-loaded position."
         ),
 
+        "lb-quads-2": ExerciseForm(       // Leg Press
+            steps: [
+                "Sit with your back and hips flat against the pad.",
+                "Place your feet shoulder width on the platform, weight through the middle of each foot.",
+                "Release the safeties and lower until your knees reach roughly 90 degrees.",
+                "Press back through your whole foot, stopping just short of locking the knees hard."
+            ],
+            breathing: "Inhale as you lower, exhale as you press.",
+            mistakes: [
+                "Letting the hips curl up off the pad at the bottom, which rounds the lower back under load.",
+                "Snapping the knees into a hard lockout at the top.",
+                "Setting the feet too low on the platform, forcing the knees far past the toes."
+            ],
+            easier: "Shorten the range and stop higher, well before the hips start to lift.",
+            harder: "Slow the lowering to three counts, or press one leg at a time."
+        ),
+
+        "lb-quads-3": ExerciseForm(       // Walking Lunges
+            steps: [
+                "Stand tall with a dumbbell in each hand.",
+                "Step forward far enough that both knees can bend to about 90 degrees.",
+                "Lower until your back knee is just short of the floor.",
+                "Drive through your front heel and step straight into the next lunge."
+            ],
+            breathing: "Inhale as you lower, exhale as you drive up.",
+            mistakes: [
+                "Stepping too short, which drives the front knee well over the toes.",
+                "Letting the torso pitch forward as the set gets hard.",
+                "Banging the back knee into the floor rather than stopping just above it."
+            ],
+            easier: "Do them bodyweight, or step backward into a reverse lunge instead.",
+            harder: "Pause with the back knee an inch off the floor for two counts."
+        ),
+
+        "lb-quads-4": ExerciseForm(       // Leg Extension
+            steps: [
+                "Sit with your back against the pad and your knees lined up with the machine's pivot.",
+                "Set the shin pad so it rests just above your ankles.",
+                "Extend until your legs are straight and pause briefly at the top.",
+                "Lower under control rather than letting the stack fall."
+            ],
+            breathing: "Exhale as you extend, inhale as you lower.",
+            mistakes: [
+                "Swinging the torso to throw the first few inches of each rep.",
+                "Slamming into full lockout with a heavy stack, which the knee joint does not enjoy.",
+                "Letting the weight drop back down, wasting the lowering half entirely."
+            ],
+            easier: "Reduce the weight and stop just short of full lockout.",
+            harder: "Pause at the top for two counts on every rep."
+        ),
+
+        "lb-quads-5": ExerciseForm(       // Bulgarian Split Squat
+            steps: [
+                "Stand about a stride in front of a bench and rest the top of one foot on it behind you.",
+                "Check the front foot is far enough forward that the knee stays over the mid-foot.",
+                "Lower straight down until the front thigh is roughly parallel with the floor.",
+                "Drive up through the front heel without pushing off the back foot."
+            ],
+            breathing: "Inhale as you lower, exhale as you drive up.",
+            mistakes: [
+                "Front foot too close to the bench, which forces the knee well past the toes.",
+                "Leaning the torso forward to make the rep easier.",
+                "Letting the back leg take load instead of using it purely for balance."
+            ],
+            easier: "Hold a rail for balance and use bodyweight only until the position feels stable.",
+            harder: "Add dumbbells, or pause for two counts at the bottom."
+        ),
+
+        // MARK: Lower body — Hamstrings
+
         "lb-hams-1": ExerciseForm(        // Romanian Deadlift
             steps: [
                 "Stand holding the bar at your hips, feet hip width, knees softly bent.",
@@ -523,6 +593,76 @@ enum ExerciseFormLibrary {
             harder: "Slow the lowering to four counts, or do them one leg at a time."
         ),
 
+        "lb-hams-2": ExerciseForm(        // Leg Curl
+            steps: [
+                "Lie face down with your knees lined up with the machine's pivot.",
+                "Set the pad so it sits just above your heels, not up on the calf.",
+                "Curl until your hamstrings are fully shortened.",
+                "Lower slowly, resisting the stack the whole way back."
+            ],
+            breathing: "Exhale as you curl, inhale as you lower.",
+            mistakes: [
+                "Lifting the hips off the pad to swing heavier weight up.",
+                "Letting the pad fall back rather than controlling it — the lowering half is where hamstrings grow.",
+                "Setting the pad too high on the calf, which puts pressure in the wrong place."
+            ],
+            easier: "Reduce the weight until your hips stay flat on the pad throughout.",
+            harder: "Take three full counts on the lowering half of every rep."
+        ),
+
+        "lb-hams-3": ExerciseForm(        // Good Mornings
+            steps: [
+                "Set the bar on your upper back as you would for a squat, feet hip width, knees soft.",
+                "Take a big breath and brace hard before you move.",
+                "Push your hips straight back and hinge until your torso is close to parallel with the floor.",
+                "Keep your back flat throughout, then drive your hips forward to stand."
+            ],
+            breathing: "Breath at the top, hold and stay braced through the hinge, exhale once standing.",
+            mistakes: [
+                "Starting too heavy. This lift rewards patience more than almost any other barbell movement.",
+                "Rounding the back as the torso lowers.",
+                "Bending the knees enough that it becomes a squat rather than a hinge."
+            ],
+            easier: "Do it with no bar at all, hands crossed on your chest, until the hinge is automatic.",
+            harder: "Add load in the smallest increments available — five pounds at a time."
+        ),
+
+        "lb-hams-4": ExerciseForm(        // Kettlebell Swing
+            steps: [
+                "Stand with the bell about a foot in front of you, feet slightly wider than your shoulders.",
+                "Hinge at the hips and hike the bell back between your legs like a snap pass.",
+                "Snap your hips forward hard and let the bell float up to chest height on its own.",
+                "Let it fall back down and straight into the next hinge."
+            ],
+            breathing: "Exhale sharply as your hips snap, inhale as the bell falls.",
+            mistakes: [
+                "Squatting the bell up instead of hinging, which turns a hip drive into a front raise.",
+                "Lifting with the arms rather than letting the hips throw the bell.",
+                "Leaning back at the top to get the bell higher, which loads the lower back."
+            ],
+            easier: "Practise the hinge with no bell at all until the movement is automatic.",
+            harder: "Use a heavier bell, or swing it one-handed."
+        ),
+
+        "lb-hams-5": ExerciseForm(        // Single-Leg RDL
+            steps: [
+                "Stand on one leg with a soft knee, holding a dumbbell in the opposite hand.",
+                "Hinge at the hip, letting your free leg travel straight back as a counterweight.",
+                "Keep your hips square to the floor throughout.",
+                "Stop at a strong hamstring stretch, then drive the hip forward to stand."
+            ],
+            breathing: "Inhale as you hinge, exhale as you stand.",
+            mistakes: [
+                "Letting the hip of the free leg rotate open toward the ceiling.",
+                "Rounding the back to reach lower than your hamstrings allow.",
+                "Rushing, which turns a balance exercise into a wobble."
+            ],
+            easier: "Touch the free toe down lightly behind you for balance.",
+            harder: "Hold the bottom position for two counts before standing."
+        ),
+
+        // MARK: Lower body — Glutes
+
         "lb-glutes-1": ExerciseForm(      // Hip Thrust
             steps: [
                 "Sit on the floor with your upper back against a bench and the bar across your hips, padded.",
@@ -538,6 +678,249 @@ enum ExerciseFormLibrary {
             ],
             easier: "Do it bodyweight with your back on the floor as a glute bridge.",
             harder: "Pause for three counts at the top of every rep."
+        ),
+
+        "lb-glutes-2": ExerciseForm(      // Glute Bridge
+            steps: [
+                "Lie on your back with knees bent, feet flat and hip width, heels close to your glutes.",
+                "Tuck your ribs down toward your hips and squeeze your glutes before you move.",
+                "Drive through your heels to lift your hips until your torso and thighs form a line.",
+                "Lower under control without resting the hips between reps."
+            ],
+            breathing: "Exhale as you lift, inhale as you lower.",
+            mistakes: [
+                "Arching the lower back to get higher instead of squeezing the glutes.",
+                "Pushing through the toes rather than the heels.",
+                "Letting the knees drift apart at the top."
+            ],
+            easier: "Shorten the range and hold briefly at whatever height you can reach with the ribs down.",
+            harder: "Add a band above the knees, or do them one leg at a time."
+        ),
+
+        "lb-glutes-3": ExerciseForm(      // Cable Kickback
+            steps: [
+                "Attach an ankle strap to a low pulley and face the machine.",
+                "Hold the frame for balance and hinge slightly forward at the hips.",
+                "Drive the working leg straight back with the knee mostly straight.",
+                "Stop before your hips start to rotate, then return under control."
+            ],
+            breathing: "Exhale as you drive back, inhale as you return.",
+            mistakes: [
+                "Arching the lower back to squeeze out more range.",
+                "Rotating the hips open so a heavier stack can be moved.",
+                "Swinging the leg rather than driving it, which loses the glute entirely."
+            ],
+            easier: "Reduce the weight and keep the range short enough that the hips stay square.",
+            harder: "Pause at the end of the kick for two counts."
+        ),
+
+        "lb-glutes-4": ExerciseForm(      // Sumo Deadlift
+            steps: [
+                "Take a wide stance with your toes turned out and your shins close to the bar.",
+                "Grip inside your legs with straight arms.",
+                "Drop your hips, lift your chest, and pull the slack out of the bar before you lift.",
+                "Push the floor apart with your feet and stand tall.",
+                "Reverse the same path to set the bar down."
+            ],
+            breathing: "Big breath and brace before the pull, hold through the rep, exhale once the bar is down.",
+            mistakes: [
+                "Letting the hips rise before the bar leaves the floor.",
+                "Knees caving inward off the floor instead of pushing out over the toes.",
+                "Rounding the upper back to reach the bar."
+            ],
+            easier: "Pull from blocks so the bar starts nearer knee height.",
+            harder: "Pause just below the knee for two counts on the way up."
+        ),
+
+        "lb-glutes-5": ExerciseForm(      // Step-Ups
+            steps: [
+                "Stand facing a box at roughly knee height with a dumbbell in each hand.",
+                "Place one whole foot on the box, heel included.",
+                "Drive through that heel to stand up without pushing off the trailing foot.",
+                "Lower under control until the trailing foot touches lightly, then repeat."
+            ],
+            breathing: "Exhale as you step up, inhale as you lower.",
+            mistakes: [
+                "Pushing off the back foot, which quietly does most of the work.",
+                "Letting the working knee cave inward on the drive up.",
+                "Dropping back down rather than lowering under control."
+            ],
+            easier: "Use a lower box and no added weight.",
+            harder: "Raise the box height, which shifts more of the work onto the glutes."
+        ),
+
+        // MARK: Lower body — Calves
+
+        "lb-calves-1": ExerciseForm(      // Standing Calf Raise
+            steps: [
+                "Set the shoulder pads so you stand tall with the balls of your feet on the platform.",
+                "Let your heels drop below the platform into a full stretch.",
+                "Press up onto your toes as high as you can and pause.",
+                "Lower slowly back into the stretch."
+            ],
+            breathing: "Exhale as you press up, inhale as you lower.",
+            mistakes: [
+                "Bouncing out of the bottom on the tendon rather than pressing with the muscle.",
+                "Cutting the range short at both ends, which is most of the point of the exercise.",
+                "Bending the knees to help the weight up."
+            ],
+            easier: "Reduce the weight until you can reach the full stretch and the full contraction.",
+            harder: "Pause two counts at the top and two counts in the stretch."
+        ),
+
+        "lb-calves-2": ExerciseForm(      // Seated Calf Raise
+            steps: [
+                "Sit with the pad across your lower thighs and the balls of your feet on the platform.",
+                "Let your heels drop into a full stretch.",
+                "Press up onto your toes and squeeze at the top.",
+                "Lower slowly back down."
+            ],
+            breathing: "Exhale as you press up, inhale as you lower.",
+            mistakes: [
+                "Skipping this in favour of standing raises alone, which under-trains the soleus.",
+                "Bouncing through the bottom of each rep.",
+                "Short-changing the range at the top."
+            ],
+            easier: "Reduce the weight and concentrate on reaching the full stretch.",
+            harder: "Pause two counts at the top of every rep."
+        ),
+
+        "lb-calves-3": ExerciseForm(      // Donkey Calf Raise
+            steps: [
+                "Bend forward at the hips with your torso supported and the balls of your feet on a raised platform.",
+                "Let your heels drop into a deep stretch — the bent-over angle makes this deeper than a standing raise.",
+                "Press up onto your toes.",
+                "Lower slowly back into the stretch."
+            ],
+            breathing: "Exhale as you press up, inhale as you lower.",
+            mistakes: [
+                "Bending the knees as you press, which takes the calves out of it.",
+                "Bouncing out of the stretch instead of pressing.",
+                "Rushing the reps, which this position makes easy to do."
+            ],
+            easier: "Do it bodyweight before adding any load.",
+            harder: "Add weight across the hips, or pause two counts at the top."
+        ),
+
+        "lb-calves-4": ExerciseForm(      // Single-Leg Calf Raise
+            steps: [
+                "Stand on one foot on a step with the other foot hooked behind your ankle.",
+                "Hold something for balance, using it only to stay upright.",
+                "Let your heel drop below the step into a stretch.",
+                "Press up as high as you can, then lower slowly."
+            ],
+            breathing: "Exhale as you press up, inhale as you lower.",
+            mistakes: [
+                "Pulling yourself up with the hand you're balancing with.",
+                "Stopping short at the bottom and losing the stretch.",
+                "Doing more reps on the stronger side without noticing."
+            ],
+            easier: "Keep both feet down and do them two-legged until the strength is there.",
+            harder: "Hold a dumbbell in your free hand."
+        ),
+
+        "lb-calves-5": ExerciseForm(      // Jump Rope Calf Pumps
+            steps: [
+                "Hold the handles with your elbows close to your sides.",
+                "Turn the rope with your wrists, not your arms.",
+                "Stay on the balls of your feet with small, low hops.",
+                "Keep your knees soft and land quietly."
+            ],
+            breathing: "Breathe steadily and rhythmically — don't hold your breath between hops.",
+            mistakes: [
+                "Jumping far higher than the rope needs, which burns you out in the first minute.",
+                "Swinging from the shoulders instead of turning the rope with the wrists.",
+                "Landing flat-footed and heavily, which defeats the purpose."
+            ],
+            easier: "Skip the rope entirely and do the same footwork, or step side to side instead of hopping.",
+            harder: "Increase the pace, or move to single-leg hops."
+        ),
+
+        // MARK: Lower body — Adductors & Abductors
+
+        "lb-adduct-1": ExerciseForm(      // Cable Hip Adduction
+            steps: [
+                "Attach an ankle strap to a low pulley and fasten it to the leg nearest the machine.",
+                "Stand far enough away that the cable pulls that leg out to the side.",
+                "Hold the frame for balance and keep your torso still and upright.",
+                "Pull the working leg in across toward your standing leg, then return under control."
+            ],
+            breathing: "Exhale as you pull across, inhale as you return.",
+            mistakes: [
+                "Leaning the torso away from the machine to generate force.",
+                "Letting the cable snap the leg back out rather than resisting it.",
+                "Using enough weight that the standing leg wobbles through every rep."
+            ],
+            easier: "Reduce the weight and shorten the range until the torso stays still.",
+            harder: "Pause for two counts at the fully adducted position."
+        ),
+
+        "lb-adduct-2": ExerciseForm(      // Cable Hip Abduction
+            steps: [
+                "Attach the ankle strap to the leg furthest from the machine.",
+                "Stand close enough that there is tension on the cable with the leg down.",
+                "Hold the frame for balance, torso upright and square.",
+                "Raise the working leg out to the side, then return under control."
+            ],
+            breathing: "Exhale as you raise, inhale as you return.",
+            mistakes: [
+                "Leaning the torso sideways to get the leg higher.",
+                "Rotating the hip so the toe points upward, which shifts the work off the target muscle.",
+                "Letting the leg swing back down rather than controlling it."
+            ],
+            easier: "Reduce the weight and keep the range small enough to stay upright.",
+            harder: "Pause at the top of the raise for two counts."
+        ),
+
+        "lb-adduct-3": ExerciseForm(      // Side-Lying Leg Raise
+            steps: [
+                "Lie on your side with your body in a straight line, bottom arm supporting your head.",
+                "Stack your hips vertically, one directly above the other.",
+                "Raise the top leg with your toe pointing forward, not at the ceiling.",
+                "Stop before your hips roll backward, then lower slowly."
+            ],
+            breathing: "Exhale as you raise, inhale as you lower.",
+            mistakes: [
+                "Rolling the hips backward to lift the leg higher than the range allows.",
+                "Pointing the toe at the ceiling, which hands the work to the hip flexors.",
+                "Letting the leg drop rather than lowering it."
+            ],
+            easier: "Bend the bottom leg for a wider, steadier base.",
+            harder: "Add an ankle weight, or pause two counts at the top."
+        ),
+
+        "lb-adduct-4": ExerciseForm(      // Sumo Squat
+            steps: [
+                "Stand wide with your toes turned out about 45 degrees, holding a dumbbell in front of you.",
+                "Keep your chest up and brace your midsection.",
+                "Sit straight down between your heels, knees tracking out over your toes.",
+                "Drive up through your whole foot."
+            ],
+            breathing: "Inhale as you lower, exhale as you drive up.",
+            mistakes: [
+                "Letting the knees drift inward on the way up.",
+                "Turning the toes out further than the knees can track over.",
+                "Leaning forward, which quietly turns the squat into a hinge."
+            ],
+            easier: "Do it bodyweight, holding a rail for balance until the stance feels natural.",
+            harder: "Pause two counts at the bottom, or hold a heavier dumbbell."
+        ),
+
+        "lb-adduct-5": ExerciseForm(      // Lateral Band Walk
+            steps: [
+                "Loop a band just above your knees — around the ankles makes it harder.",
+                "Sit into a quarter squat and stay at that height for the whole set.",
+                "Step sideways, keeping tension on the band the entire time.",
+                "Take small controlled steps rather than long ones."
+            ],
+            breathing: "Breathe steadily throughout — don't hold your breath in the squat position.",
+            mistakes: [
+                "Standing up between steps, which resets the tension and the point of the exercise.",
+                "Letting the trailing leg snap inward instead of controlling it.",
+                "Taking steps so long that the torso sways side to side."
+            ],
+            easier: "Move the band above the knees rather than down at the ankles.",
+            harder: "Move the band to your ankles, or use a heavier band."
         ),
 
         // MARK: Full body
