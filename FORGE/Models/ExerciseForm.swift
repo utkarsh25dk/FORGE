@@ -923,7 +923,7 @@ enum ExerciseFormLibrary {
             harder: "Move the band to your ankles, or use a heavier band."
         ),
 
-        // MARK: Full body
+        // MARK: Full body — Compound Lifts
 
         "fb-compound-1": ExerciseForm(    // Deadlift
             steps: [
@@ -941,6 +941,424 @@ enum ExerciseFormLibrary {
             ],
             easier: "Pull from blocks or the second-lowest rack pin, so the bar starts nearer knee height.",
             harder: "Pause for two counts just below the knee on the way up."
+        ),
+
+        "fb-compound-2": ExerciseForm(    // Clean and Press
+            steps: [
+                "Set up as for a deadlift with the bar over your mid-foot, hands just outside your legs.",
+                "Pull the bar up your thighs, then extend hips, knees and ankles hard to accelerate it.",
+                "Drop under the bar and catch it on your front delts with your elbows driven high.",
+                "Stand fully upright out of the catch before you press.",
+                "Brace and press overhead, finishing with the bar over your mid-foot."
+            ],
+            breathing: "Breath and brace before the pull, exhale after the catch, breath again before the press.",
+            mistakes: [
+                "Trying to muscle the bar up with the arms instead of accelerating it with the hips.",
+                "Catching with low elbows, which drops the bar onto the wrists and collapses the rack position.",
+                "Pressing before you have finished standing up out of the catch."
+            ],
+            easier: "Split it into two separate lifts — practise the clean and the press on their own.",
+            harder: "Add load only once the catch is consistent; technique caps this lift, not strength."
+        ),
+
+        "fb-compound-3": ExerciseForm(    // Thruster
+            steps: [
+                "Hold the bar in a front rack position with elbows high and the bar resting on your delts.",
+                "Squat down to full depth, keeping your elbows up and your chest tall.",
+                "Drive up out of the bottom and let that momentum carry into the press.",
+                "Finish with the bar locked out overhead, then lower it back to the rack position."
+            ],
+            breathing: "Breath at the top, hold through the squat, exhale as you lock out overhead.",
+            mistakes: [
+                "Letting the elbows drop in the squat, which dumps the bar forward.",
+                "Pausing at the top of the squat, which throws away the drive that makes the press possible.",
+                "Pressing with the arms alone rather than riding the leg drive."
+            ],
+            easier: "Use dumbbells at the shoulders instead of a barbell.",
+            harder: "Add load, or cycle the reps continuously without resetting at the top."
+        ),
+
+        "fb-compound-4": ExerciseForm(    // Barbell Complex
+            steps: [
+                "Pick a sequence of lifts you can all perform with the same weight — the weakest lift sets the load.",
+                "Complete every rep of the first movement before moving to the next.",
+                "Do not set the bar down between movements; that is the point of a complex.",
+                "Rest fully once the whole sequence is finished, then repeat."
+            ],
+            breathing: "Breathe between reps, not between movements — you won't get a break at the handover.",
+            mistakes: [
+                "Loading for your strongest lift in the sequence rather than your weakest.",
+                "Setting the bar down mid-complex, which turns it into ordinary straight sets.",
+                "Choosing so many movements that form falls apart before the end."
+            ],
+            easier: "Use an empty bar and three movements until the sequence flows.",
+            harder: "Add a movement, add reps per movement, or add weight — one at a time."
+        ),
+
+        "fb-compound-5": ExerciseForm(    // Snatch
+            steps: [
+                "Take a wide grip with the bar over your mid-foot and your hips low, chest up.",
+                "Pull the bar off the floor in a controlled way, keeping it close to your legs.",
+                "As it passes your thighs, extend hips, knees and ankles violently to accelerate it upward.",
+                "Pull yourself under the bar and catch it overhead with locked arms in a partial squat.",
+                "Stand up out of the catch under control."
+            ],
+            breathing: "Breath and brace before the pull, exhale once you have stood up from the catch.",
+            mistakes: [
+                "Trying to lift the bar with the arms rather than launching it with the hips.",
+                "Letting the bar swing away from the body, which puts it in front of the catch position.",
+                "Being slow under the bar — speed into the catch matters more than raw strength."
+            ],
+            easier: "Practise with a dowel or empty bar, from the hang position, until the path is consistent.",
+            harder: "Add load slowly. Technique caps this lift long before strength does."
+        ),
+
+        // MARK: Full body — Circuit Training
+
+        "fb-circuit-1": ExerciseForm(     // Burpees
+            steps: [
+                "From standing, squat down and place your hands on the floor in front of your feet.",
+                "Jump or step your feet back into a plank with your body in a straight line.",
+                "Lower your chest to the floor, then press back up.",
+                "Jump or step your feet back to your hands and stand, finishing with a jump."
+            ],
+            breathing: "Exhale on the way up out of each rep; find a rhythm rather than holding your breath.",
+            mistakes: [
+                "Letting the hips sag as you hit the floor, which is where lower backs complain.",
+                "Sprinting the first round, which guarantees the last one falls apart.",
+                "Skipping the chest-to-floor portion once tired."
+            ],
+            easier: "Step the feet back and forward instead of jumping, and drop the push-up.",
+            harder: "Add a tuck jump at the top, or chain them without pausing between reps."
+        ),
+
+        "fb-circuit-2": ExerciseForm(     // Mountain Climbers
+            steps: [
+                "Start in a push-up position with hands under your shoulders.",
+                "Keep your hips level with your shoulders — no piking up.",
+                "Drive one knee toward your chest, then switch legs.",
+                "Build speed only once the hips stay still."
+            ],
+            breathing: "Breathe steadily and rhythmically rather than holding your breath through the set.",
+            mistakes: [
+                "Hips rising into a pike, which makes the movement much easier than it looks.",
+                "Bouncing the hips up and down with each drive.",
+                "Going for speed before the position is stable."
+            ],
+            easier: "Slow the pace right down and focus on holding the plank between knee drives.",
+            harder: "Increase the pace, or bring the knee toward the opposite elbow."
+        ),
+
+        "fb-circuit-3": ExerciseForm(     // Jumping Jacks
+            steps: [
+                "Stand tall with your feet together and arms at your sides.",
+                "Jump your feet out wider than your shoulders while raising your arms overhead.",
+                "Jump back to the start in one motion.",
+                "Stay on the balls of your feet and land softly."
+            ],
+            breathing: "Breathe steadily in rhythm with the reps.",
+            mistakes: [
+                "Landing flat-footed and heavily, which jars the knees.",
+                "Only half-raising the arms once fatigue sets in.",
+                "Locking the knees on landing rather than absorbing with a soft bend."
+            ],
+            easier: "Step one foot out at a time instead of jumping.",
+            harder: "Increase the pace, or switch to seal jacks with the arms meeting in front."
+        ),
+
+        "fb-circuit-4": ExerciseForm(     // Squat to Press
+            steps: [
+                "Hold a dumbbell in each hand at shoulder height, palms facing in.",
+                "Squat to full depth with your chest up and elbows in front.",
+                "Drive up out of the bottom and let that momentum carry into the press.",
+                "Lock the dumbbells out overhead, then lower them back to your shoulders."
+            ],
+            breathing: "Inhale into the squat, exhale as you drive up and press.",
+            mistakes: [
+                "Pausing at the top of the squat, which wastes the leg drive.",
+                "Pressing with the arms alone once the legs tire.",
+                "Letting the chest drop in the squat so the dumbbells pull you forward."
+            ],
+            easier: "Split it into squats and presses done separately.",
+            harder: "Use heavier dumbbells, or move continuously without pausing at the top."
+        ),
+
+        "fb-circuit-5": ExerciseForm(     // Bear Crawl
+            steps: [
+                "Start on all fours with your hands under your shoulders and knees under your hips.",
+                "Lift your knees so they hover just off the floor.",
+                "Crawl forward moving the opposite hand and foot together.",
+                "Keep your hips low and your back flat throughout."
+            ],
+            breathing: "Breathe steadily; the position makes it tempting to hold your breath.",
+            mistakes: [
+                "Letting the hips swing side to side with each step.",
+                "Raising the hips high, which turns it into a walking downward dog.",
+                "Moving the same-side hand and foot together, which destabilises the whole pattern."
+            ],
+            easier: "Keep the knees on the floor and just practise the opposite hand-and-foot pattern.",
+            harder: "Crawl backward, or add a pause with the knees hovering between steps."
+        ),
+
+        // MARK: Full body — Functional
+
+        "fb-func-1": ExerciseForm(        // Farmer's Carry
+            steps: [
+                "Stand between two heavy dumbbells and deadlift them up with a flat back.",
+                "Stand tall with your shoulders pulled back and down, arms hanging straight.",
+                "Walk with short, controlled steps, keeping your torso upright.",
+                "Set the weights down under control rather than dropping them."
+            ],
+            breathing: "Breathe steadily as you walk; don't hold your breath for the whole carry.",
+            mistakes: [
+                "Letting the shoulders round forward under the load.",
+                "Leaning back to counterbalance the weight.",
+                "Taking long strides, which makes the load swing."
+            ],
+            easier: "Use lighter weights and carry for a shorter distance.",
+            harder: "Go heavier — grip usually fails first, and building it is most of the point."
+        ),
+
+        "fb-func-2": ExerciseForm(        // Sled Push
+            steps: [
+                "Set your hands on the uprights at chest height, or low for more leg drive.",
+                "Lean into the sled with a straight line from head to heels.",
+                "Drive with short, powerful steps, keeping your hips low.",
+                "Keep the sled moving rather than restarting it from a stop."
+            ],
+            breathing: "Breathe hard and steadily through the push; this is a conditioning effort.",
+            mistakes: [
+                "Standing too upright, which turns leg drive into a shove from the arms.",
+                "Taking long strides that stall the sled between steps.",
+                "Going so heavy the sled stops, which trains nothing useful."
+            ],
+            easier: "Reduce the load until you can keep it moving continuously.",
+            harder: "Add weight, or do shorter, harder pushes with full rest between."
+        ),
+
+        "fb-func-3": ExerciseForm(        // Tire Flip
+            steps: [
+                "Set your feet back from the tire and grip under the edge with a flat back.",
+                "Drop your hips and drive through your legs to lift the edge, keeping your chest against it.",
+                "As it comes up, step in and switch to pushing rather than pulling.",
+                "Push it over and reset your position before the next flip."
+            ],
+            breathing: "Big breath and brace before each lift, exhale as the tire goes over.",
+            mistakes: [
+                "Lifting with a rounded lower back rather than driving through the legs.",
+                "Standing too close, which leaves no room to drive.",
+                "Trying to curl the tire up with the arms."
+            ],
+            easier: "Use a lighter tire until the leg drive and the switch to pushing feel natural.",
+            harder: "Use a heavier tire, or flip for distance with no rest between."
+        ),
+
+        "fb-func-4": ExerciseForm(        // Sandbag Carry
+            steps: [
+                "Deadlift the bag up with a flat back, then hug it against your chest.",
+                "Stand tall with your elbows tucked under the bag.",
+                "Walk with short controlled steps as the load shifts.",
+                "Set it down under control rather than dropping it."
+            ],
+            breathing: "Breathe steadily; the bag against your chest makes deep breaths harder, which is part of it.",
+            mistakes: [
+                "Letting the bag slip down, which pulls you into a rounded back.",
+                "Leaning back to balance rather than bracing.",
+                "Rushing, when the shifting load is exactly what you're training for."
+            ],
+            easier: "Use a lighter bag and carry it over a shorter distance.",
+            harder: "Go heavier, or carry it over uneven ground."
+        ),
+
+        "fb-func-5": ExerciseForm(        // Battle Ropes
+            steps: [
+                "Hold one rope end in each hand and stand in a quarter squat, feet shoulder width.",
+                "Keep your chest up and your weight through the middle of your feet.",
+                "Drive waves down the rope from your shoulders, not your wrists.",
+                "Keep the waves reaching the anchor for the whole interval."
+            ],
+            breathing: "Breathe hard and steadily; this is conditioning work.",
+            mistakes: [
+                "Standing upright, which removes the legs and leaves it an arm exercise.",
+                "Letting the waves die out halfway down the rope as you tire.",
+                "Flicking from the wrists rather than driving from the shoulders."
+            ],
+            easier: "Work in shorter intervals with longer rest.",
+            harder: "Alternate wave patterns, or extend the interval."
+        ),
+
+        // MARK: Full body — Kettlebell
+
+        "fb-kb-1": ExerciseForm(          // Kettlebell Swing
+            steps: [
+                "Stand with the bell about a foot in front of you, feet slightly wider than your shoulders.",
+                "Hinge at the hips and hike the bell back between your legs.",
+                "Snap your hips forward hard and let the bell float up on its own.",
+                "Let it fall back down and straight into the next hinge."
+            ],
+            breathing: "Exhale sharply as the hips snap, inhale as the bell falls.",
+            mistakes: [
+                "Squatting the bell up instead of hinging, which makes it a front raise.",
+                "Lifting with the arms rather than letting the hips throw it.",
+                "Leaning back at the top, which loads the lower back."
+            ],
+            easier: "Practise the hinge with no bell until the movement is automatic.",
+            harder: "Use a heavier bell, or swing one-handed."
+        ),
+
+        "fb-kb-2": ExerciseForm(          // Kettlebell Goblet Squat
+            steps: [
+                "Hold the bell by the horns against your chest, elbows tucked in.",
+                "Stand with your feet a little wider than your shoulders, toes slightly out.",
+                "Squat down until your elbows brush the inside of your knees.",
+                "Drive up through your whole foot, keeping the bell tight to your chest."
+            ],
+            breathing: "Inhale as you descend, exhale as you drive up.",
+            mistakes: [
+                "Letting the bell drift away from the chest, which pulls you forward.",
+                "Rounding the lower back at the bottom of the squat.",
+                "Cutting depth once the bell gets heavy."
+            ],
+            easier: "Use a lighter bell and squat to a box to learn the depth.",
+            harder: "Pause two counts at the bottom, or use a heavier bell."
+        ),
+
+        "fb-kb-3": ExerciseForm(          // Kettlebell Snatch
+            steps: [
+                "Start with the bell between your feet and hike it back as you would for a swing.",
+                "Snap your hips and pull the bell up close to your body.",
+                "As it reaches chest height, punch your hand through and around the handle.",
+                "Lock out overhead with the bell resting on the back of your forearm, then guide it back down."
+            ],
+            breathing: "Exhale on the hip snap, inhale as the bell comes back down.",
+            mistakes: [
+                "Letting the bell flip over and bang the wrist instead of punching through it.",
+                "Muscling the bell up with the arm rather than driving with the hips.",
+                "Letting it swing wide away from the body on the way up."
+            ],
+            easier: "Practise high pulls first, stopping at chest height without going overhead.",
+            harder: "Use a heavier bell, or work in longer continuous sets."
+        ),
+
+        "fb-kb-4": ExerciseForm(          // Kettlebell Clean
+            steps: [
+                "Hike the bell back between your legs as you would for a swing.",
+                "Snap your hips and pull the bell in close, keeping it near your body.",
+                "Guide your hand around the handle so the bell rolls onto your forearm rather than flipping onto it.",
+                "Finish in the rack position with the bell resting between your forearm and chest."
+            ],
+            breathing: "Exhale on the hip snap, inhale as you drop the bell back down.",
+            mistakes: [
+                "Letting the bell arc away from the body, which lands it hard on the wrist.",
+                "Gripping tightly through the catch instead of letting the handle rotate.",
+                "Using the arm to curl the bell up into the rack."
+            ],
+            easier: "Practise the catch from a dead stop at hip height until the bell lands softly.",
+            harder: "Use a heavier bell, or clean one bell in each hand at the same time."
+        ),
+
+        "fb-kb-5": ExerciseForm(          // Turkish Get-Up
+            steps: [
+                "Lie on your back with the bell pressed straight up in one hand, that side's knee bent.",
+                "Roll onto your opposite elbow, then up onto that hand, keeping the bell locked overhead.",
+                "Bridge your hips up and sweep your straight leg back into a half-kneeling position.",
+                "Stand up, keeping your eyes on the bell, then reverse every step to return to the floor."
+            ],
+            breathing: "Breathe steadily at each stage; this is slow, deliberate work, not a single effort.",
+            mistakes: [
+                "Rushing, which is how the shoulder gets caught out of position.",
+                "Letting the arm holding the bell drift out of vertical.",
+                "Skipping a step in the sequence, particularly the hip bridge."
+            ],
+            easier: "Practise the whole sequence with a shoe balanced on your fist instead of a bell.",
+            harder: "Use a heavier bell, or pause for a count at each stage of the sequence."
+        ),
+
+        // MARK: Full body — Bodyweight Flow
+
+        "fb-flow-1": ExerciseForm(        // Push-Up to Squat
+            steps: [
+                "Start in a push-up position and perform one push-up.",
+                "Jump or step your feet forward to your hands.",
+                "Stand up into a full squat position, chest tall.",
+                "Reverse it back down to the push-up position without resetting."
+            ],
+            breathing: "Exhale on each effort — the push-up and the stand.",
+            mistakes: [
+                "Resetting between the two halves, which breaks the flow the exercise is built on.",
+                "Letting the hips sag during the push-up portion.",
+                "Standing without actually squatting, which skips half the movement."
+            ],
+            easier: "Step the feet rather than jumping, and do the push-up from your knees.",
+            harder: "Add a jump at the top of the squat."
+        ),
+
+        "fb-flow-2": ExerciseForm(        // Inchworm
+            steps: [
+                "Stand tall, then hinge forward and place your hands on the floor.",
+                "Walk your hands out until you reach a plank position.",
+                "Hold the plank for a beat, keeping your hips level.",
+                "Walk your hands back to your feet and stand up."
+            ],
+            breathing: "Exhale as you walk out, inhale as you walk back.",
+            mistakes: [
+                "Letting the hips sag as you reach the plank.",
+                "Bending the knees deeply to avoid the hamstring stretch, which is half the value.",
+                "Rushing the walk-out so the plank position is never really reached."
+            ],
+            easier: "Bend the knees as much as you need to get your hands down comfortably.",
+            harder: "Add a push-up at the plank, or walk the hands out further."
+        ),
+
+        "fb-flow-3": ExerciseForm(        // Plank Jacks
+            steps: [
+                "Start in a plank on your hands or forearms, body in a straight line.",
+                "Jump both feet out wide, then back together.",
+                "Keep your hips level throughout — they should not bounce.",
+                "Land softly on the balls of your feet."
+            ],
+            breathing: "Breathe steadily in rhythm with the jumps.",
+            mistakes: [
+                "Hips piking up with each jump, which is the most common fault here.",
+                "Landing heavily, which jars the shoulders.",
+                "Speeding up until the plank position collapses."
+            ],
+            easier: "Step the feet out one at a time instead of jumping.",
+            harder: "Increase the pace, or perform them from a forearm plank."
+        ),
+
+        "fb-flow-4": ExerciseForm(        // Animal Flow Crawl
+            steps: [
+                "Start on all fours with your knees hovering just off the floor.",
+                "Move opposite hand and foot together, keeping your hips low.",
+                "Travel forward, backward and sideways rather than only in one direction.",
+                "Move deliberately — this is about control, not speed."
+            ],
+            breathing: "Breathe steadily throughout rather than holding your breath.",
+            mistakes: [
+                "Raising the hips, which removes most of the demand.",
+                "Rushing, which turns a control drill into scrambling.",
+                "Moving same-side hand and foot together, which breaks the pattern."
+            ],
+            easier: "Keep the knees down and practise the crawling pattern alone.",
+            harder: "Add direction changes, or pause with the knees hovering between steps."
+        ),
+
+        "fb-flow-5": ExerciseForm(        // Burpee Broad Jump
+            steps: [
+                "Perform a burpee: squat, hands down, feet back, chest to floor, feet in.",
+                "From the standing position, immediately jump forward as far as you can.",
+                "Land softly with both feet, absorbing through the knees and hips.",
+                "Reset fully to standing before starting the next rep."
+            ],
+            breathing: "Exhale on the jump, then take a full breath before the next rep.",
+            mistakes: [
+                "Landing stiff-legged, which is where this movement hurts people.",
+                "Rushing the reset and starting the next burpee off balance.",
+                "Jumping for distance at the cost of a controlled landing."
+            ],
+            easier: "Step back the burpee and replace the broad jump with a small hop forward.",
+            harder: "Chain the reps continuously, or jump for maximum distance each rep."
         ),
 
         // MARK: Core — Upper Abs
