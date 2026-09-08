@@ -4,6 +4,7 @@ Rerun any time files are added/removed: python3 generate_project.py
 """
 import os
 import uuid
+import hashlib
 import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -15,8 +16,17 @@ WIDGET_TARGET_NAME = "ForgeWidgetExtension"
 WIDGET_BUNDLE_ID = "com.utkarsh25rk.forge.widget"
 DEPLOYMENT_TARGET = "26.0"
 
-def new_id():
-    return uuid.uuid4().hex[:24].upper()
+def new_id(key=None):
+    """A stable 24-hex-char object id.
+
+    Derived from `key` rather than random, so regenerating with no source
+    changes reproduces the pbxproj byte for byte and adding one file touches
+    only that file's lines. With uuid4 every regeneration rewrote the whole
+    project file, burying real changes in a thousand-line diff.
+    """
+    if key is None:
+        return uuid.uuid4().hex[:24].upper()
+    return hashlib.sha1(key.encode("utf-8")).hexdigest()[:24].upper()
 
 # ---- collect files ----
 SWIFT_EXT = {".swift"}
@@ -28,7 +38,7 @@ class Node:
         self.path = path
         self.is_dir = is_dir
         self.children = []
-        self.id = new_id()
+        self.id = new_id("node:" + os.path.relpath(path, ROOT))
 
 def build_tree(dir_path, name):
     node = Node(name, dir_path, True)
@@ -79,34 +89,34 @@ if shared_snapshot_ref is None:
 SHARED_SNAPSHOT_FILE_ID = shared_snapshot_ref[0]
 
 # ---- ids ----
-PBXPROJ_ID = new_id()
-MAIN_GROUP_ID = new_id()
-PRODUCTS_GROUP_ID = new_id()
-APP_PRODUCT_REF_ID = new_id()
-TARGET_ID = new_id()
-NATIVE_TARGET_BUILD_CONFIG_LIST = new_id()
-PROJECT_BUILD_CONFIG_LIST = new_id()
-DEBUG_PROJ_CFG = new_id()
-RELEASE_PROJ_CFG = new_id()
-DEBUG_TARGET_CFG = new_id()
-RELEASE_TARGET_CFG = new_id()
-SOURCES_PHASE_ID = new_id()
-RESOURCES_PHASE_ID = new_id()
-FRAMEWORKS_PHASE_ID = new_id()
+PBXPROJ_ID = new_id('PBXPROJ_ID')
+MAIN_GROUP_ID = new_id('MAIN_GROUP_ID')
+PRODUCTS_GROUP_ID = new_id('PRODUCTS_GROUP_ID')
+APP_PRODUCT_REF_ID = new_id('APP_PRODUCT_REF_ID')
+TARGET_ID = new_id('TARGET_ID')
+NATIVE_TARGET_BUILD_CONFIG_LIST = new_id('NATIVE_TARGET_BUILD_CONFIG_LIST')
+PROJECT_BUILD_CONFIG_LIST = new_id('PROJECT_BUILD_CONFIG_LIST')
+DEBUG_PROJ_CFG = new_id('DEBUG_PROJ_CFG')
+RELEASE_PROJ_CFG = new_id('RELEASE_PROJ_CFG')
+DEBUG_TARGET_CFG = new_id('DEBUG_TARGET_CFG')
+RELEASE_TARGET_CFG = new_id('RELEASE_TARGET_CFG')
+SOURCES_PHASE_ID = new_id('SOURCES_PHASE_ID')
+RESOURCES_PHASE_ID = new_id('RESOURCES_PHASE_ID')
+FRAMEWORKS_PHASE_ID = new_id('FRAMEWORKS_PHASE_ID')
 
-WIDGET_PRODUCT_REF_ID = new_id()
-WIDGET_TARGET_ID = new_id()
-WIDGET_NATIVE_TARGET_BUILD_CONFIG_LIST = new_id()
-WIDGET_DEBUG_TARGET_CFG = new_id()
-WIDGET_RELEASE_TARGET_CFG = new_id()
-WIDGET_SOURCES_PHASE_ID = new_id()
-WIDGET_RESOURCES_PHASE_ID = new_id()
-WIDGET_FRAMEWORKS_PHASE_ID = new_id()
-EMBED_WIDGET_PHASE_ID = new_id()
-WIDGET_EMBED_BUILD_FILE_ID = new_id()
-WIDGET_CONTAINER_ITEM_PROXY_ID = new_id()
-WIDGET_TARGET_DEPENDENCY_ID = new_id()
-SHARED_SNAPSHOT_WIDGET_BUILD_FILE_ID = new_id()
+WIDGET_PRODUCT_REF_ID = new_id('WIDGET_PRODUCT_REF_ID')
+WIDGET_TARGET_ID = new_id('WIDGET_TARGET_ID')
+WIDGET_NATIVE_TARGET_BUILD_CONFIG_LIST = new_id('WIDGET_NATIVE_TARGET_BUILD_CONFIG_LIST')
+WIDGET_DEBUG_TARGET_CFG = new_id('WIDGET_DEBUG_TARGET_CFG')
+WIDGET_RELEASE_TARGET_CFG = new_id('WIDGET_RELEASE_TARGET_CFG')
+WIDGET_SOURCES_PHASE_ID = new_id('WIDGET_SOURCES_PHASE_ID')
+WIDGET_RESOURCES_PHASE_ID = new_id('WIDGET_RESOURCES_PHASE_ID')
+WIDGET_FRAMEWORKS_PHASE_ID = new_id('WIDGET_FRAMEWORKS_PHASE_ID')
+EMBED_WIDGET_PHASE_ID = new_id('EMBED_WIDGET_PHASE_ID')
+WIDGET_EMBED_BUILD_FILE_ID = new_id('WIDGET_EMBED_BUILD_FILE_ID')
+WIDGET_CONTAINER_ITEM_PROXY_ID = new_id('WIDGET_CONTAINER_ITEM_PROXY_ID')
+WIDGET_TARGET_DEPENDENCY_ID = new_id('WIDGET_TARGET_DEPENDENCY_ID')
+SHARED_SNAPSHOT_WIDGET_BUILD_FILE_ID = new_id('SHARED_SNAPSHOT_WIDGET_BUILD_FILE_ID')
 
 # group id for each source root must match tree.id (set below) so PBXGroup
 # references from the main group resolve to the actual emitted group entry.
@@ -119,13 +129,13 @@ widget_build_files_swift = []
 widget_build_files_resource = []
 
 for (fid, name, rel) in swift_files:
-    build_files_swift.append((new_id(), fid))
+    build_files_swift.append((new_id("buildfile:build_files_swift:" + rel), fid))
 for (fid, name, rel, ftype) in resource_files:
-    build_files_resource.append((new_id(), fid))
+    build_files_resource.append((new_id("buildfile:build_files_resource:" + rel), fid))
 for (fid, name, rel) in widget_swift_files:
-    widget_build_files_swift.append((new_id(), fid))
+    widget_build_files_swift.append((new_id("buildfile:widget_build_files_swift:" + rel), fid))
 for (fid, name, rel, ftype) in widget_resource_files:
-    widget_build_files_resource.append((new_id(), fid))
+    widget_build_files_resource.append((new_id("buildfile:widget_build_files_resource:" + rel), fid))
 
 # recursive group builder producing PBXGroup entries text + mapping
 group_entries = []  # list of pbxproj text blocks
@@ -248,7 +258,7 @@ pbxproj = f"""// !$*UTF8*$!
 /* Begin PBXFileReference section */
 \t\t{APP_PRODUCT_REF_ID} /* {PROJECT_NAME}.app */ = {{isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = {PROJECT_NAME}.app; sourceTree = BUILT_PRODUCTS_DIR; }};
 \t\t{WIDGET_PRODUCT_REF_ID} /* {WIDGET_TARGET_NAME}.appex */ = {{isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = {WIDGET_TARGET_NAME}.appex; sourceTree = BUILT_PRODUCTS_DIR; }};
-\t\t{new_id()} /* Info.plist */ = {{isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; }};
+\t\t{new_id("fileref:Info.plist")} /* Info.plist */ = {{isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; }};
 {file_refs_text}
 /* End PBXFileReference section */
 
@@ -623,7 +633,7 @@ schemes_dir = os.path.join(xcodeproj_dir, "xcshareddata", "xcschemes")
 os.makedirs(schemes_dir, exist_ok=True)
 scheme = f'''<?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1540"
+   LastUpgradeVersion = "2660"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -645,6 +655,13 @@ scheme = f'''<?xml version="1.0" encoding="UTF-8"?>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
+   </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -666,6 +683,20 @@ scheme = f'''<?xml version="1.0" encoding="UTF-8"?>
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
 </Scheme>
 '''
 with open(os.path.join(schemes_dir, f"{PROJECT_NAME}.xcscheme"), "w") as f:

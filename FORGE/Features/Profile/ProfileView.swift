@@ -25,6 +25,7 @@ struct ProfileView: View {
                 header
                 accountCard
                 statsRow
+                CompletedProgramsCard()
                 preferencesCard
                 avoidCard
                 templatesCard

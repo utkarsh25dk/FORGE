@@ -14,6 +14,7 @@ struct HomeView: View {
             LazyVStack(alignment: .leading, spacing: Space.xl) {
                 header
                 CoachTipCard()
+                TodayProgramCard()
                 TodayCard()
                 Spacer(minLength: 90)
             }

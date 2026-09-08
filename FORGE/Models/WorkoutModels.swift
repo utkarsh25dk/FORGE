@@ -97,6 +97,11 @@ struct WorkoutEntry: Identifiable, Codable, Hashable {
     var workSec: Int?
     var restSec: Int?
 
+    /// Set when this entry was applied from a program day, so completing the entry
+    /// can tick the program forward. Optional on purpose: a non-optional field here
+    /// would throw `keyNotFound` decoding save files written before programs existed.
+    var programDayIndex: Int? = nil
+
     var isCompleted: Bool = false
     var isWarmUp: Bool = false
     var isCoolDown: Bool = false

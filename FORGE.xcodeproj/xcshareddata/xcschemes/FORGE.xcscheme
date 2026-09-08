@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "521D7A3645FF44628D43485E"
+               BlueprintIdentifier = "2DFC147D16EB14CBD13E6A36"
                BuildableName = "FORGE.app"
                BlueprintName = "FORGE"
                ReferencedContainer = "container:FORGE.xcodeproj">
@@ -43,7 +43,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "521D7A3645FF44628D43485E"
+            BlueprintIdentifier = "2DFC147D16EB14CBD13E6A36"
             BuildableName = "FORGE.app"
             BlueprintName = "FORGE"
             ReferencedContainer = "container:FORGE.xcodeproj">

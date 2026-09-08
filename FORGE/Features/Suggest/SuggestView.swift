@@ -30,6 +30,13 @@ struct SuggestView: View {
 
     private let columns = [GridItem(.flexible(), spacing: Space.md), GridItem(.flexible(), spacing: Space.md)]
 
+    private var programsSubtitle: String {
+        if let p = appState.activeProgram, let e = appState.activeEnrollment {
+            return "\(p.name) — day \(e.currentDayIndex + 1) of \(p.totalDays)"
+        }
+        return "Multi-week plans that schedule the work for you"
+    }
+
     private var searchResults: [ExerciseTemplate] {
         guard !searchText.isEmpty else { return [] }
         return ExerciseLibrary.all.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
@@ -49,7 +56,12 @@ struct SuggestView: View {
                 SubgroupListView(category: category)
             }
             .navigationDestination(for: SuggestRoute.self) { route in
-                ExerciseListView(category: route.category, subgroup: route.subgroup)
+                switch route {
+                case let .exercises(category, subgroup):
+                    ExerciseListView(category: category, subgroup: subgroup)
+                case .programs:
+                    ProgramListView()
+                }
             }
             .sheet(item: $selectedResult) { template in
                 ExerciseDetailSheet(template: template)
@@ -67,6 +79,23 @@ struct SuggestView: View {
                         .font(.forgeBody(14)).foregroundStyle(forge.textSecondary)
                 }
                 .padding(.top, Space.md)
+
+                NavigationLink(value: SuggestRoute.programs) {
+                    HStack(spacing: Space.md) {
+                        CategoryIcon(systemName: "list.bullet.rectangle.portrait", size: 20, tint: forge.accent)
+                        VStack(alignment: .leading, spacing: 3) {
+                            Text("Programs").font(.forgeBodySemibold(16)).foregroundStyle(forge.textPrimary)
+                            Text(programsSubtitle).font(.forgeCaption()).foregroundStyle(forge.textSecondary)
+                        }
+                        Spacer(minLength: 0)
+                        Image(systemName: "chevron.right")
+                            .foregroundStyle(forge.textTertiary)
+                            .font(.system(size: 13, weight: .semibold))
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .forgeCard(padding: Space.md, cornerRadius: Radius.md)
+                }
+                .buttonStyle(.plain)
 
                 LazyVGrid(columns: columns, spacing: Space.md) {
                     ForEach(WorkoutCategory.browsable) { category in
@@ -127,7 +156,7 @@ struct SuggestView: View {
     }
 }
 
-struct SuggestRoute: Hashable {
-    let category: WorkoutCategory
-    let subgroup: String
+enum SuggestRoute: Hashable {
+    case exercises(category: WorkoutCategory, subgroup: String)
+    case programs
 }

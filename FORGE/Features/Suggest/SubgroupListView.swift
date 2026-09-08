@@ -19,7 +19,7 @@ struct SubgroupListView: View {
                 .padding(.bottom, Space.sm)
 
                 ForEach(ExerciseLibrary.subgroups(for: category), id: \.self) { subgroup in
-                    NavigationLink(value: SuggestRoute(category: category, subgroup: subgroup)) {
+                    NavigationLink(value: SuggestRoute.exercises(category: category, subgroup: subgroup)) {
                         HStack {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(subgroup).font(.forgeBodySemibold(16)).foregroundStyle(forge.textPrimary)
