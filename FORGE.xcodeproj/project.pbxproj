@@ -18,6 +18,7 @@
 		1ADD9552E81BFBF781F8F95A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ACD85329C9AD9A48F18519 /* OnboardingView.swift */; };
 		248003BE9824F11F1D0FCF25 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4687296211741B61716CB91 /* SignUpView.swift */; };
 		E73A2BF807F6F5DDCFD0AF0E /* BodyMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A55004F3A63C75B8B56A83 /* BodyMapView.swift */; };
+		AD123743E9CDD3A720134549 /* BodySilhouette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415BA276A25D16A74710423D /* BodySilhouette.swift */; };
 		C327EF65FFFF3BB52CA6F801 /* MyEquipmentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61486CE2AF585D60663F852D /* MyEquipmentSheet.swift */; };
 		8E2FC51B9686B37DCC3B4B55 /* ExerciseFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C630D01770E3540692BD030 /* ExerciseFormView.swift */; };
 		FD5036D2A9C2EF13A9156B81 /* BadgeGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797E92A5653B73C90343460 /* BadgeGridView.swift */; };
@@ -174,10 +175,12 @@
 			sourceTree = "<group>";
 		};
 		97A55004F3A63C75B8B56A83 /* BodyMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyMapView.swift; sourceTree = "<group>"; };
+		415BA276A25D16A74710423D /* BodySilhouette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodySilhouette.swift; sourceTree = "<group>"; };
 		8FC2CDE7C7385FC57E5E5B0C /* BodyMap */ = {
 			isa = PBXGroup;
 			children = (
 				97A55004F3A63C75B8B56A83 /* BodyMapView.swift */,
+				415BA276A25D16A74710423D /* BodySilhouette.swift */,
 			);
 			path = BodyMap;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				1ADD9552E81BFBF781F8F95A /* OnboardingView.swift in Sources */,
 				248003BE9824F11F1D0FCF25 /* SignUpView.swift in Sources */,
 				E73A2BF807F6F5DDCFD0AF0E /* BodyMapView.swift in Sources */,
+				AD123743E9CDD3A720134549 /* BodySilhouette.swift in Sources */,
 				C327EF65FFFF3BB52CA6F801 /* MyEquipmentSheet.swift in Sources */,
 				8E2FC51B9686B37DCC3B4B55 /* ExerciseFormView.swift in Sources */,
 				FD5036D2A9C2EF13A9156B81 /* BadgeGridView.swift in Sources */,
