@@ -392,7 +392,7 @@ struct ProfileView: View {
             }
             importMessage = "Data imported successfully."
         case .failure:
-            importMessage = "Import cancelled."
+            importMessage = "Import canceled."
         }
     }
 }

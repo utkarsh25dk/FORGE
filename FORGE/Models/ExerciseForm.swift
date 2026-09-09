@@ -640,7 +640,7 @@ enum ExerciseFormLibrary {
                 "Lifting with the arms rather than letting the hips throw the bell.",
                 "Leaning back at the top to get the bell higher, which loads the lower back."
             ],
-            easier: "Practise the hinge with no bell at all until the movement is automatic.",
+            easier: "Practice the hinge with no bell at all until the movement is automatic.",
             harder: "Use a heavier bell, or swing it one-handed."
         ),
 
@@ -777,7 +777,7 @@ enum ExerciseFormLibrary {
             ],
             breathing: "Exhale as you press up, inhale as you lower.",
             mistakes: [
-                "Skipping this in favour of standing raises alone, which under-trains the soleus.",
+                "Skipping this in favor of standing raises alone, which under-trains the soleus.",
                 "Bouncing through the bottom of each rep.",
                 "Short-changing the range at the top."
             ],
@@ -957,7 +957,7 @@ enum ExerciseFormLibrary {
                 "Catching with low elbows, which drops the bar onto the wrists and collapses the rack position.",
                 "Pressing before you have finished standing up out of the catch."
             ],
-            easier: "Split it into two separate lifts — practise the clean and the press on their own.",
+            easier: "Split it into two separate lifts — practice the clean and the press on their own.",
             harder: "Add load only once the catch is consistent; technique caps this lift, not strength."
         ),
 
@@ -1009,7 +1009,7 @@ enum ExerciseFormLibrary {
                 "Letting the bar swing away from the body, which puts it in front of the catch position.",
                 "Being slow under the bar — speed into the catch matters more than raw strength."
             ],
-            easier: "Practise with a dowel or empty bar, from the hang position, until the path is consistent.",
+            easier: "Practice with a dowel or empty bar, from the hang position, until the path is consistent.",
             harder: "Add load slowly. Technique caps this lift long before strength does."
         ),
 
@@ -1096,7 +1096,7 @@ enum ExerciseFormLibrary {
                 "Raising the hips high, which turns it into a walking downward dog.",
                 "Moving the same-side hand and foot together, which destabilises the whole pattern."
             ],
-            easier: "Keep the knees on the floor and just practise the opposite hand-and-foot pattern.",
+            easier: "Keep the knees on the floor and just practice the opposite hand-and-foot pattern.",
             harder: "Crawl backward, or add a pause with the knees hovering between steps."
         ),
 
@@ -1202,7 +1202,7 @@ enum ExerciseFormLibrary {
                 "Lifting with the arms rather than letting the hips throw it.",
                 "Leaning back at the top, which loads the lower back."
             ],
-            easier: "Practise the hinge with no bell until the movement is automatic.",
+            easier: "Practice the hinge with no bell until the movement is automatic.",
             harder: "Use a heavier bell, or swing one-handed."
         ),
 
@@ -1236,7 +1236,7 @@ enum ExerciseFormLibrary {
                 "Muscling the bell up with the arm rather than driving with the hips.",
                 "Letting it swing wide away from the body on the way up."
             ],
-            easier: "Practise high pulls first, stopping at chest height without going overhead.",
+            easier: "Practice high pulls first, stopping at chest height without going overhead.",
             harder: "Use a heavier bell, or work in longer continuous sets."
         ),
 
@@ -1253,7 +1253,7 @@ enum ExerciseFormLibrary {
                 "Gripping tightly through the catch instead of letting the handle rotate.",
                 "Using the arm to curl the bell up into the rack."
             ],
-            easier: "Practise the catch from a dead stop at hip height until the bell lands softly.",
+            easier: "Practice the catch from a dead stop at hip height until the bell lands softly.",
             harder: "Use a heavier bell, or clean one bell in each hand at the same time."
         ),
 
@@ -1270,7 +1270,7 @@ enum ExerciseFormLibrary {
                 "Letting the arm holding the bell drift out of vertical.",
                 "Skipping a step in the sequence, particularly the hip bridge."
             ],
-            easier: "Practise the whole sequence with a shoe balanced on your fist instead of a bell.",
+            easier: "Practice the whole sequence with a shoe balanced on your fist instead of a bell.",
             harder: "Use a heavier bell, or pause for a count at each stage of the sequence."
         ),
 
@@ -1340,7 +1340,7 @@ enum ExerciseFormLibrary {
                 "Rushing, which turns a control drill into scrambling.",
                 "Moving same-side hand and foot together, which breaks the pattern."
             ],
-            easier: "Keep the knees down and practise the crawling pattern alone.",
+            easier: "Keep the knees down and practice the crawling pattern alone.",
             harder: "Add direction changes, or pause with the knees hovering between steps."
         ),
 
@@ -1958,7 +1958,7 @@ enum ExerciseFormLibrary {
                 "Warm up with at least ten minutes of easy running plus some strides.",
                 "Run each repetition at a pace you could hold for all of them, not just the first.",
                 "Jog or walk the recovery rather than standing still.",
-                "Cool down with easy running afterwards."
+                "Cool down with easy running afterward."
             ],
             breathing: "Hard through each repetition; use the recovery to bring it back under control.",
             mistakes: [
@@ -2078,7 +2078,7 @@ enum ExerciseFormLibrary {
 
         "cardio-cycle-2": ExerciseForm(   // Road Cycling
             steps: [
-                "Check tyres and brakes before you set off.",
+                "Check tires and brakes before you set off.",
                 "Ride with a relaxed upper body and soft elbows to absorb the road.",
                 "Keep a smooth cadence, changing gear before hills rather than during them.",
                 "Ride predictably in traffic and signal your turns clearly."
@@ -2182,7 +2182,7 @@ enum ExerciseFormLibrary {
 
         "cardio-row-3": ExerciseForm(     // Rowing Pyramid
             steps: [
-                "Plan the ladder before you start — for example 250, 500, 750, 500, 250 metres.",
+                "Plan the ladder before you start — for example 250, 500, 750, 500, 250 meters.",
                 "Hold the same technique at every distance; only the pace changes.",
                 "Rest in proportion to the piece just finished.",
                 "Row the descending half at least as fast as the ascending half."
@@ -2272,7 +2272,7 @@ enum ExerciseFormLibrary {
                 "Place your forearm on a doorframe with your elbow at about shoulder height.",
                 "Step forward through the doorway until you feel the chest open.",
                 "Keep your ribs down and your shoulder blade drawn back, not shrugged.",
-                "Hold, then repeat with the elbow higher and lower to reach different fibres."
+                "Hold, then repeat with the elbow higher and lower to reach different fibers."
             ],
             breathing: "Breathe into the ribs; the stretch eases as the chest relaxes.",
             mistakes: [
@@ -2358,10 +2358,10 @@ enum ExerciseFormLibrary {
             steps: [
                 "Step forward into a lunge, lowering until the back knee is just off the floor.",
                 "With the front foot planted, rotate your torso toward the front leg.",
-                "Rotate back to centre, then drive up and step into the next lunge.",
+                "Rotate back to center, then drive up and step into the next lunge.",
                 "Alternate sides as you travel forward."
             ],
-            breathing: "Exhale as you rotate, inhale as you return to centre.",
+            breathing: "Exhale as you rotate, inhale as you return to center.",
             mistakes: [
                 "Rotating from the shoulders alone rather than through the whole torso.",
                 "Letting the front knee drift inward under load.",
@@ -2715,7 +2715,7 @@ enum ExerciseFormLibrary {
                 "Bouncing the hips with each knee drive.",
                 "Starting at a sprint and dropping to a crawl within fifteen seconds."
             ],
-            easier: "Slow the pace and prioritise a still plank over speed.",
+            easier: "Slow the pace and prioritize a still plank over speed.",
             harder: "Add rounds, or drive the knee toward the opposite elbow."
         ),
 
@@ -2913,7 +2913,7 @@ enum ExerciseFormLibrary {
         "hiit-tabata-5": ExerciseForm(    // Tabata Row
             steps: [
                 "Set the damper around 4 or 5 and warm up with several easy minutes.",
-                "Note your metres or calories in round one — that's the number to repeat.",
+                "Note your meters or calories in round one — that's the number to repeat.",
                 "Hold the drive sequence even at high rate: legs, torso, arms.",
                 "Paddle very lightly through the ten-second rest rather than stopping."
             ],
@@ -2923,7 +2923,7 @@ enum ExerciseFormLibrary {
                 "Opening the back early once tired, which is where lower backs complain.",
                 "Going all out in round one and losing thirty percent by round four."
             ],
-            easier: "Row for a lower target and prioritise holding the sequence.",
+            easier: "Row for a lower target and prioritize holding the sequence.",
             harder: "Hold a higher target that stays consistent across all eight rounds."
         ),
 
@@ -3150,7 +3150,7 @@ enum ExerciseFormLibrary {
                 "Pushing the belly out with the abdominal muscles instead of letting the breath fill it.",
                 "Forcing the exhale rather than letting it release."
             ],
-            easier: "Practise lying down with your knees supported, where the pattern is easiest to feel.",
+            easier: "Practice lying down with your knees supported, where the pattern is easiest to feel.",
             harder: "Do it seated, then standing, then during light activity."
         ),
 
