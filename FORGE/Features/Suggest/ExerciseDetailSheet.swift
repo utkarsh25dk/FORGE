@@ -65,6 +65,30 @@ struct ExerciseDetailSheet: View {
                         .forgeCard(padding: Space.md, cornerRadius: Radius.md)
                     }
 
+                    if let url = template.darebeeURL {
+                        Link(destination: url) {
+                            HStack(spacing: Space.md) {
+                                Image(systemName: "play.rectangle.fill")
+                                    .font(.system(size: 15, weight: .medium))
+                                    .foregroundStyle(forge.accent)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("Watch this on DAREBEE")
+                                        .font(.forgeBodySemibold(15))
+                                        .foregroundStyle(forge.textPrimary)
+                                    Text("Free video demonstration · opens in your browser")
+                                        .font(.forgeCaption(12))
+                                        .foregroundStyle(forge.textTertiary)
+                                }
+                                Spacer(minLength: 0)
+                                Image(systemName: "arrow.up.right")
+                                    .font(.system(size: 12, weight: .semibold))
+                                    .foregroundStyle(forge.textTertiary)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .forgeCard(padding: Space.md, cornerRadius: Radius.md)
+                        }
+                    }
+
                     fieldsSection
 
                     DatePicker("Add to", selection: $date, in: Date()..., displayedComponents: .date)

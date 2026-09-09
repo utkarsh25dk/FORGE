@@ -34,6 +34,7 @@ struct ProfileView: View {
                 avoidCard
                 templatesCard
                 shareRecapCard
+                darebeeCreditCard
                 dataCard
                 logoutButton
                 Spacer(minLength: 90)
@@ -111,6 +112,31 @@ struct ProfileView: View {
             .forgeCard(padding: Space.md, cornerRadius: Radius.md)
         }
         .buttonStyle(.plain)
+    }
+
+    /// DAREBEE's licence asks for a mention and a link back rather than silence.
+    /// They are a genuinely good free resource and cost nothing to credit.
+    private var darebeeCreditCard: some View {
+        Link(destination: DarebeeLinks.libraryURL) {
+            HStack(spacing: Space.md) {
+                CategoryIcon(systemName: "play.rectangle.fill", size: 20, tint: forge.accent)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Exercise videos by DAREBEE")
+                        .font(.forgeBodySemibold(16))
+                        .foregroundStyle(forge.textPrimary)
+                    Text("A free, ad-free, non-profit fitness library. Browse their demonstrations.")
+                        .font(.forgeCaption())
+                        .foregroundStyle(forge.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "arrow.up.right")
+                    .foregroundStyle(forge.textTertiary)
+                    .font(.system(size: 12, weight: .semibold))
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .forgeCard(padding: Space.md, cornerRadius: Radius.md)
+        }
     }
 
     private var header: some View {
