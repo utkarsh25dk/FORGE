@@ -3101,6 +3101,197 @@ enum ExerciseFormLibrary {
             harder: "Add a round, or extend the cardio stations while holding the same loads."
         ),
 
+        // MARK: Recovery — Breathwork
+
+        "rec-breath-1": ExerciseForm(     // Box Breathing
+            steps: [
+                "Sit upright somewhere comfortable, or lie down.",
+                "Breathe in through the nose for a count of four.",
+                "Hold for four, breathe out for four, then hold empty for four.",
+                "Repeat that square for the length of the session."
+            ],
+            breathing: "The pattern is the exercise: four in, four hold, four out, four hold.",
+            mistakes: [
+                "Picking a count so long it becomes a struggle — four is a starting point, not a target to beat.",
+                "Forcing a full lungful on the inhale, which makes the hold uncomfortable.",
+                "Tensing the shoulders and neck on each hold."
+            ],
+            easier: "Drop to a count of three, or remove the empty hold and use three sides instead of four.",
+            harder: "Extend the count to five or six once four feels genuinely easy."
+        ),
+
+        "rec-breath-2": ExerciseForm(     // 4-7-8 Breathing
+            steps: [
+                "Sit or lie down and rest the tip of your tongue behind your top front teeth.",
+                "Breathe in quietly through the nose for a count of four.",
+                "Hold for a count of seven.",
+                "Breathe out through the mouth for a count of eight, then repeat."
+            ],
+            breathing: "The long exhale is the active ingredient — it should be roughly twice the inhale.",
+            mistakes: [
+                "Speeding up the count so the exhale is no longer the longest phase.",
+                "Taking a huge inhale, which makes the seven-count hold a struggle.",
+                "Doing many rounds on the first attempt; four is plenty to begin with."
+            ],
+            easier: "Halve the counts to 2-3.5-4, keeping the same ratio.",
+            harder: "Extend the counts proportionally rather than adding rounds."
+        ),
+
+        "rec-breath-3": ExerciseForm(     // Diaphragmatic Breathing
+            steps: [
+                "Lie on your back with your knees bent, one hand on your chest and one on your belly.",
+                "Breathe in slowly through the nose and aim to move the lower hand, not the upper one.",
+                "Let the belly rise and the ribs widen sideways.",
+                "Breathe out slowly and let it fall, without forcing the air out."
+            ],
+            breathing: "Slow and nasal. The belly hand should move noticeably more than the chest hand.",
+            mistakes: [
+                "Lifting the chest and shoulders on every inhale, which is the habit this exercise exists to change.",
+                "Pushing the belly out with the abdominal muscles instead of letting the breath fill it.",
+                "Forcing the exhale rather than letting it release."
+            ],
+            easier: "Practise lying down with your knees supported, where the pattern is easiest to feel.",
+            harder: "Do it seated, then standing, then during light activity."
+        ),
+
+        "rec-breath-4": ExerciseForm(     // Guided Breath Reset
+            steps: [
+                "Stop whatever you're doing and sit or stand still.",
+                "Take one slow breath in through the nose, and a longer breath out.",
+                "Repeat for six to ten breaths, keeping the exhale longer than the inhale.",
+                "Return to what you were doing."
+            ],
+            breathing: "Longer out than in. That ratio is what shifts the nervous system, not the number of breaths.",
+            mistakes: [
+                "Breathing fast and deep, which does the opposite of what's intended.",
+                "Treating it as something that needs a special time and place.",
+                "Skipping it on the days that would benefit most from it."
+            ],
+            easier: "Three breaths is enough to be worth doing.",
+            harder: "Extend the exhale further, or use it several times across a day."
+        ),
+
+        "rec-breath-5": ExerciseForm(     // Cold Exposure Breathing
+            steps: [
+                "Sit or lie down somewhere safe before you begin — never stand.",
+                "Take 20 to 30 deeper-than-normal breaths, in through the nose and out through the mouth.",
+                "After the last exhale, hold empty for as long as is comfortable, without straining.",
+                "Take a deep breath in, hold briefly, then return to normal breathing before the next round."
+            ],
+            breathing: "Deeper than usual but never forced. Light-headedness means stop, not push on.",
+            mistakes: [
+                "Doing this in or near water. This style of breathing can cause blackout, and blackout in water drowns people — never in a bath, pool, shower or open water.",
+                "Doing it standing, driving, or anywhere a faint would cause injury.",
+                "Treating tingling and dizziness as a goal rather than a signal to stop."
+            ],
+            easier: "Fewer breaths per round and a much shorter hold, or skip the hold entirely.",
+            harder: "Add rounds gradually. Never extend the hold past comfortable."
+        ),
+
+        "rec-sleep-5": ExerciseForm(      // Bedtime Breathing
+            steps: [
+                "Lie in bed on your back or your side, whichever you sleep in.",
+                "Breathe in through the nose for a comfortable count.",
+                "Breathe out for roughly twice that count.",
+                "Keep going without counting rounds — falling asleep partway through is the intended outcome."
+            ],
+            breathing: "Exhale about twice as long as the inhale. Nothing else about it matters much.",
+            mistakes: [
+                "Counting rounds and checking progress, which keeps you alert.",
+                "Making the inhale big, which is stimulating rather than settling.",
+                "Doing it sitting up on your phone rather than lying down ready to sleep."
+            ],
+            easier: "Use any comfortable ratio where the exhale is simply longer than the inhale.",
+            harder: "There is no harder version — this one is meant to end in sleep."
+        ),
+
+        // MARK: Recovery — Restorative Yoga
+
+        "rec-restore-1": ExerciseForm(    // Legs Up The Wall
+            steps: [
+                "Sit side-on with one hip against the wall.",
+                "Swing your legs up the wall as you lie back, shuffling your hips close.",
+                "Let your arms rest wide and your legs stay relaxed, not locked straight.",
+                "Stay for several minutes, then roll to your side before getting up."
+            ],
+            breathing: "Slow and nasal. Long exhales make the position do more.",
+            mistakes: [
+                "Locking the knees hard, which turns rest into a hamstring stretch.",
+                "Sitting so far from the wall the lower back arches off the floor.",
+                "Standing straight up at the end, which can leave you light-headed."
+            ],
+            easier: "Move your hips further from the wall, or put a cushion under them.",
+            harder: "Stay longer. There is no intensity to add here, only time."
+        ),
+
+        "rec-restore-2": ExerciseForm(    // Child's Pose
+            steps: [
+                "Kneel and bring your big toes together, letting your knees fall wide.",
+                "Sit your hips back toward your heels.",
+                "Walk your hands forward and rest your forehead on the floor.",
+                "Let your shoulders soften and stay for several breaths or minutes."
+            ],
+            breathing: "Breathe into your back ribs — you'll feel them widen against the position.",
+            mistakes: [
+                "Forcing the hips onto the heels when the range isn't there.",
+                "Holding tension in the shoulders rather than letting the arms rest.",
+                "Treating it as a stretch to push into rather than a position to settle in."
+            ],
+            easier: "Put a cushion between your hips and heels, and another under your forehead.",
+            harder: "Widen the knees further, or walk the hands to one side for a side-body stretch."
+        ),
+
+        "rec-restore-3": ExerciseForm(    // Supported Bridge
+            steps: [
+                "Lie on your back with knees bent and feet flat, hip width apart.",
+                "Lift your hips and slide a block or firm cushion under your sacrum — the flat bone, not your lower back.",
+                "Lower your weight onto the support so no muscular effort is needed.",
+                "Rest your arms wide and stay for several minutes."
+            ],
+            breathing: "Slow and steady. The chest is open here, so breathing should feel easy.",
+            mistakes: [
+                "Placing the block under the lower back rather than the sacrum, which compresses the spine.",
+                "Using a block on its tallest setting straight away.",
+                "Holding the hips up with the glutes instead of resting on the support."
+            ],
+            easier: "Use a folded blanket or the block on its lowest height.",
+            harder: "Raise the block height gradually, or extend one leg at a time."
+        ),
+
+        "rec-restore-4": ExerciseForm(    // Reclined Twist
+            steps: [
+                "Lie on your back and draw both knees toward your chest.",
+                "Let both knees fall to one side, keeping both shoulders on the floor.",
+                "Extend the opposite arm out wide and turn your head away from the knees.",
+                "Stay for several breaths, then switch sides."
+            ],
+            breathing: "Slow. Let the knees settle a little lower on each exhale rather than pushing them down.",
+            mistakes: [
+                "Letting the opposite shoulder lift off the floor, which loses the twist entirely.",
+                "Pushing the knees down with a hand rather than letting gravity work.",
+                "Coming out of the twist quickly."
+            ],
+            easier: "Put a cushion under the knees so they don't have to reach the floor.",
+            harder: "Extend the top leg, or stay considerably longer on each side."
+        ),
+
+        "rec-restore-5": ExerciseForm(    // Savasana
+            steps: [
+                "Lie flat on your back with your legs a comfortable distance apart.",
+                "Let your feet fall open and rest your arms slightly away from your sides, palms up.",
+                "Close your eyes and let your whole bodyweight settle into the floor.",
+                "Stay still for at least five minutes."
+            ],
+            breathing: "Let it find its own rhythm. This is the one position where you don't manage the breath.",
+            mistakes: [
+                "Skipping it because nothing appears to be happening — this is the pose that consolidates the rest.",
+                "Fidgeting and readjusting, which restarts the settling every time.",
+                "Cutting it to under a couple of minutes, which is too short to do anything."
+            ],
+            easier: "Put a cushion under your knees to take pressure off the lower back.",
+            harder: "Stay longer, and resist the urge to move."
+        ),
+
     ]
 }
 
