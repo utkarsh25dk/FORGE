@@ -2666,6 +2666,441 @@ enum ExerciseFormLibrary {
             harder: "Reach the top arm overhead as you thread, to add more rotation."
         ),
 
+        // MARK: HIIT — Bodyweight HIIT
+
+        "hiit-body-1": ExerciseForm(      // Burpee Intervals
+            steps: [
+                "Warm up properly — five minutes of easy movement before the first round.",
+                "Set a timer for the work and rest periods so you're not watching a clock.",
+                "Work at a pace you could repeat for the final round, not the first.",
+                "Stand and breathe through the rest; don't fold over your knees."
+            ],
+            breathing: "Find a rhythm within the work period rather than holding your breath through reps.",
+            mistakes: [
+                "Sprinting round one, which makes the last three rounds a shuffle.",
+                "Cutting the rest short because you feel fine after round two.",
+                "Letting the hips sag in the plank once fatigue arrives."
+            ],
+            easier: "Step the feet rather than jumping, and drop the push-up.",
+            harder: "Add rounds before you shorten the rest — volume first, density second."
+        ),
+
+        "hiit-body-2": ExerciseForm(      // Jump Squat Intervals
+            steps: [
+                "Warm up the legs with bodyweight squats before jumping.",
+                "Squat to a comfortable depth and jump, landing softly with soft knees.",
+                "Reset your stance briefly between reps rather than bouncing continuously.",
+                "Use the rest to let your breathing settle before the next round."
+            ],
+            breathing: "Exhale on each jump; keep breathing through the work period.",
+            mistakes: [
+                "Landing stiff-legged, which is where knees and shins complain.",
+                "Going straight into jumps with no warm-up.",
+                "Chasing rep count as form degrades through the later rounds."
+            ],
+            easier: "Do bodyweight squats at pace instead of jumping.",
+            harder: "Add rounds, or pause briefly at the bottom before each jump."
+        ),
+
+        "hiit-body-3": ExerciseForm(      // Mountain Climber Intervals
+            steps: [
+                "Set up in a solid plank with your hands under your shoulders.",
+                "Drive the knees alternately, keeping the hips level with the shoulders.",
+                "Hold the pace you can maintain with still hips for the whole work period.",
+                "Come off the hands entirely during the rest."
+            ],
+            breathing: "Steady and rhythmic; this is where people hold their breath and blow up.",
+            mistakes: [
+                "Hips rising into a pike, which makes the round easier than it should be.",
+                "Bouncing the hips with each knee drive.",
+                "Starting at a sprint and dropping to a crawl within fifteen seconds."
+            ],
+            easier: "Slow the pace and prioritise a still plank over speed.",
+            harder: "Add rounds, or drive the knee toward the opposite elbow."
+        ),
+
+        "hiit-body-4": ExerciseForm(      // High Knees Intervals
+            steps: [
+                "Stand tall and run on the spot, driving the knees to hip height.",
+                "Stay on the balls of your feet and keep the contacts light and quick.",
+                "Pump the arms in time with the legs.",
+                "Walk or march gently through the rest rather than standing still."
+            ],
+            breathing: "Quick and rhythmic; match it to your cadence.",
+            mistakes: [
+                "Leaning back to get the knees higher.",
+                "Landing heavily and flat-footed.",
+                "Dropping knee height to keep the speed up as you tire."
+            ],
+            easier: "March at pace with lower knees.",
+            harder: "Increase the cadence, or add rounds."
+        ),
+
+        "hiit-body-5": ExerciseForm(      // Plank Jack Intervals
+            steps: [
+                "Start in a plank with your body in a straight line.",
+                "Jump the feet wide and back together, keeping the hips level.",
+                "Land softly on the balls of your feet.",
+                "Come out of the plank fully during the rest."
+            ],
+            breathing: "Steady and rhythmic; don't hold your breath through the jumps.",
+            mistakes: [
+                "Hips piking up with each jump.",
+                "Landing heavily, which jars the shoulders.",
+                "Holding the plank through the rest, which sabotages the next round."
+            ],
+            easier: "Step the feet out one at a time instead of jumping.",
+            harder: "Add rounds, or perform them from a forearm plank."
+        ),
+
+        // MARK: HIIT — Equipment HIIT
+
+        "hiit-equip-1": ExerciseForm(     // Kettlebell Swing Intervals
+            steps: [
+                "Warm up the hinge with light swings before the first working round.",
+                "Swing with a hard hip snap; the arms guide the bell, they don't lift it.",
+                "Set the bell down safely at the end of each round rather than dropping it.",
+                "Stand tall and breathe through the rest."
+            ],
+            breathing: "Exhale sharply on each hip snap; recover fully in the rest.",
+            mistakes: [
+                "Squatting the bell up rather than hinging, which worsens as you tire.",
+                "Using a bell heavy enough that form breaks by round three.",
+                "Holding the breath through a whole round."
+            ],
+            easier: "Use a lighter bell and shorter work periods.",
+            harder: "Add rounds, or move up one bell size once the hinge holds for every round."
+        ),
+
+        "hiit-equip-2": ExerciseForm(     // Battle Rope Intervals
+            steps: [
+                "Stand in a quarter squat with your feet shoulder width and chest up.",
+                "Drive waves from the shoulders, keeping them reaching the anchor.",
+                "Hold the athletic stance for the whole work period.",
+                "Drop the ropes and breathe during the rest."
+            ],
+            breathing: "Hard and rhythmic; the rest is where you get it back.",
+            mistakes: [
+                "Standing upright, which turns it into an arms-only exercise.",
+                "Waves dying out halfway down the rope as the round goes on.",
+                "Gripping so hard the forearms fail before the conditioning does."
+            ],
+            easier: "Shorter work periods with longer rest.",
+            harder: "Alternate wave patterns within a round, or extend the work period."
+        ),
+
+        "hiit-equip-3": ExerciseForm(     // Sled Sprint Intervals
+            steps: [
+                "Load the sled light enough that you can actually sprint rather than grind.",
+                "Set your hands low on the uprights and lean in with a straight line from head to heels.",
+                "Drive with short powerful steps, keeping the sled moving throughout.",
+                "Walk back slowly as your rest."
+            ],
+            breathing: "All out on the push; use the walk back to bring it down.",
+            mistakes: [
+                "Loading it so heavy the sprint becomes a slow push, which trains something else entirely.",
+                "Standing too upright and shoving with the arms.",
+                "Cutting the walk-back rest short."
+            ],
+            easier: "Reduce the load and shorten the distance.",
+            harder: "Add distance before you add weight."
+        ),
+
+        "hiit-equip-4": ExerciseForm(     // Box Jump Intervals
+            steps: [
+                "Pick a box height you can land on with your feet flat and hips above knees.",
+                "Swing the arms and jump, landing softly in a quarter squat.",
+                "Stand fully upright on the box, then step down — always step down, never jump down.",
+                "Reset your stance before the next rep."
+            ],
+            breathing: "Exhale on the jump; keep breathing between reps.",
+            mistakes: [
+                "Jumping down from the box, which is how achilles tendons get injured.",
+                "Choosing a box so high you land in a deep crumple rather than a controlled squat.",
+                "Rushing reps as fatigue arrives, which is when shins meet the box."
+            ],
+            easier: "Use a lower box, or step up rather than jumping.",
+            harder: "Raise the box slightly, or add rounds — never both in one session."
+        ),
+
+        "hiit-equip-5": ExerciseForm(     // Med Ball Slam Intervals
+            steps: [
+                "Stand with feet shoulder width, holding the ball at chest height.",
+                "Reach the ball overhead, rising onto your toes.",
+                "Slam it down hard in front of you, hinging at the hips as you follow through.",
+                "Catch or pick it up and reset for the next rep."
+            ],
+            breathing: "Exhale sharply on each slam.",
+            mistakes: [
+                "Throwing with the arms only rather than driving through the whole body.",
+                "Rounding the back to pick the ball up between reps.",
+                "Using a bouncy ball, which sends it back into your face."
+            ],
+            easier: "Use a lighter ball and a shorter work period.",
+            harder: "Use a heavier ball, or extend the work period."
+        ),
+
+        // MARK: HIIT — Tabata
+
+        "hiit-tabata-1": ExerciseForm(    // Tabata Squats
+            steps: [
+                "Tabata is a fixed protocol: 20 seconds of work, 10 seconds of rest, eight rounds, four minutes total.",
+                "Warm up for at least five minutes first — four minutes is short but genuinely hard.",
+                "Squat at a pace you can hold for all eight rounds, counting your reps in round one.",
+                "Aim to match that round-one count every round; the score is your lowest round."
+            ],
+            breathing: "Keep breathing through the work; ten seconds is not long enough to recover if you don't.",
+            mistakes: [
+                "Treating round one as a max effort, which is the classic Tabata error.",
+                "Cutting depth as the rounds go on rather than slowing the pace.",
+                "Extending the rest past ten seconds, at which point it isn't Tabata."
+            ],
+            easier: "Squat to a box, or use a slower target rep count.",
+            harder: "Raise the target count you hold across all eight rounds."
+        ),
+
+        "hiit-tabata-2": ExerciseForm(    // Tabata Push-Ups
+            steps: [
+                "Twenty seconds of work, ten of rest, eight rounds.",
+                "Set a target rep count in round one you believe you can repeat eight times.",
+                "Hold full range on every rep; a half push-up doesn't count.",
+                "Drop to your knees mid-protocol rather than shortening the range."
+            ],
+            breathing: "Breathe on every rep; holding your breath makes round five impossible.",
+            mistakes: [
+                "Going to failure in round one, leaving nothing for the remaining seven.",
+                "Shortening the range instead of reducing the count as you tire.",
+                "Letting the hips sag once the shoulders fatigue."
+            ],
+            easier: "Do them from your knees or with hands elevated from the start.",
+            harder: "Elevate the feet, or hold a higher rep count across all rounds."
+        ),
+
+        "hiit-tabata-3": ExerciseForm(    // Tabata Bike
+            steps: [
+                "Set the bike up and warm up for five minutes before starting.",
+                "Set a resistance you can turn hard for twenty seconds, not one you grind.",
+                "Go hard from the first second of each work period.",
+                "Keep the legs turning slowly through the ten-second rest."
+            ],
+            breathing: "As hard as you need; the rest is far too short to fully recover, which is the point.",
+            mistakes: [
+                "Resistance so low the legs just spin without loading.",
+                "Stopping dead in the rest, which makes each restart worse.",
+                "Pacing it like a longer interval session."
+            ],
+            easier: "Reduce the resistance and treat it as a cadence effort.",
+            harder: "Raise the resistance slightly, holding the same cadence across all rounds."
+        ),
+
+        "hiit-tabata-4": ExerciseForm(    // Tabata Burpees
+            steps: [
+                "Twenty seconds of work, ten of rest, eight rounds.",
+                "Pick a rep target for round one that you can genuinely repeat.",
+                "Keep the chest touching the floor and the jump at the top on every rep.",
+                "Stand tall in the rest rather than folding over your knees."
+            ],
+            breathing: "Steady rhythm within each round; use every second of the rest.",
+            mistakes: [
+                "Round one at maximum, which turns rounds five through eight into a crawl.",
+                "Dropping the chest-to-floor or the jump as the rounds go on.",
+                "Bending over in the rest, which restricts breathing when you need it most."
+            ],
+            easier: "Step the feet and drop the push-up and the jump.",
+            harder: "Raise the rep target you can hold for all eight rounds."
+        ),
+
+        "hiit-tabata-5": ExerciseForm(    // Tabata Row
+            steps: [
+                "Set the damper around 4 or 5 and warm up with several easy minutes.",
+                "Note your metres or calories in round one — that's the number to repeat.",
+                "Hold the drive sequence even at high rate: legs, torso, arms.",
+                "Paddle very lightly through the ten-second rest rather than stopping."
+            ],
+            breathing: "Exhale on the drive; ten seconds isn't recovery, just a chance to reset.",
+            mistakes: [
+                "Winding the stroke rate up while power falls, so the split worsens.",
+                "Opening the back early once tired, which is where lower backs complain.",
+                "Going all out in round one and losing thirty percent by round four."
+            ],
+            easier: "Row for a lower target and prioritise holding the sequence.",
+            harder: "Hold a higher target that stays consistent across all eight rounds."
+        ),
+
+        // MARK: HIIT — EMOM
+
+        "hiit-emom-1": ExerciseForm(      // EMOM Kettlebell Swings
+            steps: [
+                "EMOM means every minute on the minute: start a set at the top of each minute.",
+                "Pick a rep count that leaves you fifteen to twenty seconds of rest each minute.",
+                "Complete the reps, then rest until the next minute begins.",
+                "If a minute leaves you no rest, the count is too high — stop or reduce it."
+            ],
+            breathing: "Recover through the remainder of each minute; that gap is the whole design.",
+            mistakes: [
+                "Choosing a rep count that eats the whole minute, which removes the rest entirely.",
+                "Letting the hinge turn into a squat as the minutes accumulate.",
+                "Pushing on through minutes where form has already gone."
+            ],
+            easier: "Lower the rep count, or use a lighter bell.",
+            harder: "Add reps per minute, or add minutes to the total."
+        ),
+
+        "hiit-emom-2": ExerciseForm(      // EMOM Burpees
+            steps: [
+                "Start a set of burpees at the top of every minute.",
+                "Choose a count that leaves you at least fifteen seconds of rest.",
+                "Keep the chest to the floor and the jump on every rep.",
+                "Use the remainder of each minute standing and breathing."
+            ],
+            breathing: "Settle your breathing in the gap; the gap shrinks fast if you don't.",
+            mistakes: [
+                "Setting a count so high the rest disappears by minute four.",
+                "Starting the next set early because you feel fine in minute two.",
+                "Letting reps get shallow rather than reducing the count."
+            ],
+            easier: "Reduce the reps per minute, or step rather than jump.",
+            harder: "Add a rep per minute, or extend the total number of minutes."
+        ),
+
+        "hiit-emom-3": ExerciseForm(      // EMOM Thrusters
+            steps: [
+                "Choose a weight you could do roughly double the target reps with when fresh.",
+                "Start a set at the top of each minute.",
+                "Hold the front rack with elbows high and drive out of the squat into the press.",
+                "Rest for the remainder of the minute with the weights down."
+            ],
+            breathing: "Breathe at the top of each rep, and recover through the gap.",
+            mistakes: [
+                "Choosing a weight based on a fresh single set rather than repeated ones.",
+                "Letting the elbows drop in the squat, which dumps the weight forward.",
+                "Holding the dumbbells at the shoulders through the rest instead of setting them down."
+            ],
+            easier: "Reduce the weight or the reps per minute.",
+            harder: "Add a rep per minute, or add minutes — not weight, first."
+        ),
+
+        "hiit-emom-4": ExerciseForm(      // EMOM Row Calories
+            steps: [
+                "Set the damper around 4 or 5 and warm up first.",
+                "Pull a target calorie count at the top of each minute.",
+                "Hold the drive sequence; calories come from power, not stroke rate.",
+                "Rest on the machine for the remainder of each minute."
+            ],
+            breathing: "Exhale on the drive and use the gap to bring your breathing back down.",
+            mistakes: [
+                "Chasing calories with a high rate and low power, which is slower not faster.",
+                "Setting a target that leaves no rest by minute three.",
+                "Letting the sequence collapse into an arms-first pull as you tire."
+            ],
+            easier: "Lower the calorie target per minute.",
+            harder: "Raise the target by one calorie at a time across the whole session."
+        ),
+
+        "hiit-emom-5": ExerciseForm(      // EMOM Air Squats
+            steps: [
+                "Start a set of squats at the top of each minute.",
+                "Hit full depth on every rep — this is the first thing to go.",
+                "Choose a count that leaves you real rest within each minute.",
+                "Stand and breathe for the remainder."
+            ],
+            breathing: "Breathe on every rep, and recover through the gap.",
+            mistakes: [
+                "Cutting depth as the minutes stack up rather than reducing the count.",
+                "Setting a count that removes the rest entirely.",
+                "Rushing reps so the knees cave inward under fatigue."
+            ],
+            easier: "Squat to a box to guarantee consistent depth, and lower the count.",
+            harder: "Add reps per minute, or extend the total minutes."
+        ),
+
+        // MARK: HIIT — Circuit HIIT
+
+        "hiit-circuit-1": ExerciseForm(   // Full Body Circuit
+            steps: [
+                "Pick four to six exercises covering push, pull, legs and core.",
+                "Set up everything you need before starting so transitions are quick.",
+                "Work through each station for the set time, then move on with minimal rest.",
+                "Rest fully at the end of a full round before starting the next."
+            ],
+            breathing: "Steady throughout; the transitions are where breathing usually goes ragged.",
+            mistakes: [
+                "Stacking two exercises for the same muscle back to back, which limits both.",
+                "Attacking the first station and fading across the rest of the round.",
+                "Resting between stations rather than at the end of the round."
+            ],
+            easier: "Fewer stations, shorter work periods, longer rest between rounds.",
+            harder: "Add a station, or extend the work period at each."
+        ),
+
+        "hiit-circuit-2": ExerciseForm(   // Upper Body HIIT Circuit
+            steps: [
+                "Choose alternating pushing and pulling movements so no one muscle stalls the circuit.",
+                "Set the dumbbells out in station order before you start.",
+                "Work each station for the set time, moving straight on.",
+                "Rest fully between rounds."
+            ],
+            breathing: "Keep it steady; upper body circuits are where people hold their breath under strain.",
+            mistakes: [
+                "Two pressing movements back to back, so the triceps end the round early.",
+                "Choosing weights that only work for the first round.",
+                "Letting the range shorten rather than slowing down."
+            ],
+            easier: "Lighter dumbbells and shorter work periods.",
+            harder: "Extend the work period or add a round — weight last."
+        ),
+
+        "hiit-circuit-3": ExerciseForm(   // Lower Body HIIT Circuit
+            steps: [
+                "Alternate squat-pattern and hinge-pattern movements across the stations.",
+                "Work each station for the set time with minimal transition.",
+                "Keep depth and knee tracking consistent as fatigue builds.",
+                "Rest fully between rounds — legs need more than upper body circuits do."
+            ],
+            breathing: "Steady and deep; leg circuits raise your heart rate faster than expected.",
+            mistakes: [
+                "Stacking several squat-pattern stations in a row.",
+                "Letting the knees cave inward once the legs are tired.",
+                "Cutting the between-round rest, which legs recover from more slowly."
+            ],
+            easier: "Fewer stations and longer rest between rounds.",
+            harder: "Add a station, or add a round."
+        ),
+
+        "hiit-circuit-4": ExerciseForm(   // Core HIIT Circuit
+            steps: [
+                "Pick stations that cover flexion, rotation and anti-movement holds.",
+                "Work each for the set time, moving straight to the next.",
+                "Keep the lower back pressed down or the spine neutral, depending on the movement.",
+                "Rest fully between rounds."
+            ],
+            breathing: "Breathe throughout. Core work is where breath-holding is most common and least useful.",
+            mistakes: [
+                "Choosing four flexion exercises and calling it a core circuit.",
+                "Letting the lower back arch on the floor-based stations once tired.",
+                "Rushing reps so the movement becomes momentum."
+            ],
+            easier: "Shorter work periods and a longer rest between rounds.",
+            harder: "Extend the work periods, or add an anti-rotation station."
+        ),
+
+        "hiit-circuit-5": ExerciseForm(   // Cardio Strength Circuit
+            steps: [
+                "Alternate a cardio station with a strength station around the circuit.",
+                "Set both up in advance so you're not adjusting equipment mid-round.",
+                "Hold a pace on the cardio stations that leaves you able to lift on the next.",
+                "Rest fully at the end of each round."
+            ],
+            breathing: "The cardio stations set the rhythm; use them to settle rather than redline.",
+            mistakes: [
+                "Redlining on the cardio station so the strength station falls apart.",
+                "Choosing loads that only work when fresh.",
+                "Skipping the between-round rest because the cardio felt easy."
+            ],
+            easier: "Shorter stations, fewer rounds, and lighter loads on the strength stations.",
+            harder: "Add a round, or extend the cardio stations while holding the same loads."
+        ),
+
     ]
 }
 
