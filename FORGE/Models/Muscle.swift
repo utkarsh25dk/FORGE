@@ -23,9 +23,9 @@ enum Muscle: String, Codable, CaseIterable, Hashable, Identifiable {
     // Arms
     case biceps, triceps, forearms
     // Core
-    case absUpper, absLower, obliques
+    case absUpper, absLower, obliques, serratus
     // Legs
-    case glutes, quads, hamstrings, adductors, abductors, calves, soleus
+    case glutes, quads, hamstrings, adductors, abductors, calves, soleus, hipFlexors
     // Systemic — no single place on the map
     case cardiovascular
 
@@ -50,6 +50,7 @@ enum Muscle: String, Codable, CaseIterable, Hashable, Identifiable {
         case .absUpper: return "Upper abs"
         case .absLower: return "Lower abs"
         case .obliques: return "Obliques"
+        case .serratus: return "Serratus"
         case .glutes: return "Glutes"
         case .quads: return "Quads"
         case .hamstrings: return "Hamstrings"
@@ -57,6 +58,7 @@ enum Muscle: String, Codable, CaseIterable, Hashable, Identifiable {
         case .abductors: return "Outer hip"
         case .calves: return "Calves"
         case .soleus: return "Soleus"
+        case .hipFlexors: return "Hip flexors"
         case .cardiovascular: return "Cardiovascular"
         }
     }
@@ -69,8 +71,8 @@ enum Muscle: String, Codable, CaseIterable, Hashable, Identifiable {
         case .erectors: return "Lower back"
         case .deltAnterior, .deltLateral, .deltPosterior: return "Shoulders"
         case .biceps, .triceps, .forearms: return "Arms"
-        case .absUpper, .absLower, .obliques: return "Core"
-        case .glutes, .quads, .hamstrings, .adductors, .abductors: return "Legs"
+        case .absUpper, .absLower, .obliques, .serratus: return "Core"
+        case .glutes, .quads, .hamstrings, .adductors, .abductors, .hipFlexors: return "Legs"
         case .calves, .soleus: return "Calves"
         case .cardiovascular: return "Cardiovascular"
         }

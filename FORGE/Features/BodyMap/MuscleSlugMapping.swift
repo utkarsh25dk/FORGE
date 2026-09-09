@@ -32,7 +32,8 @@ extension Muscle {
 
         case .absUpper:      return [.upperAbs]
         case .absLower:      return [.lowerAbs]
-        case .obliques:      return [.obliques, .serratus]
+        case .obliques:      return [.obliques]
+        case .serratus:      return [.serratus]
 
         case .glutes:        return [.gluteal]
         // The gluteus medius is the hip abductor, so it shares that region.
@@ -44,6 +45,10 @@ extension Muscle {
         case .calves:        return [.calves]
         case .soleus:        return [.calves]
 
+        // Sit-ups and leg raises recruit these heavily — the form guidance
+        // warns about exactly that — so they are worth showing separately.
+        case .hipFlexors:    return [.hipFlexors]
+
         case .cardiovascular: return []
         }
     }
@@ -54,6 +59,6 @@ extension Muscle {
 /// muscles.
 enum BodyStructure {
     static let slugs: Set<BodySlug> = [
-        .head, .hair, .neck, .hands, .feet, .knees, .ankles, .tibialis, .hipFlexors
+        .head, .hair, .neck, .hands, .feet, .knees, .ankles, .tibialis
     ]
 }
