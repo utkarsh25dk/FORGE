@@ -9,8 +9,9 @@ struct OnboardingView: View {
     @State private var weeklyGoal: Double = 4
     @State private var unitSystem: UnitSystem = .imperial
     @State private var themeMode: ThemeMode = .dark
+    @State private var showIntake = false
 
-    private let totalSteps = 4
+    private let totalSteps = 5
 
     var body: some View {
         VStack(spacing: Space.xl) {
@@ -30,7 +31,8 @@ struct OnboardingView: View {
                 case 0: welcomeStep
                 case 1: goalStep
                 case 2: unitStep
-                default: themeStep
+                case 3: themeStep
+                default: planStep
                 }
             }
             .transition(.opacity.combined(with: .move(edge: .trailing)))
@@ -49,19 +51,36 @@ struct OnboardingView: View {
                 }
                 Button {
                     if step == totalSteps - 1 {
-                        finish()
+                        // Carry the settings across before the intake opens, so
+                        // its questions are already partly answered.
+                        applySettings()
+                        showIntake = true
                     } else {
                         withAnimation { step += 1 }
                     }
                 } label: {
-                    Text(step == totalSteps - 1 ? "Start Training" : "Next").frame(maxWidth: .infinity)
+                    Text(step == totalSteps - 1 ? "Build my plan" : "Next").frame(maxWidth: .infinity)
                 }
                 .forgeGlassPrimary()
+            }
+
+            if step == totalSteps - 1 {
+                Button {
+                    finish()
+                } label: {
+                    Text("Skip for now")
+                        .font(.forgeBodyMedium(15))
+                        .foregroundStyle(forge.textSecondary)
+                }
+                .padding(.top, Space.xs)
             }
         }
         .padding(.horizontal, Space.xl)
         .padding(.bottom, Space.xl)
         .forgeScreenBackground()
+        .sheet(isPresented: $showIntake, onDismiss: { finish() }) {
+            SetupIntakeView()
+        }
     }
 
     private var welcomeStep: some View {
@@ -133,10 +152,47 @@ struct OnboardingView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private func finish() {
+    private var planStep: some View {
+        VStack(alignment: .leading, spacing: Space.lg) {
+            Text("Build your first plan").font(.forgeHeading(28)).foregroundStyle(forge.textPrimary)
+            Text("Answer a few more questions — what you have to train with, and how you train now — and FORGE will build a four-week plan around them.")
+                .font(.forgeBody(16)).foregroundStyle(forge.textSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+            VStack(alignment: .leading, spacing: Space.sm) {
+                bullet("Only exercises you can actually do with your equipment")
+                bullet("A schedule built from how often you train now, not just the goal")
+                bullet("You can skip this and browse the library instead")
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func bullet(_ text: String) -> some View {
+        HStack(alignment: .top, spacing: Space.sm) {
+            Image(systemName: "checkmark")
+                .font(.system(size: 11, weight: .bold))
+                .foregroundStyle(forge.accent)
+                .padding(.top, 3)
+            Text(text)
+                .font(.forgeBody(14))
+                .foregroundStyle(forge.textSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    /// Settings are written before the intake opens so its target-days question
+    /// arrives pre-answered from the weekly goal already given.
+    private func applySettings() {
         appState.userData.weeklyGoal = Int(weeklyGoal)
         appState.userData.unitSystem = unitSystem
-        appState.userData.onboardingComplete = true
         themeManager.mode = themeMode
+        if appState.userData.trainingProfile.targetSessionsPerWeek == nil {
+            appState.userData.trainingProfile.targetSessionsPerWeek = min(6, Int(weeklyGoal))
+        }
+    }
+
+    private func finish() {
+        applySettings()
+        appState.userData.onboardingComplete = true
     }
 }
