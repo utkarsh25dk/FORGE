@@ -35,6 +35,8 @@ struct ExerciseDetailSheet: View {
                         banner(text: template.tip, icon: "lightbulb.fill", tint: forge.accent)
                     }
 
+                    musclesSection
+
                     if let form = template.form {
                         VStack(alignment: .leading, spacing: 0) {
                             Button {
@@ -128,20 +130,40 @@ struct ExerciseDetailSheet: View {
             }
             .padding(.top, 2)
 
-            Text(muscleLine)
-                .font(.forgeCaption(12))
-                .foregroundStyle(forge.textTertiary)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
         }
         .frame(maxWidth: .infinity)
     }
 
-    /// Primary muscles, with secondaries listed after them when there are any.
-    private var muscleLine: String {
-        let primary = template.primaryMuscles.map(\.label).joined(separator: ", ")
-        let secondary = template.secondaryMuscles.map(\.label).joined(separator: ", ")
-        return secondary.isEmpty ? primary : "\(primary)  ·  also \(secondary)"
+    /// Body map plus named muscles. The diagram answers "where"; the list answers
+    /// "exactly which" — written "chest" cannot distinguish an incline press from
+    /// a dip, and a diagram alone can't be read out.
+    private var musclesSection: some View {
+        VStack(spacing: Space.md) {
+            BodyMapView(primary: template.primaryMuscles,
+                        secondary: template.secondaryMuscles)
+            VStack(alignment: .leading, spacing: Space.sm) {
+                muscleRow("Primary", template.primaryMuscles, forge.accent)
+                if !template.secondaryMuscles.isEmpty {
+                    muscleRow("Also worked", template.secondaryMuscles, forge.textSecondary)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .frame(maxWidth: .infinity)
+        .forgeCard(padding: Space.md, cornerRadius: Radius.md)
+    }
+
+    private func muscleRow(_ label: String, _ muscles: [Muscle], _ tint: Color) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(label)
+                .font(.forgeCaption(10))
+                .foregroundStyle(forge.textTertiary)
+                .textCase(.uppercase)
+            Text(muscles.map(\.name).joined(separator: " · "))
+                .font(.forgeBodyMedium(13))
+                .foregroundStyle(tint)
+                .fixedSize(horizontal: false, vertical: true)
+        }
     }
 
     private func banner(text: String, icon: String, tint: Color) -> some View {

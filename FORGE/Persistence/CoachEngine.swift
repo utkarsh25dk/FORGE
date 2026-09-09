@@ -75,7 +75,7 @@ enum CoachEngine {
 
         var categoryCounts: [WorkoutCategory: Int] = [:]
         var patternCounts: [MovementPattern: Int] = [:]
-        var muscleCounts: [MuscleGroup: Int] = [:]
+        var muscleCounts: [Muscle: Int] = [:]
         let cutoff = Calendar.forge.date(byAdding: .day, value: -14, to: Date()) ?? Date()
         var recentCount = 0
         for entry in appState.userData.entries where entry.isCompleted && entry.date >= cutoff && !entry.isWarmUp && !entry.isCoolDown {
@@ -109,13 +109,13 @@ enum CoachEngine {
                 lines.append("Push exercises: \(push), pull exercises: \(pull) (last 14 days)")
             }
 
-            let posterior = MuscleGroup.allCases.filter(\.isPosteriorChain)
+            let posterior = Muscle.allCases.filter(\.isPosteriorChain)
             let posteriorCount = posterior.reduce(0) { $0 + muscleCounts[$1, default: 0] }
             lines.append("Posterior chain (back, hamstrings, glutes, lower back) worked \(posteriorCount) time\(posteriorCount == 1 ? "" : "s") in last 14 days")
 
-            let untrained = MuscleGroup.allCases
+            let untrained = Muscle.allCases
                 .filter { $0.isSpecificMuscle && muscleCounts[$0, default: 0] == 0 }
-                .map(\.label)
+                .map(\.name)
             if !untrained.isEmpty {
                 lines.append("Muscle groups not trained at all in last 14 days: \(untrained.joined(separator: ", "))")
             }

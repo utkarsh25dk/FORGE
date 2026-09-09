@@ -1,51 +1,10 @@
 import Foundation
 
-// MARK: - Muscle groups
+// MARK: - Muscles
 
-enum MuscleGroup: String, Codable, CaseIterable, Hashable {
-    case chest, back, shoulders, biceps, triceps
-    case quads, hamstrings, glutes, calves, hipsAndAdductors
-    case abs, obliques, lowerBack
-    case fullBody, cardiovascular
-
-    var label: String {
-        switch self {
-        case .chest: return "Chest"
-        case .back: return "Back"
-        case .shoulders: return "Shoulders"
-        case .biceps: return "Biceps"
-        case .triceps: return "Triceps"
-        case .quads: return "Quads"
-        case .hamstrings: return "Hamstrings"
-        case .glutes: return "Glutes"
-        case .calves: return "Calves"
-        case .hipsAndAdductors: return "Hips & Adductors"
-        case .abs: return "Abs"
-        case .obliques: return "Obliques"
-        case .lowerBack: return "Lower Back"
-        case .fullBody: return "Full Body"
-        case .cardiovascular: return "Cardiovascular"
-        }
-    }
-
-    /// The muscles most people under-train because they can't see them in a mirror.
-    /// Used by the coach to spot a front-loaded routine.
-    var isPosteriorChain: Bool {
-        switch self {
-        case .back, .hamstrings, .glutes, .lowerBack: return true
-        default: return false
-        }
-    }
-
-    /// Groups that name an actual muscle, as opposed to systemic effects. Only
-    /// these are meaningful in "you haven't trained X" style observations.
-    var isSpecificMuscle: Bool {
-        switch self {
-        case .fullBody, .cardiovascular: return false
-        default: return true
-        }
-    }
-}
+// The muscle taxonomy lives in Muscle.swift. It is finer than a training
+// category on purpose: "chest" cannot distinguish an incline press from a dip,
+// and the body map needs somewhere specific to light up.
 
 // MARK: - Movement pattern
 
@@ -75,8 +34,8 @@ enum MovementPattern: String, Codable, CaseIterable, Hashable {
 // MARK: - Attribute table
 
 struct ExerciseAttributes: Hashable {
-    var primary: [MuscleGroup]
-    var secondary: [MuscleGroup] = []
+    var primary: [Muscle]
+    var secondary: [Muscle] = []
     var pattern: MovementPattern
 }
 
@@ -88,74 +47,74 @@ enum ExerciseAttributeTable {
 
     private static let table: [WorkoutCategory: [String: ExerciseAttributes]] = [
         .upperBody: [
-            "Chest":     ExerciseAttributes(primary: [.chest], secondary: [.triceps, .shoulders], pattern: .push),
-            "Back":      ExerciseAttributes(primary: [.back], secondary: [.biceps], pattern: .pull),
-            "Shoulders": ExerciseAttributes(primary: [.shoulders], secondary: [.triceps], pattern: .push),
-            "Biceps":    ExerciseAttributes(primary: [.biceps], pattern: .pull),
-            "Triceps":   ExerciseAttributes(primary: [.triceps], secondary: [.chest], pattern: .push),
+            "Chest":     ExerciseAttributes(primary: [.chestMid, .chestLower], secondary: [.triceps, .deltAnterior], pattern: .push),
+            "Back":      ExerciseAttributes(primary: [.lats, .rhomboids], secondary: [.biceps, .trapsMid, .forearms], pattern: .pull),
+            "Shoulders": ExerciseAttributes(primary: [.deltLateral, .deltAnterior], secondary: [.trapsUpper, .triceps], pattern: .push),
+            "Biceps":    ExerciseAttributes(primary: [.biceps], secondary: [.forearms], pattern: .pull),
+            "Triceps":   ExerciseAttributes(primary: [.triceps], secondary: [.chestLower], pattern: .push),
         ],
         .lowerBody: [
-            "Quads":                 ExerciseAttributes(primary: [.quads], secondary: [.glutes], pattern: .squat),
-            "Hamstrings":            ExerciseAttributes(primary: [.hamstrings], secondary: [.glutes, .lowerBack], pattern: .hinge),
-            "Glutes":                ExerciseAttributes(primary: [.glutes], secondary: [.hamstrings], pattern: .hinge),
-            "Calves":                ExerciseAttributes(primary: [.calves], pattern: .accessory),
-            "Adductors & Abductors": ExerciseAttributes(primary: [.hipsAndAdductors], secondary: [.glutes], pattern: .accessory),
+            "Quads":                 ExerciseAttributes(primary: [.quads], secondary: [.glutes, .adductors], pattern: .squat),
+            "Hamstrings":            ExerciseAttributes(primary: [.hamstrings], secondary: [.glutes, .erectors], pattern: .hinge),
+            "Glutes":                ExerciseAttributes(primary: [.glutes], secondary: [.hamstrings, .erectors], pattern: .hinge),
+            "Calves":                ExerciseAttributes(primary: [.calves, .soleus], pattern: .accessory),
+            "Adductors & Abductors": ExerciseAttributes(primary: [.adductors, .abductors], secondary: [.glutes], pattern: .accessory),
         ],
         .fullBody: [
-            "Compound Lifts":  ExerciseAttributes(primary: [.fullBody], secondary: [.glutes, .hamstrings, .back, .quads], pattern: .hinge),
-            "Circuit Training": ExerciseAttributes(primary: [.fullBody], secondary: [.cardiovascular], pattern: .conditioning),
-            "Functional":      ExerciseAttributes(primary: [.fullBody], secondary: [.back, .shoulders], pattern: .carry),
-            "Kettlebell":      ExerciseAttributes(primary: [.fullBody], secondary: [.glutes, .hamstrings, .shoulders], pattern: .hinge),
-            "Bodyweight Flow": ExerciseAttributes(primary: [.fullBody], secondary: [.abs, .cardiovascular], pattern: .conditioning),
+            "Compound Lifts":   ExerciseAttributes(primary: [.glutes, .hamstrings, .erectors, .quads], secondary: [.lats, .trapsUpper, .forearms], pattern: .hinge),
+            "Circuit Training": ExerciseAttributes(primary: [.quads, .chestMid, .absUpper], secondary: [.cardiovascular, .deltAnterior], pattern: .conditioning),
+            "Functional":       ExerciseAttributes(primary: [.forearms, .trapsUpper, .erectors], secondary: [.glutes, .quads], pattern: .carry),
+            "Kettlebell":       ExerciseAttributes(primary: [.glutes, .hamstrings], secondary: [.erectors, .deltAnterior, .forearms], pattern: .hinge),
+            "Bodyweight Flow":  ExerciseAttributes(primary: [.absUpper, .chestMid, .quads], secondary: [.cardiovascular, .deltAnterior], pattern: .conditioning),
         ],
         .core: [
-            "Upper Abs":             ExerciseAttributes(primary: [.abs], pattern: .core),
-            "Lower Abs":             ExerciseAttributes(primary: [.abs], secondary: [.hipsAndAdductors], pattern: .core),
-            "Obliques":              ExerciseAttributes(primary: [.obliques], secondary: [.abs], pattern: .core),
-            "Deep Core & Stability": ExerciseAttributes(primary: [.abs], secondary: [.lowerBack, .obliques], pattern: .core),
-            "Lower Back":            ExerciseAttributes(primary: [.lowerBack], secondary: [.glutes], pattern: .core),
+            "Upper Abs":             ExerciseAttributes(primary: [.absUpper], secondary: [.obliques], pattern: .core),
+            "Lower Abs":             ExerciseAttributes(primary: [.absLower], secondary: [.absUpper], pattern: .core),
+            "Obliques":              ExerciseAttributes(primary: [.obliques], secondary: [.absUpper, .absLower], pattern: .core),
+            "Deep Core & Stability": ExerciseAttributes(primary: [.absLower, .absUpper], secondary: [.erectors, .obliques], pattern: .core),
+            "Lower Back":            ExerciseAttributes(primary: [.erectors], secondary: [.glutes, .hamstrings], pattern: .core),
         ],
         .cardio: [
-            "Steady-State":     ExerciseAttributes(primary: [.cardiovascular], pattern: .conditioning),
-            "Intervals":        ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads], pattern: .conditioning),
+            "Steady-State":     ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .calves], pattern: .conditioning),
+            "Intervals":        ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .hamstrings], pattern: .conditioning),
             "Incline & Stairs": ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .glutes, .calves], pattern: .conditioning),
-            "Cycling":          ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads], pattern: .conditioning),
-            "Rowing":           ExerciseAttributes(primary: [.cardiovascular], secondary: [.back, .quads], pattern: .conditioning),
+            "Cycling":          ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .calves], pattern: .conditioning),
+            "Rowing":           ExerciseAttributes(primary: [.cardiovascular], secondary: [.lats, .quads, .rhomboids], pattern: .conditioning),
         ],
         .hiit: [
-            "Bodyweight HIIT": ExerciseAttributes(primary: [.cardiovascular], secondary: [.fullBody], pattern: .conditioning),
-            "Equipment HIIT":  ExerciseAttributes(primary: [.cardiovascular], secondary: [.fullBody], pattern: .conditioning),
-            "Tabata":          ExerciseAttributes(primary: [.cardiovascular], secondary: [.fullBody], pattern: .conditioning),
-            "EMOM":            ExerciseAttributes(primary: [.cardiovascular], secondary: [.fullBody], pattern: .conditioning),
-            "Circuit HIIT":    ExerciseAttributes(primary: [.cardiovascular], secondary: [.fullBody], pattern: .conditioning),
+            "Bodyweight HIIT": ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .absUpper, .chestMid], pattern: .conditioning),
+            "Equipment HIIT":  ExerciseAttributes(primary: [.cardiovascular], secondary: [.glutes, .quads, .deltAnterior], pattern: .conditioning),
+            "Tabata":          ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .chestMid], pattern: .conditioning),
+            "EMOM":            ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .glutes], pattern: .conditioning),
+            "Circuit HIIT":    ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .absUpper, .deltAnterior], pattern: .conditioning),
         ],
         .flexibility: [
-            "Static Stretching":       ExerciseAttributes(primary: [.fullBody], pattern: .mobility),
-            "Dynamic Mobility":        ExerciseAttributes(primary: [.fullBody], pattern: .mobility),
-            "Yoga Flow":               ExerciseAttributes(primary: [.fullBody], secondary: [.abs], pattern: .mobility),
-            "Foam Rolling":            ExerciseAttributes(primary: [.fullBody], pattern: .mobility),
-            "Hip & Shoulder Mobility": ExerciseAttributes(primary: [.hipsAndAdductors], secondary: [.shoulders], pattern: .mobility),
+            "Static Stretching":       ExerciseAttributes(primary: [.hamstrings, .quads], secondary: [.calves, .chestMid], pattern: .mobility),
+            "Dynamic Mobility":        ExerciseAttributes(primary: [.adductors, .abductors], secondary: [.hamstrings, .deltAnterior], pattern: .mobility),
+            "Yoga Flow":               ExerciseAttributes(primary: [.erectors, .hamstrings], secondary: [.absUpper, .deltAnterior], pattern: .mobility),
+            "Foam Rolling":            ExerciseAttributes(primary: [.quads, .lats], secondary: [.calves, .glutes], pattern: .mobility),
+            "Hip & Shoulder Mobility": ExerciseAttributes(primary: [.adductors, .glutes], secondary: [.deltPosterior, .erectors], pattern: .mobility),
         ],
         .recovery: [
-            "Active Recovery":  ExerciseAttributes(primary: [.cardiovascular], pattern: .recovery),
+            "Active Recovery":  ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads], pattern: .recovery),
             "Breathwork":       ExerciseAttributes(primary: [.cardiovascular], pattern: .recovery),
-            "Light Walk":       ExerciseAttributes(primary: [.cardiovascular], pattern: .recovery),
-            "Restorative Yoga": ExerciseAttributes(primary: [.fullBody], pattern: .recovery),
-            "Sleep & Rest":     ExerciseAttributes(primary: [.fullBody], pattern: .recovery),
+            "Light Walk":       ExerciseAttributes(primary: [.cardiovascular], secondary: [.calves], pattern: .recovery),
+            "Restorative Yoga": ExerciseAttributes(primary: [.erectors], secondary: [.glutes, .hamstrings], pattern: .recovery),
+            "Sleep & Rest":     ExerciseAttributes(primary: [.cardiovascular], pattern: .recovery),
         ],
         .activity: [
-            "Walking & Hiking": ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .calves], pattern: .conditioning),
-            "Cycling":          ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads], pattern: .conditioning),
-            "Swimming":         ExerciseAttributes(primary: [.cardiovascular], secondary: [.back, .shoulders], pattern: .conditioning),
-            "Dancing":          ExerciseAttributes(primary: [.cardiovascular], secondary: [.fullBody], pattern: .conditioning),
-            "Outdoor Play":     ExerciseAttributes(primary: [.cardiovascular], secondary: [.fullBody], pattern: .conditioning),
+            "Walking & Hiking": ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .calves, .glutes], pattern: .conditioning),
+            "Cycling":          ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .glutes], pattern: .conditioning),
+            "Swimming":         ExerciseAttributes(primary: [.cardiovascular], secondary: [.lats, .deltPosterior, .trapsMid], pattern: .conditioning),
+            "Dancing":          ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .calves], pattern: .conditioning),
+            "Outdoor Play":     ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .calves], pattern: .conditioning),
         ],
         .sports: [
-            "Basketball":    ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .calves], pattern: .conditioning),
-            "Soccer":        ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .hamstrings], pattern: .conditioning),
-            "Tennis":        ExerciseAttributes(primary: [.cardiovascular], secondary: [.shoulders, .obliques], pattern: .conditioning),
-            "Combat Sports": ExerciseAttributes(primary: [.cardiovascular], secondary: [.fullBody, .obliques], pattern: .conditioning),
-            "Climbing":      ExerciseAttributes(primary: [.back], secondary: [.biceps, .cardiovascular], pattern: .pull),
+            "Basketball":    ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .calves, .glutes], pattern: .conditioning),
+            "Soccer":        ExerciseAttributes(primary: [.cardiovascular], secondary: [.quads, .hamstrings, .adductors], pattern: .conditioning),
+            "Tennis":        ExerciseAttributes(primary: [.cardiovascular], secondary: [.deltAnterior, .obliques, .forearms], pattern: .conditioning),
+            "Combat Sports": ExerciseAttributes(primary: [.cardiovascular], secondary: [.obliques, .deltAnterior, .calves], pattern: .conditioning),
+            "Climbing":      ExerciseAttributes(primary: [.lats, .forearms], secondary: [.biceps, .rhomboids, .cardiovascular], pattern: .pull),
         ],
     ]
 
@@ -168,7 +127,7 @@ enum ExerciseAttributeTable {
 
     static func attributes(category: WorkoutCategory, subgroup: String) -> ExerciseAttributes {
         table[category]?[subgroup]
-            ?? ExerciseAttributes(primary: [.fullBody], pattern: .conditioning)
+            ?? ExerciseAttributes(primary: [.cardiovascular], pattern: .conditioning)
     }
 }
 
@@ -222,12 +181,14 @@ enum ExerciseDifficulty {
 // MARK: - Template conveniences
 
 extension ExerciseTemplate {
+    /// A per-exercise override where one exists, otherwise the subgroup default.
     var attributes: ExerciseAttributes {
-        ExerciseAttributeTable.attributes(category: category, subgroup: subgroup)
+        ExerciseMuscleOverrides.overrides[id]
+            ?? ExerciseAttributeTable.attributes(category: category, subgroup: subgroup)
     }
-    var primaryMuscles: [MuscleGroup] { attributes.primary }
-    var secondaryMuscles: [MuscleGroup] { attributes.secondary }
-    var allMuscles: [MuscleGroup] { attributes.primary + attributes.secondary }
+    var primaryMuscles: [Muscle] { attributes.primary }
+    var secondaryMuscles: [Muscle] { attributes.secondary }
+    var allMuscles: [Muscle] { attributes.primary + attributes.secondary }
     var movementPattern: MovementPattern { attributes.pattern }
     var level: ProgramLevel { ExerciseDifficulty.level(for: self) }
 }
@@ -238,8 +199,80 @@ extension WorkoutEntry {
     var movementPattern: MovementPattern {
         ExerciseAttributeTable.attributes(category: category, subgroup: subgroup ?? "").pattern
     }
-    var muscles: [MuscleGroup] {
+    var muscles: [Muscle] {
         let a = ExerciseAttributeTable.attributes(category: category, subgroup: subgroup ?? "")
         return a.primary + a.secondary
     }
+}
+
+// MARK: - Per-exercise overrides
+
+/// Muscle data for exercises whose subgroup default would mislead.
+///
+/// The subgroup table is right about the region but blind to variation within
+/// it, and within a subgroup the variation is often the entire reason the
+/// exercise exists. An incline press is in "Chest" but trains the upper chest;
+/// a seated calf raise is in "Calves" but exists specifically for the soleus;
+/// a lateral raise is in "Shoulders" but is the one movement that isolates the
+/// side delt. Saying "chest" for all five chest exercises is what this feature
+/// was built to stop doing.
+enum ExerciseMuscleOverrides {
+
+    static let overrides: [String: ExerciseAttributes] = [
+        // Chest — the angle is the exercise
+        "ub-chest-1": ExerciseAttributes(primary: [.chestMid], secondary: [.triceps, .deltAnterior], pattern: .push),
+        "ub-chest-2": ExerciseAttributes(primary: [.chestUpper], secondary: [.deltAnterior, .triceps], pattern: .push),
+        "ub-chest-3": ExerciseAttributes(primary: [.chestMid, .chestLower], secondary: [.triceps, .absUpper], pattern: .push),
+        "ub-chest-4": ExerciseAttributes(primary: [.chestMid, .chestUpper], secondary: [.deltAnterior], pattern: .push),
+        "ub-chest-5": ExerciseAttributes(primary: [.chestLower, .lats], secondary: [.triceps], pattern: .push),
+
+        // Back — a row and a pulldown are not the same movement
+        "ub-back-1": ExerciseAttributes(primary: [.lats], secondary: [.biceps, .rhomboids, .forearms], pattern: .pull),
+        "ub-back-2": ExerciseAttributes(primary: [.lats, .rhomboids], secondary: [.trapsMid, .biceps, .erectors], pattern: .pull),
+        "ub-back-3": ExerciseAttributes(primary: [.lats], secondary: [.biceps, .rhomboids], pattern: .pull),
+        "ub-back-4": ExerciseAttributes(primary: [.rhomboids, .trapsMid], secondary: [.lats, .biceps], pattern: .pull),
+        "ub-back-5": ExerciseAttributes(primary: [.lats], secondary: [.rhomboids, .biceps], pattern: .pull),
+
+        // Shoulders — three heads, three different exercises
+        "ub-shoulders-1": ExerciseAttributes(primary: [.deltAnterior, .deltLateral], secondary: [.triceps, .trapsUpper], pattern: .push),
+        "ub-shoulders-2": ExerciseAttributes(primary: [.deltLateral], secondary: [.trapsUpper], pattern: .accessory),
+        "ub-shoulders-3": ExerciseAttributes(primary: [.deltAnterior, .deltLateral], secondary: [.triceps], pattern: .push),
+        "ub-shoulders-4": ExerciseAttributes(primary: [.deltPosterior], secondary: [.rhomboids, .trapsMid], pattern: .pull),
+        "ub-shoulders-5": ExerciseAttributes(primary: [.deltAnterior], secondary: [.trapsUpper], pattern: .accessory),
+
+        // Arms
+        "ub-biceps-2": ExerciseAttributes(primary: [.biceps, .forearms], pattern: .pull),
+        "ub-biceps-3": ExerciseAttributes(primary: [.biceps], secondary: [.forearms], pattern: .pull),
+        "ub-triceps-1": ExerciseAttributes(primary: [.triceps], secondary: [.chestMid, .deltAnterior], pattern: .push),
+        "ub-triceps-5": ExerciseAttributes(primary: [.triceps, .chestLower], secondary: [.deltAnterior], pattern: .push),
+
+        // Legs — the seated calf raise exists for the soleus specifically
+        "lb-calves-1": ExerciseAttributes(primary: [.calves], secondary: [.soleus], pattern: .accessory),
+        "lb-calves-2": ExerciseAttributes(primary: [.soleus], secondary: [.calves], pattern: .accessory),
+        "lb-calves-3": ExerciseAttributes(primary: [.calves], secondary: [.soleus], pattern: .accessory),
+        "lb-calves-4": ExerciseAttributes(primary: [.calves], secondary: [.soleus], pattern: .accessory),
+        "lb-quads-4": ExerciseAttributes(primary: [.quads], pattern: .accessory),
+        "lb-hams-2": ExerciseAttributes(primary: [.hamstrings], secondary: [.calves], pattern: .accessory),
+        "lb-glutes-2": ExerciseAttributes(primary: [.glutes], secondary: [.hamstrings], pattern: .hinge),
+        "lb-glutes-3": ExerciseAttributes(primary: [.glutes], pattern: .accessory),
+        "lb-adduct-1": ExerciseAttributes(primary: [.adductors], pattern: .accessory),
+        "lb-adduct-2": ExerciseAttributes(primary: [.abductors], secondary: [.glutes], pattern: .accessory),
+        "lb-adduct-3": ExerciseAttributes(primary: [.abductors], secondary: [.glutes], pattern: .accessory),
+        "lb-adduct-5": ExerciseAttributes(primary: [.abductors], secondary: [.glutes], pattern: .accessory),
+
+        // Core — upper, lower and rotational are genuinely different
+        "core-upper-5": ExerciseAttributes(primary: [.absUpper], secondary: [.absLower], pattern: .core),
+        "core-lower-4": ExerciseAttributes(primary: [.absLower], secondary: [.forearms, .absUpper], pattern: .core),
+        "core-oblique-2": ExerciseAttributes(primary: [.obliques], secondary: [.absLower, .deltLateral], pattern: .core),
+        "core-oblique-3": ExerciseAttributes(primary: [.obliques], secondary: [.absUpper], pattern: .core),
+        "core-deep-4": ExerciseAttributes(primary: [.obliques, .absLower], secondary: [.erectors], pattern: .core),
+        "core-lowback-1": ExerciseAttributes(primary: [.erectors], secondary: [.glutes, .trapsMid], pattern: .core),
+        "core-lowback-4": ExerciseAttributes(primary: [.lats, .erectors], secondary: [.rhomboids], pattern: .pull),
+
+        // Full body — the big lifts deserve accuracy
+        "fb-compound-1": ExerciseAttributes(primary: [.glutes, .hamstrings, .erectors], secondary: [.quads, .lats, .trapsUpper, .forearms], pattern: .hinge),
+        "fb-compound-5": ExerciseAttributes(primary: [.trapsUpper, .glutes, .hamstrings], secondary: [.deltLateral, .quads, .erectors], pattern: .hinge),
+        "fb-func-1": ExerciseAttributes(primary: [.forearms, .trapsUpper], secondary: [.erectors, .obliques], pattern: .carry),
+        "fb-kb-5": ExerciseAttributes(primary: [.deltAnterior, .obliques], secondary: [.glutes, .absUpper], pattern: .carry),
+    ]
 }
