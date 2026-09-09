@@ -40,15 +40,6 @@ enum Store {
         try? data.write(to: userDataURL(userData.accountId), options: .atomic)
     }
 
-    // MARK: Password hashing
-
-    static func hashPassword(_ password: String, salt: String) -> String {
-        let digest = SHA256.hash(data: Data((salt + password).utf8))
-        return digest.map { String(format: "%02x", $0) }.joined()
-    }
-
-    static func makeSalt() -> String { UUID().uuidString }
-
     // MARK: Export / Import
 
     static func exportData(_ userData: UserData) -> Data? {

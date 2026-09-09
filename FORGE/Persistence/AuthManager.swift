@@ -74,6 +74,15 @@ final class AuthManager: ObservableObject {
         isUnlocked = false
     }
 
+    /// Replaces a legacy SHA-256 record with a PBKDF2 one. Called only after the
+    /// password has already been verified.
+    private func upgradeStoredPassword(for accountId: String, password: String) {
+        guard let idx = accounts.firstIndex(where: { $0.id == accountId }) else { return }
+        accounts[idx].passwordHash = PasswordHasher.hash(password)
+        accounts[idx].salt = ""
+        Store.saveAccounts(accounts)
+    }
+
     private func normalize(_ email: String) -> String {
         email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
     }
@@ -92,12 +101,13 @@ final class AuthManager: ObservableObject {
         guard !trimmedName.isEmpty else { return .failure(.nameRequired) }
         guard !accounts.contains(where: { $0.email == normalized }) else { return .failure(.emailInUse) }
 
-        let salt = Store.makeSalt()
         let account = Account(
             id: UUID().uuidString,
             email: normalized,
-            passwordHash: Store.hashPassword(password, salt: salt),
-            salt: salt,
+            passwordHash: PasswordHasher.hash(password),
+            // Only legacy records use this field; the new format carries its
+            // own salt inside the hash string.
+            salt: "",
             displayName: trimmedName,
             createdAt: Date()
         )
@@ -105,7 +115,7 @@ final class AuthManager: ObservableObject {
         Store.saveAccounts(accounts)
         Store.saveUserData(.fresh(accountId: account.id, characterName: trimmedName))
 
-        currentAccount = account
+        currentAccount = accounts.first { $0.id == account.id } ?? account
         isUnlocked = true
         if rememberMe {
             UserDefaults.standard.set(account.id, forKey: Self.rememberedKey)
@@ -122,8 +132,17 @@ final class AuthManager: ObservableObject {
         guard let account = accounts.first(where: { $0.email == normalized }) else {
             return .failure(.invalidCredentials)
         }
-        let hash = Store.hashPassword(password, salt: account.salt)
-        guard hash == account.passwordHash else { return .failure(.invalidCredentials) }
+        switch PasswordHasher.verify(password, stored: account.passwordHash, legacySalt: account.salt) {
+        case .failed:
+            return .failure(.invalidCredentials)
+        case .ok:
+            break
+        case .okNeedsUpgrade:
+            // Correct password stored under the old scheme. Rehash now, while we
+            // have the plaintext, so the account is upgraded without the user
+            // ever being asked to reset anything.
+            upgradeStoredPassword(for: account.id, password: password)
+        }
 
         currentAccount = account
         isUnlocked = true

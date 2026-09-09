@@ -82,6 +82,7 @@
 		3CCFD4C4860326EC1A862E68 /* CoachEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7532CC4C5A5A6203B983D8AB /* CoachEngine.swift */; };
 		74354A77A33AC14323CB4600 /* EquipmentEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1ECAE7EBA2436A45F64DE4 /* EquipmentEngine.swift */; };
 		1D9458FB66CAA36FA5972DBA /* LiveWorkoutActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344CF990E7DC312616B8740 /* LiveWorkoutActivityManager.swift */; };
+		8801C6AAA29B190C0EE9D7D1 /* PasswordHasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBB12526D54F95AD8E4D84B /* PasswordHasher.swift */; };
 		32B5CCF50C0C51CAAA4537CB /* ProgramEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542A0588C8598D2BDBD37F45 /* ProgramEngine.swift */; };
 		B8C48E73EC4DBDCFC9ACE500 /* ReminderScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79B3B2D37A98896715214A /* ReminderScheduler.swift */; };
 		66E7F528AE2791AED377A580 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E06931DA57DCB59ECA030E /* Store.swift */; };
@@ -406,6 +407,7 @@
 		7532CC4C5A5A6203B983D8AB /* CoachEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachEngine.swift; sourceTree = "<group>"; };
 		0E1ECAE7EBA2436A45F64DE4 /* EquipmentEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentEngine.swift; sourceTree = "<group>"; };
 		9344CF990E7DC312616B8740 /* LiveWorkoutActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveWorkoutActivityManager.swift; sourceTree = "<group>"; };
+		3CBB12526D54F95AD8E4D84B /* PasswordHasher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordHasher.swift; sourceTree = "<group>"; };
 		542A0588C8598D2BDBD37F45 /* ProgramEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramEngine.swift; sourceTree = "<group>"; };
 		BF79B3B2D37A98896715214A /* ReminderScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderScheduler.swift; sourceTree = "<group>"; };
 		12E06931DA57DCB59ECA030E /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				7532CC4C5A5A6203B983D8AB /* CoachEngine.swift */,
 				0E1ECAE7EBA2436A45F64DE4 /* EquipmentEngine.swift */,
 				9344CF990E7DC312616B8740 /* LiveWorkoutActivityManager.swift */,
+				3CBB12526D54F95AD8E4D84B /* PasswordHasher.swift */,
 				542A0588C8598D2BDBD37F45 /* ProgramEngine.swift */,
 				BF79B3B2D37A98896715214A /* ReminderScheduler.swift */,
 				12E06931DA57DCB59ECA030E /* Store.swift */,
@@ -718,6 +721,7 @@
 				3CCFD4C4860326EC1A862E68 /* CoachEngine.swift in Sources */,
 				74354A77A33AC14323CB4600 /* EquipmentEngine.swift in Sources */,
 				1D9458FB66CAA36FA5972DBA /* LiveWorkoutActivityManager.swift in Sources */,
+				8801C6AAA29B190C0EE9D7D1 /* PasswordHasher.swift in Sources */,
 				32B5CCF50C0C51CAAA4537CB /* ProgramEngine.swift in Sources */,
 				B8C48E73EC4DBDCFC9ACE500 /* ReminderScheduler.swift in Sources */,
 				66E7F528AE2791AED377A580 /* Store.swift in Sources */,
