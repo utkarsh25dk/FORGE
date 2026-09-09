@@ -23,11 +23,30 @@ struct BodySilhouette: Shape {
         func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: x * w, y: y * h) }
 
         var out: [Path] = []
-        // Head and neck are the same on every view.
-        out.append(Path(ellipseIn: CGRect(x: 0.408 * w, y: 0.024 * h, width: 0.184 * w, height: 0.118 * h)))
-        out.append(Path(roundedRect: CGRect(x: 0.452 * w, y: 0.124 * h,
-                                            width: 0.096 * w, height: 0.062 * h), cornerRadius: 4))
         var path = Path()
+        if view == .side {
+            // A profile head has a face: forehead, brow, nose and chin. An
+            // ellipse here is what made the whole figure read as a slab.
+            path.move(to: p(0.560, 0.036))
+            path.addCurve(to: p(0.624, 0.086), control1: p(0.606, 0.044), control2: p(0.626, 0.062))
+            path.addLine(to: p(0.664, 0.098))                                   // nose
+            path.addLine(to: p(0.618, 0.108))
+            path.addCurve(to: p(0.596, 0.146), control1: p(0.620, 0.126), control2: p(0.614, 0.140))
+            path.addCurve(to: p(0.474, 0.152), control1: p(0.560, 0.156), control2: p(0.508, 0.158))
+            path.addCurve(to: p(0.396, 0.086), control1: p(0.412, 0.144), control2: p(0.394, 0.124))
+            path.addCurve(to: p(0.560, 0.036), control1: p(0.398, 0.050), control2: p(0.474, 0.030))
+            path.closeSubpath(); out.append(path); path = Path()
+            // Neck sits forward of the spine and angles slightly.
+            path.move(to: p(0.442, 0.136))
+            path.addLine(to: p(0.560, 0.144))
+            path.addLine(to: p(0.578, 0.206))
+            path.addLine(to: p(0.418, 0.200))
+            path.closeSubpath(); out.append(path); path = Path()
+        } else {
+            out.append(Path(ellipseIn: CGRect(x: 0.408 * w, y: 0.024 * h, width: 0.184 * w, height: 0.118 * h)))
+            out.append(Path(roundedRect: CGRect(x: 0.452 * w, y: 0.124 * h,
+                                                width: 0.096 * w, height: 0.062 * h), cornerRadius: 4))
+        }
 
         switch view {
         case .front, .back:
@@ -75,38 +94,44 @@ struct BodySilhouette: Shape {
             }
 
         case .side:
-            // Profile facing right: chest and abdomen on the right edge, the
-            // spine, lats and glutes on the left. The back is not a straight
-            // line — it curves at the lumbar and again over the glute.
-            path.move(to: p(0.478, 0.170))
-            path.addCurve(to: p(0.606, 0.298), control1: p(0.562, 0.180), control2: p(0.606, 0.238))
-            path.addCurve(to: p(0.578, 0.412), control1: p(0.606, 0.344), control2: p(0.582, 0.376))
-            path.addCurve(to: p(0.560, 0.500), control1: p(0.574, 0.450), control2: p(0.578, 0.478))
-            path.addLine(to: p(0.398, 0.496))
-            path.addCurve(to: p(0.386, 0.396), control1: p(0.360, 0.474), control2: p(0.376, 0.430))
-            path.addCurve(to: p(0.420, 0.252), control1: p(0.398, 0.348), control2: p(0.392, 0.288))
-            path.addCurve(to: p(0.478, 0.170), control1: p(0.432, 0.212), control2: p(0.446, 0.178))
+            // Facing right. A human profile is roughly a quarter as deep as it
+            // is tall through the torso, and the back is an S: thoracic curve
+            // out, lumbar curve in, then the glute projecting back again.
+            path.move(to: p(0.500, 0.192))
+            path.addCurve(to: p(0.716, 0.300), control1: p(0.632, 0.198), control2: p(0.716, 0.240))  // chest out
+            path.addCurve(to: p(0.676, 0.404), control1: p(0.716, 0.348), control2: p(0.684, 0.372))  // ribcage
+            path.addCurve(to: p(0.652, 0.492), control1: p(0.670, 0.440), control2: p(0.660, 0.466))  // abdomen
+            path.addCurve(to: p(0.508, 0.536), control1: p(0.630, 0.522), control2: p(0.576, 0.538))
+            path.addCurve(to: p(0.268, 0.494), control1: p(0.402, 0.534), control2: p(0.296, 0.534))  // glute back
+            path.addCurve(to: p(0.328, 0.408), control1: p(0.256, 0.454), control2: p(0.322, 0.442))  // lumbar in
+            path.addCurve(to: p(0.298, 0.276), control1: p(0.334, 0.372), control2: p(0.290, 0.330))  // thoracic out
+            path.addCurve(to: p(0.500, 0.192), control1: p(0.306, 0.230), control2: p(0.388, 0.192))
             path.closeSubpath(); out.append(path); path = Path()
 
-            path.move(to: p(0.440, 0.200))
-            path.addCurve(to: p(0.424, 0.320), control1: p(0.412, 0.240), control2: p(0.420, 0.286))
-            path.addCurve(to: p(0.448, 0.412), control1: p(0.428, 0.356), control2: p(0.444, 0.388))
-            path.addCurve(to: p(0.464, 0.546), control1: p(0.450, 0.456), control2: p(0.456, 0.508))
-            path.addLine(to: p(0.548, 0.546))
-            path.addCurve(to: p(0.556, 0.412), control1: p(0.556, 0.508), control2: p(0.560, 0.456))
-            path.addCurve(to: p(0.578, 0.320), control1: p(0.562, 0.388), control2: p(0.576, 0.356))
-            path.addCurve(to: p(0.552, 0.204), control1: p(0.582, 0.286), control2: p(0.578, 0.240))
+            // Arm hanging beside the torso, seen edge on.
+            path.move(to: p(0.470, 0.204))
+            path.addCurve(to: p(0.430, 0.306), control1: p(0.418, 0.222), control2: p(0.424, 0.268))
+            path.addCurve(to: p(0.456, 0.412), control1: p(0.434, 0.348), control2: p(0.452, 0.384))
+            path.addCurve(to: p(0.470, 0.554), control1: p(0.458, 0.462), control2: p(0.462, 0.514))
+            path.addLine(to: p(0.582, 0.554))
+            path.addCurve(to: p(0.588, 0.412), control1: p(0.590, 0.514), control2: p(0.594, 0.462))
+            path.addCurve(to: p(0.618, 0.306), control1: p(0.592, 0.384), control2: p(0.614, 0.348))
+            path.addCurve(to: p(0.576, 0.208), control1: p(0.622, 0.268), control2: p(0.626, 0.222))
             path.closeSubpath(); out.append(path); path = Path()
 
-            path.move(to: p(0.392, 0.478))
-            path.addCurve(to: p(0.394, 0.606), control1: p(0.372, 0.520), control2: p(0.384, 0.566))
-            path.addCurve(to: p(0.406, 0.706), control1: p(0.400, 0.652), control2: p(0.400, 0.678))
-            path.addCurve(to: p(0.398, 0.802), control1: p(0.394, 0.744), control2: p(0.390, 0.772))
-            path.addCurve(to: p(0.416, 0.910), control1: p(0.404, 0.848), control2: p(0.410, 0.884))
-            path.addLine(to: p(0.586, 0.910))
-            path.addCurve(to: p(0.502, 0.802), control1: p(0.568, 0.868), control2: p(0.508, 0.844))
-            path.addCurve(to: p(0.514, 0.706), control1: p(0.498, 0.772), control2: p(0.508, 0.744))
-            path.addCurve(to: p(0.522, 0.478), control1: p(0.522, 0.660), control2: p(0.532, 0.560))
+            // Leg: thigh deep front to back, knee pinch, calf belly behind the
+            // shin, ankle narrow, and a foot pointing forward.
+            path.move(to: p(0.312, 0.500))
+            path.addCurve(to: p(0.348, 0.640), control1: p(0.298, 0.548), control2: p(0.330, 0.598))
+            path.addCurve(to: p(0.398, 0.706), control1: p(0.360, 0.670), control2: p(0.386, 0.688))
+            path.addCurve(to: p(0.336, 0.792), control1: p(0.336, 0.730), control2: p(0.320, 0.760))  // calf back
+            path.addCurve(to: p(0.412, 0.884), control1: p(0.350, 0.828), control2: p(0.396, 0.856))
+            path.addCurve(to: p(0.396, 0.930), control1: p(0.414, 0.902), control2: p(0.394, 0.912))  // heel
+            path.addLine(to: p(0.720, 0.930))
+            path.addCurve(to: p(0.520, 0.884), control1: p(0.706, 0.902), control2: p(0.588, 0.892))  // foot forward
+            path.addCurve(to: p(0.516, 0.792), control1: p(0.512, 0.856), control2: p(0.510, 0.826))
+            path.addCurve(to: p(0.546, 0.706), control1: p(0.522, 0.760), control2: p(0.542, 0.734))
+            path.addCurve(to: p(0.628, 0.500), control1: p(0.552, 0.646), control2: p(0.630, 0.560))
             path.closeSubpath(); out.append(path); path = Path()
         }
         return out

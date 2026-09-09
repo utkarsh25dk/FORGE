@@ -11,7 +11,7 @@ enum BodyView: String, Codable, Hashable, CaseIterable {
     /// Frame width as a fraction of height. A profile is genuinely narrower than
     /// a front view, so giving all three the same box leaves the side figure
     /// stranded in dead space.
-    var widthRatio: CGFloat { self == .side ? 0.40 : 0.58 }
+    var widthRatio: CGFloat { self == .side ? 0.52 : 0.58 }
 }
 
 /// A specific muscle or muscle head.
@@ -181,27 +181,30 @@ enum Muscle: String, Codable, CaseIterable, Hashable, Identifiable {
     /// Profile facing right: the front of the body is the right-hand edge, the
     /// back is the left. Not mirrored — there is only one of each in profile.
     private func sideShapes() -> [MuscleShape] {
+        // Facing right: the front of the body is the higher x. Placed against
+        // the profile's real anatomy — chest projecting forward, spine and
+        // glutes back, calf belly behind the shin.
         switch self {
-        case .trapsUpper:    return [.poly([(0.470, 0.190), (0.406, 0.222), (0.446, 0.268), (0.494, 0.238)])]
-        case .deltAnterior:  return [.ellipse(CGRect(x: 0.508, y: 0.202, width: 0.070, height: 0.074))]
-        case .deltLateral:   return [.ellipse(CGRect(x: 0.468, y: 0.198, width: 0.070, height: 0.080))]
-        case .deltPosterior: return [.ellipse(CGRect(x: 0.428, y: 0.204, width: 0.068, height: 0.074))]
-        case .chestUpper:    return [.poly([(0.508, 0.236), (0.572, 0.246), (0.574, 0.266), (0.508, 0.260)])]
-        case .chestMid:      return [.poly([(0.506, 0.264), (0.574, 0.270), (0.572, 0.294), (0.506, 0.292)])]
-        case .chestLower:    return [.poly([(0.506, 0.296), (0.570, 0.298), (0.562, 0.322), (0.506, 0.318)])]
-        case .lats:          return [.poly([(0.418, 0.272), (0.482, 0.284), (0.478, 0.376), (0.428, 0.360)])]
-        case .biceps:        return [.ellipse(CGRect(x: 0.498, y: 0.294, width: 0.054, height: 0.100))]
-        case .triceps:       return [.ellipse(CGRect(x: 0.438, y: 0.290, width: 0.060, height: 0.108))]
-        case .forearms:      return [.poly([(0.464, 0.406), (0.544, 0.406), (0.532, 0.508), (0.474, 0.508)])]
-        case .absUpper:      return [.roundedRect(CGRect(x: 0.520, y: 0.330, width: 0.058, height: 0.048), 4),
-                                     .roundedRect(CGRect(x: 0.520, y: 0.384, width: 0.058, height: 0.046), 4)]
-        case .absLower:      return [.roundedRect(CGRect(x: 0.518, y: 0.436, width: 0.056, height: 0.044), 4)]
-        case .erectors:      return [.poly([(0.428, 0.348), (0.478, 0.356), (0.480, 0.468), (0.432, 0.462)])]
-        case .glutes:        return [.ellipse(CGRect(x: 0.404, y: 0.442, width: 0.092, height: 0.094))]
-        case .quads:         return [.poly([(0.456, 0.522), (0.506, 0.526), (0.500, 0.676), (0.458, 0.674)])]
-        case .hamstrings:    return [.poly([(0.412, 0.550), (0.452, 0.552), (0.456, 0.682), (0.418, 0.680)])]
-        case .calves:        return [.poly([(0.414, 0.710), (0.470, 0.714), (0.464, 0.804), (0.424, 0.800)])]
-        case .soleus:        return [.poly([(0.424, 0.812), (0.466, 0.814), (0.462, 0.882), (0.432, 0.880)])]
+        case .trapsUpper:    return [.poly([(0.470, 0.196), (0.376, 0.232), (0.416, 0.288), (0.494, 0.244)])]
+        case .deltPosterior: return [.ellipse(CGRect(x: 0.434, y: 0.218, width: 0.078, height: 0.078))]
+        case .deltLateral:   return [.ellipse(CGRect(x: 0.486, y: 0.212, width: 0.078, height: 0.080))]
+        case .deltAnterior:  return [.ellipse(CGRect(x: 0.540, y: 0.216, width: 0.076, height: 0.078))]
+        case .chestUpper:    return [.poly([(0.556, 0.248), (0.674, 0.270), (0.672, 0.294), (0.556, 0.276)])]
+        case .chestMid:      return [.poly([(0.554, 0.280), (0.674, 0.298), (0.668, 0.326), (0.554, 0.310)])]
+        case .chestLower:    return [.poly([(0.552, 0.314), (0.664, 0.330), (0.652, 0.356), (0.552, 0.344)])]
+        case .lats:          return [.poly([(0.330, 0.276), (0.452, 0.300), (0.444, 0.412), (0.336, 0.394)])]
+        case .triceps:       return [.ellipse(CGRect(x: 0.444, y: 0.312, width: 0.070, height: 0.108))]
+        case .biceps:        return [.ellipse(CGRect(x: 0.524, y: 0.312, width: 0.070, height: 0.104))]
+        case .forearms:      return [.poly([(0.470, 0.428), (0.578, 0.428), (0.570, 0.542), (0.478, 0.542)])]
+        case .absUpper:      return [.roundedRect(CGRect(x: 0.588, y: 0.348, width: 0.072, height: 0.044), 4),
+                                     .roundedRect(CGRect(x: 0.584, y: 0.398, width: 0.072, height: 0.042), 4)]
+        case .absLower:      return [.roundedRect(CGRect(x: 0.578, y: 0.446, width: 0.068, height: 0.040), 4)]
+        case .erectors:      return [.poly([(0.336, 0.352), (0.410, 0.364), (0.412, 0.474), (0.336, 0.462)])]
+        case .glutes:        return [.ellipse(CGRect(x: 0.298, y: 0.446, width: 0.132, height: 0.086))]
+        case .quads:         return [.poly([(0.520, 0.542), (0.612, 0.548), (0.560, 0.686), (0.494, 0.678)])]
+        case .hamstrings:    return [.poly([(0.348, 0.548), (0.446, 0.552), (0.432, 0.686), (0.372, 0.680)])]
+        case .calves:        return [.poly([(0.360, 0.716), (0.464, 0.720), (0.462, 0.804), (0.372, 0.796)])]
+        case .soleus:        return [.poly([(0.398, 0.816), (0.484, 0.820), (0.482, 0.876), (0.416, 0.872)])]
         default:             return []
         }
     }
