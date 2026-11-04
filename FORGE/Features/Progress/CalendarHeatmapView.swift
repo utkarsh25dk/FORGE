@@ -13,11 +13,14 @@ enum CalendarZoom: String, CaseIterable, Identifiable {
     var id: String { rawValue }
 }
 
-/// The buckets the calendar sorts a day's work into. Ten categories would make the
-/// grid confetti and most of them never appear; these are the distinctions you look
-/// for when you ask what you trained, plus a catch-all. Order is the legend's order.
+/// The buckets the calendar sorts a day's work into — the three distinctions you ask
+/// a training log for, plus a catch-all. Order is the legend's order.
+///
+/// Five, not the ten the app records. Mobility and recovery fall in with the rest:
+/// they covered four exercises in this log's whole history, and a key you have to
+/// study is worse than a coarser one you can read at a glance.
 enum TrainingFamily: Int, CaseIterable {
-    case upper, lower, full, cardio, mobility, other
+    case upper, lower, full, cardio, other
 
     init(_ category: WorkoutCategory) {
         switch category {
@@ -25,7 +28,6 @@ enum TrainingFamily: Int, CaseIterable {
         case .lowerBody: self = .lower
         case .fullBody: self = .full
         case .cardio, .hiit, .activity, .sports: self = .cardio
-        case .flexibility, .recovery: self = .mobility
         default: self = .other
         }
     }
@@ -36,7 +38,6 @@ enum TrainingFamily: Int, CaseIterable {
         case .lower: return "Lower"
         case .full: return "Full body"
         case .cardio: return "Cardio"
-        case .mobility: return "Mobility"
         case .other: return "Other"
         }
     }
@@ -50,6 +51,16 @@ extension AppState {
         let done = entries(on: date).filter { $0.isCompleted && !$0.isWarmUp && !$0.isCoolDown }
         var counts: [TrainingFamily: Int] = [:]
         for entry in done { counts[TrainingFamily(entry.category), default: 0] += 1 }
+
+        // Train both halves in one day and you trained your whole body, so the two
+        // collapse into one colour instead of striping the cell. This is also what
+        // keeps three bands enough: afterwards a day holds at most one of
+        // upper/lower/full, plus cardio, plus the catch-all.
+        if counts[.full] != nil || (counts[.upper] != nil && counts[.lower] != nil) {
+            counts[.full] = (counts[.full] ?? 0) + (counts[.upper] ?? 0) + (counts[.lower] ?? 0)
+            counts[.upper] = nil
+            counts[.lower] = nil
+        }
         return counts
             .sorted { $0.value == $1.value ? $0.key.rawValue < $1.key.rawValue : $0.value > $1.value }
             .prefix(3)

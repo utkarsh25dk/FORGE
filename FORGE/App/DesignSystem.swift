@@ -195,7 +195,6 @@ struct ForgeColors {
             Color(hex: "58A6FF"),
             Color(hex: "39C5CF"),
             Color(hex: "D29922"),
-            Color(hex: "A371F7"),
             Color(hex: "6E7681")
         ]
     )
@@ -234,7 +233,6 @@ struct ForgeColors {
             Color(hex: "0969DA"),
             Color(hex: "1B7C83"),
             Color(hex: "9A6700"),
-            Color(hex: "8250DF"),
             Color(hex: "656D76")
         ]
     )
