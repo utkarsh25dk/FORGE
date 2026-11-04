@@ -37,41 +37,36 @@ private struct StatRow: View {
     }
 
     /// The app's one reserved hero moment — everything else on this screen is flat.
-    /// The gradient lands on the numeral alone: the streak's *length* is the fact
-    /// worth looking at, and putting the same gradient on the icon beside it spends
-    /// the effect twice and halves it. The flame stays flat accent.
+    /// Numeral-led and chrome-free like its two neighbours: the gradient numeral is
+    /// the tile. The flame that used to sit above it led the eye to an icon instead
+    /// of to the number, which is the only thing here anyone reads.
     private var streakTile: some View {
         VStack(spacing: 6) {
-            Image(systemName: "flame.fill")
-                .foregroundStyle(forge.accent)
-                .font(.system(size: 22))
-                .symbolEffect(.bounce, value: appState.currentStreak)
             Text("\(appState.currentStreak)")
                 .font(.forgeNumeric(30))
                 .foregroundStyle(forge.fireGradient)
                 .monospacedDigit()
                 .contentTransition(.numericText())
                 .animation(.default, value: appState.currentStreak)
-            Text(appState.currentStreak == 1 ? "day streak" : "day streak")
+            Text("day streak")
                 .font(.forgeCaption(11))
                 .foregroundStyle(forge.textSecondary)
         }
         .frame(maxWidth: .infinity)
     }
 
+    /// The ring here wrapped a 10pt numeral in 40pt of chrome, so the one number
+    /// that answers "am I on track?" was the smallest thing in the tile. The
+    /// fraction carries the progress and the caption says what is left.
     private var weeklyGoalTile: some View {
         let worked = appState.weeklyWorkedDays()
         return VStack(spacing: 6) {
-            ZStack {
-                ProgressRing(progress: appState.weeklyProgress, lineWidth: 6)
-                    .frame(width: 40, height: 40)
-                Text("\(worked)/\(appState.userData.weeklyGoal)")
-                    .font(.forgeCaption(10))
-                    .foregroundStyle(forge.textPrimary)
-                    .monospacedDigit()
-                    .contentTransition(.numericText())
-                    .animation(.default, value: worked)
-            }
+            Text("\(worked)/\(appState.userData.weeklyGoal)")
+                .font(.forgeNumeric(30))
+                .foregroundStyle(forge.textPrimary)
+                .monospacedDigit()
+                .contentTransition(.numericText())
+                .animation(.default, value: worked)
             Text(appState.weeklyProgress >= 1 ? "Goal hit" : "\(appState.userData.weeklyGoal - worked) to go")
                 .font(.forgeCaption(11))
                 .foregroundStyle(forge.textSecondary)
@@ -90,6 +85,10 @@ private struct LevelTile: View {
     var body: some View {
         let progress = appState.levelProgress
         VStack(spacing: 6) {
+            // Accent here is not rank, it is the affordance: this is the only tile
+            // of the three that opens anything, and rule 4 gives accent to
+            // interactive. Flattening it to textPrimary looked tidier in a
+            // screenshot and left a tappable tile with nothing saying so.
             Text("\(progress.level)")
                 .font(.forgeNumeric(30))
                 .foregroundStyle(forge.accent)
