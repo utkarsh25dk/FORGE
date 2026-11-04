@@ -48,7 +48,7 @@ struct WeeklyRecapCard: View {
                     Image(systemName: "flame.fill").font(.system(size: 38)).foregroundStyle(forge.fireGradient)
                     Text("\(streak)").font(.forgeDisplay(60)).foregroundStyle(forge.fireGradient)
                 }
-                Text(streak == 1 ? "day streak" : "day streak").font(.forgeBody(17)).foregroundStyle(forge.textSecondary)
+                Text(streak == 1 ? "day streak" : "days streak").font(.forgeBody(17)).foregroundStyle(forge.textSecondary)
                 weekComparisonPill
             }
 

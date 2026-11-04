@@ -13,6 +13,28 @@ enum CalendarZoom: String, CaseIterable, Identifiable {
     var id: String { rawValue }
 }
 
+/// The one place the ramp's buckets live. The grid's colour and the key's labels both
+/// read from here, so the key can never end up describing a scale the grid isn't using.
+enum ContributionScale {
+    /// Inclusive upper bound of levels 0...3; anything past the last is the top level.
+    static let upperBounds = [0, 2, 4, 6]
+
+    static func level(for count: Int) -> Int {
+        upperBounds.firstIndex { count <= $0 } ?? upperBounds.count
+    }
+
+    /// "0", "1–2" … "7+", derived from the bounds rather than typed out beside them.
+    static var labels: [String] {
+        var out: [String] = []
+        var lower = 0
+        for bound in upperBounds {
+            out.append(lower == bound ? "\(bound)" : "\(lower)–\(bound)")
+            lower = bound + 1
+        }
+        return out + ["\(lower)+"]
+    }
+}
+
 extension AppState {
     /// A day's training volume on the contribution ramp's 0...4.
     ///
@@ -22,13 +44,7 @@ extension AppState {
     /// Warm-ups and cool-downs are excluded: they pad a session without being one.
     func contributionLevel(for date: Date) -> Int {
         let count = entries(on: date).filter { $0.isCompleted && !$0.isWarmUp && !$0.isCoolDown }.count
-        switch count {
-        case 0: return 0
-        case 1...2: return 1
-        case 3...4: return 2
-        case 5...6: return 3
-        default: return 4
-        }
+        return ContributionScale.level(for: count)
     }
 
     /// The ramp colour for a day. A day you could have trained and didn't gets the
@@ -115,18 +131,33 @@ struct CalendarHeatmapView: View {
         }
     }
 
-    /// One key for every zoom, because every zoom now paints from the same ramp.
-    /// It reads as a scale rather than a list of names, which is what the ramp is.
+    /// One key for every zoom, because every zoom paints from the same ramp. Each swatch
+    /// carries the count it stands for: "Less → More" named a quantity the grid never
+    /// showed, so it told you there was a scale without telling you a scale of what.
     private var legend: some View {
-        HStack(spacing: 6) {
+        HStack(alignment: .bottom, spacing: 8) {
+            Text("exercises")
+                .font(.forgeCaption(11))
+                .foregroundStyle(forge.textSecondary)
             Spacer(minLength: 0)
-            Text("Less").font(.forgeCaption(11)).foregroundStyle(forge.textSecondary)
-            ForEach(0..<5, id: \.self) { level in
-                RoundedRectangle(cornerRadius: 2, style: .continuous)
-                    .fill(forge.contribution[level])
-                    .frame(width: 11, height: 11)
+            ForEach(Array(ContributionScale.labels.enumerated()), id: \.offset) { level, label in
+                VStack(spacing: 4) {
+                    RoundedRectangle(cornerRadius: 2, style: .continuous)
+                        .fill(forge.contribution[level])
+                        // The empty tone sits a hair off the card behind it, so without
+                        // this its label would float over nothing.
+                        .overlay {
+                            if level == 0 {
+                                RoundedRectangle(cornerRadius: 2, style: .continuous)
+                                    .stroke(forge.surfaceBorder, lineWidth: 0.5)
+                            }
+                        }
+                        .frame(width: 11, height: 11)
+                    Text(label)
+                        .font(.forgeCaption(10))
+                        .foregroundStyle(forge.textTertiary)
+                }
             }
-            Text("More").font(.forgeCaption(11)).foregroundStyle(forge.textSecondary)
         }
         .padding(.top, Space.xs)
     }
