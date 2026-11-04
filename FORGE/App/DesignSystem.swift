@@ -1,5 +1,21 @@
 import SwiftUI
 
+// The four rules this file exists to hold. They are cheap to state and expensive to
+// rediscover, so they live here rather than in a document nobody opens.
+//
+// 1. One accent. `accent` carries interaction; `fireGradient` is reserved for a single
+//    hero moment per screen (see its own note below). Two gradients on one screen is
+//    not twice the emphasis, it is none.
+// 2. Flat surfaces. A surface is a flat fill plus a hairline border — never a glow
+//    halo, never a gradient fill. `forgeCard()` is the only card surface; depth comes
+//    from the border and the background behind it. (The screen background's gradient
+//    and grain are atmosphere behind content, not a surface, and are exempt.)
+// 3. SF Symbols only. Never an emoji as a UI icon: emoji do not inherit tint, do not
+//    scale with Dynamic Type, and render differently per platform version.
+// 4. Hierarchy comes from type, not colour. Rank things with the size and weight of
+//    the scale below plus the three text tiers. Colour marks *kind* — accent for
+//    interactive, danger for destructive, the data hues for series — never rank.
+
 // MARK: - Hex color
 
 extension Color {

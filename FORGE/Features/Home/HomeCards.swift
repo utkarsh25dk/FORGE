@@ -37,10 +37,13 @@ private struct StatRow: View {
     }
 
     /// The app's one reserved hero moment — everything else on this screen is flat.
+    /// The gradient lands on the numeral alone: the streak's *length* is the fact
+    /// worth looking at, and putting the same gradient on the icon beside it spends
+    /// the effect twice and halves it. The flame stays flat accent.
     private var streakTile: some View {
         VStack(spacing: 6) {
             Image(systemName: "flame.fill")
-                .foregroundStyle(forge.fireGradient)
+                .foregroundStyle(forge.accent)
                 .font(.system(size: 22))
                 .symbolEffect(.bounce, value: appState.currentStreak)
             Text("\(appState.currentStreak)")
