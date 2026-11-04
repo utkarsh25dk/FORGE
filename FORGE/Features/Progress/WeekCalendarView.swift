@@ -10,16 +10,24 @@ struct WeekCalendarView: View {
     private var days: [Date] { (0..<7).map { cal.date(byAdding: .day, value: $0, to: weekStart)! } }
 
     var body: some View {
-        HStack(spacing: 6) {
-            ForEach(days, id: \.self) { day in
-                dayCell(day)
+        HStack(spacing: 0) {
+            ForEach(Array(days.enumerated()), id: \.offset) { index, day in
+                dayCell(day, at: index)
             }
         }
     }
 
-    private func dayCell(_ day: Date) -> some View {
+    /// Consecutive days sharing a status render as one unbroken bar rather than separate
+    /// pills, so a streak reads as a single line whose length *is* its length. The month
+    /// grid already joins runs this way; this keeps the two calendars speaking one language.
+    /// Runs stop at the week's edges because a week is all this view shows.
+    private func dayCell(_ day: Date, at index: Int) -> some View {
         let status = appState.dayStatus(for: day)
         let isToday = day.isSameDay(as: Date())
+        let joinsLeft = index > 0 && status != .none && appState.dayStatus(for: days[index - 1]) == status
+        let joinsRight = index < days.count - 1 && status != .none && appState.dayStatus(for: days[index + 1]) == status
+        let radius: CGFloat = 19
+
         return Button {
             onSelectDay(day)
         } label: {
@@ -30,9 +38,21 @@ struct WeekCalendarView: View {
                 Text("\(cal.component(.day, from: day))")
                     .font(.forgeBodySemibold(15))
                     .foregroundStyle(forge.textPrimary)
-                    .frame(width: 38, height: 38)
-                    .background(Circle().fill(status.color(forge)?.opacity(0.35) ?? Color.clear))
-                    .overlay(Circle().stroke(isToday ? forge.accent : Color.clear, lineWidth: 1.5))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 38)
+                    .background(
+                        UnevenRoundedRectangle(
+                            topLeadingRadius: joinsLeft ? 0 : radius,
+                            bottomLeadingRadius: joinsLeft ? 0 : radius,
+                            bottomTrailingRadius: joinsRight ? 0 : radius,
+                            topTrailingRadius: joinsRight ? 0 : radius
+                        )
+                        .fill(status.color(forge)?.opacity(0.35) ?? Color.clear)
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: radius)
+                            .stroke(isToday ? forge.accent : Color.clear, lineWidth: 1.5)
+                    )
             }
             .frame(maxWidth: .infinity)
         }

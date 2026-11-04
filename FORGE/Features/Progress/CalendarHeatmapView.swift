@@ -108,7 +108,7 @@ struct CalendarHeatmapView: View {
 
     private func legendItem(color: Color?, label: String) -> some View {
         HStack(spacing: 6) {
-            Circle().fill(color?.opacity(0.6) ?? .clear).frame(width: 8, height: 8)
+            Capsule().fill(color?.opacity(0.6) ?? .clear).frame(width: 16, height: 6)
             Text(label).font(.forgeCaption(11)).foregroundStyle(forge.textSecondary)
         }
     }
