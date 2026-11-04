@@ -308,7 +308,7 @@ struct ProfileView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Share Weekly Recap").font(.forgeBodySemibold(15)).foregroundStyle(forge.textPrimary)
-                    Text("Streak, workouts, and category split as an image").font(.forgeCaption()).foregroundStyle(forge.textSecondary)
+                    Text("Your streak, the week's shape, and how it compares").font(.forgeCaption()).foregroundStyle(forge.textSecondary)
                 }
                 Spacer()
                 Image(systemName: "square.and.arrow.up").foregroundStyle(forge.accent).font(.system(size: 16, weight: .semibold))

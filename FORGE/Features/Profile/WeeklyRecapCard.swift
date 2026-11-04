@@ -6,7 +6,6 @@ struct WeeklyRecapCard: View {
     @Environment(\.forge) private var forge
 
     private var weekWorked: Int { appState.weeklyWorkedDays() }
-    private var weeklyGoal: Int { appState.userData.weeklyGoal }
     private var streak: Int { appState.currentStreak }
 
     private var weekInterval: DateInterval {
@@ -35,53 +34,42 @@ struct WeeklyRecapCard: View {
         return appState.weeklyWorkedDays(containing: lastWeekDate)
     }
 
+    /// Three things: the streak, how the week compares, and the shape of the week.
+    ///
+    /// A weekly-goal ring and a lifetime total used to sit under the graph. Both were
+    /// real numbers, and that was the problem — a card with four numbers on it has no
+    /// headline, and the streak is the headline. What is left is one figure, the
+    /// sentence that puts it in context, and the seven days behind it.
     var body: some View {
-        VStack(spacing: 30) {
-            VStack(spacing: 6) {
-                Text("FORGE").font(.forgeDisplay(30)).foregroundStyle(forge.textPrimary)
-                Text(weekRange).font(.forgeCaption(15)).foregroundStyle(forge.textSecondary)
+        VStack(spacing: 0) {
+            VStack(spacing: 8) {
+                Text("FORGE").font(.forgeDisplay(34)).foregroundStyle(forge.textPrimary)
+                Text(weekRange).font(.forgeCaption(16)).foregroundStyle(forge.textSecondary)
             }
-            .padding(.top, 64)
+            .padding(.top, 84)
 
-            VStack(spacing: 10) {
-                HStack(spacing: 8) {
-                    Image(systemName: "flame.fill").font(.system(size: 38)).foregroundStyle(forge.fireGradient)
-                    Text("\(streak)").font(.forgeDisplay(60)).foregroundStyle(forge.fireGradient)
+            Spacer(minLength: 0)
+
+            VStack(spacing: 16) {
+                HStack(spacing: 10) {
+                    Image(systemName: "flame.fill").font(.system(size: 48)).foregroundStyle(forge.fireGradient)
+                    Text("\(streak)").font(.forgeDisplay(80)).foregroundStyle(forge.fireGradient)
                 }
-                Text(streak == 1 ? "day streak" : "days streak").font(.forgeBody(17)).foregroundStyle(forge.textSecondary)
+                Text(streak == 1 ? "day streak" : "days streak").font(.forgeBody(19)).foregroundStyle(forge.textSecondary)
                 weekComparisonPill
             }
 
             weekGraph
-
-            HStack(spacing: 56) {
-                VStack(spacing: 8) {
-                    ZStack {
-                        ProgressRing(progress: appState.weeklyProgress, lineWidth: 10, ringColor: forge.accent)
-                            .frame(width: 92, height: 92)
-                        Text("\(weekWorked)/\(weeklyGoal)").font(.forgeHeading(19)).foregroundStyle(forge.textPrimary)
-                    }
-                    Text("weekly goal").font(.forgeCaption(13)).foregroundStyle(forge.textSecondary)
-                }
-                VStack(spacing: 8) {
-                    Text("\(appState.totalCompletedWorkouts)")
-                        .font(.forgeDisplay(38))
-                        .foregroundStyle(forge.textPrimary)
-                        .frame(height: 92)
-                        .frame(maxWidth: .infinity)
-                    Text("total workouts").font(.forgeCaption(13)).foregroundStyle(forge.textSecondary)
-                }
-            }
-            .padding(.horizontal, 60)
+                .padding(.top, 72)
 
             Spacer(minLength: 0)
 
             Text("Every rep feeds the fire.")
-                .font(.forgeCaption(14))
+                .font(.forgeCaption(15))
                 .foregroundStyle(forge.textTertiary)
-                .padding(.bottom, 48)
+                .padding(.bottom, 72)
         }
-        .frame(width: 1080, height: 1180)
+        .frame(width: 1080, height: 1080)
         .background(forge.backgroundGradient)
     }
 
@@ -112,21 +100,21 @@ struct WeeklyRecapCard: View {
 
     private var weekGraph: some View {
         VStack(spacing: 14) {
-            HStack(alignment: .bottom, spacing: 16) {
+            HStack(alignment: .bottom, spacing: 28) {
                 ForEach(weekDays, id: \.date) { day in
                     VStack(spacing: 10) {
-                        RoundedRectangle(cornerRadius: 7)
+                        RoundedRectangle(cornerRadius: 13)
                             .fill(barColor(for: day.status))
-                            .frame(width: 32, height: barHeight(for: day.status))
+                            .frame(width: 64, height: barHeight(for: day.status))
                         Text(day.date.formatted(.dateTime.weekday(.narrow)))
-                            .font(.forgeCaption(13))
+                            .font(.forgeCaption(15))
                             .fontWeight(day.isToday ? .bold : .regular)
                             .foregroundStyle(day.isToday ? forge.textPrimary : forge.textTertiary)
                     }
-                    .frame(width: 32, alignment: .bottom)
+                    .frame(width: 64, alignment: .bottom)
                 }
             }
-            .frame(height: 118, alignment: .bottom)
+            .frame(height: 190, alignment: .bottom)
 
             HStack(spacing: 18) {
                 legendDot(color: DayStatus.worked.color(forge) ?? forge.textPrimary, label: "Worked")
@@ -139,8 +127,8 @@ struct WeeklyRecapCard: View {
 
     private func legendDot(color: Color, label: String) -> some View {
         HStack(spacing: 5) {
-            Circle().fill(color).frame(width: 7, height: 7)
-            Text(label).font(.forgeCaption(11)).foregroundStyle(forge.textTertiary)
+            Circle().fill(color).frame(width: 9, height: 9)
+            Text(label).font(.forgeCaption(13)).foregroundStyle(forge.textTertiary)
         }
     }
 
@@ -150,10 +138,10 @@ struct WeeklyRecapCard: View {
 
     private func barHeight(for status: DayStatus) -> CGFloat {
         switch status {
-        case .worked: return 88
-        case .rest: return 56
-        case .missed: return 26
-        case .none: return 8
+        case .worked: return 150
+        case .rest: return 95
+        case .missed: return 44
+        case .none: return 14
         }
     }
 }
