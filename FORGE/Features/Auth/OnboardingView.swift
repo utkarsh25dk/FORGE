@@ -85,7 +85,7 @@ struct OnboardingView: View {
 
     private var welcomeStep: some View {
         VStack(alignment: .leading, spacing: Space.md) {
-            Text("Welcome to FORGE").font(.forgeHeading(32)).foregroundStyle(forge.textPrimary)
+            Text("Welcome to FORGE").font(.forgeHeading(34)).foregroundStyle(forge.textPrimary)
             Text("A few quick questions so your plan fits how you train.")
                 .font(.forgeBody(16))
                 .foregroundStyle(forge.textSecondary)
@@ -95,10 +95,10 @@ struct OnboardingView: View {
 
     private var goalStep: some View {
         VStack(alignment: .leading, spacing: Space.lg) {
-            Text("Weekly goal").font(.forgeHeading(28)).foregroundStyle(forge.textPrimary)
+            Text("Weekly goal").font(.forgeHeading(34)).foregroundStyle(forge.textPrimary)
             Text("How many days a week are you aiming to train?")
                 .font(.forgeBody(16)).foregroundStyle(forge.textSecondary)
-            Text("\(Int(weeklyGoal)) days").font(.forgeNumeric(44)).foregroundStyle(forge.accent)
+            Text("\(Int(weeklyGoal)) days").font(.forgeNumeric(44)).foregroundStyle(forge.textPrimary)
             Slider(value: $weeklyGoal, in: 2...7, step: 1).tint(forge.accent)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -106,18 +106,12 @@ struct OnboardingView: View {
 
     private var unitStep: some View {
         VStack(alignment: .leading, spacing: Space.lg) {
-            Text("Units").font(.forgeHeading(28)).foregroundStyle(forge.textPrimary)
+            Text("Units").font(.forgeHeading(34)).foregroundStyle(forge.textPrimary)
             Text("How should we display weight and distance?")
                 .font(.forgeBody(16)).foregroundStyle(forge.textSecondary)
-            HStack(spacing: Space.md) {
+            VStack(spacing: Space.sm) {
                 ForEach(UnitSystem.allCases) { system in
-                    Button {
-                        unitSystem = system
-                    } label: {
-                        Text(system.label).frame(maxWidth: .infinity)
-                    }
-                    .forgeGlassPrimary()
-                    .opacity(unitSystem == system ? 1 : 0.4)
+                    choiceRow(system.label, isSelected: unitSystem == system) { unitSystem = system }
                 }
             }
         }
@@ -126,26 +120,12 @@ struct OnboardingView: View {
 
     private var themeStep: some View {
         VStack(alignment: .leading, spacing: Space.lg) {
-            Text("Appearance").font(.forgeHeading(28)).foregroundStyle(forge.textPrimary)
+            Text("Appearance").font(.forgeHeading(34)).foregroundStyle(forge.textPrimary)
             Text("Pick your look — you can change this anytime in Profile.")
                 .font(.forgeBody(16)).foregroundStyle(forge.textSecondary)
             VStack(spacing: Space.sm) {
                 ForEach(ThemeMode.allCases) { mode in
-                    Button {
-                        themeMode = mode
-                    } label: {
-                        HStack {
-                            Text(mode.label).font(.forgeBodyMedium(16))
-                            Spacer()
-                            if themeMode == mode {
-                                Image(systemName: "checkmark.circle.fill")
-                            }
-                        }
-                        .foregroundStyle(forge.textPrimary)
-                        .padding()
-                    }
-                    .buttonStyle(.plain)
-                    .background(RoundedRectangle(cornerRadius: Radius.md).fill(themeMode == mode ? forge.accentSoft : forge.raised))
+                    choiceRow(mode.label, isSelected: themeMode == mode) { themeMode = mode }
                 }
             }
         }
@@ -154,7 +134,7 @@ struct OnboardingView: View {
 
     private var planStep: some View {
         VStack(alignment: .leading, spacing: Space.lg) {
-            Text("Build your first plan").font(.forgeHeading(28)).foregroundStyle(forge.textPrimary)
+            Text("Build your first plan").font(.forgeHeading(34)).foregroundStyle(forge.textPrimary)
             Text("Answer a few more questions — what you have to train with, and how you train now — and FORGE will build a four-week plan around them.")
                 .font(.forgeBody(16)).foregroundStyle(forge.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -167,11 +147,31 @@ struct OnboardingView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
+    /// One selection idiom for both choice steps. Units used to be two primary buttons
+    /// with the unselected one dropped to 40% opacity — a faded call to action is not a
+    /// state, and it put two competing CTAs on a screen that already has Next.
+    private func choiceRow(_ label: String, isSelected: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack {
+                Text(label).font(.forgeBodyMedium(16)).foregroundStyle(forge.textPrimary)
+                Spacer()
+                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                    .foregroundStyle(isSelected ? forge.accent : forge.textTertiary)
+            }
+            .padding(Space.lg)
+        }
+        .buttonStyle(.plain)
+        .background(
+            RoundedRectangle(cornerRadius: Radius.md)
+                .fill(isSelected ? forge.accentSoft : forge.raised)
+        )
+    }
+
     private func bullet(_ text: String) -> some View {
         HStack(alignment: .top, spacing: Space.sm) {
             Image(systemName: "checkmark")
                 .font(.system(size: 11, weight: .bold))
-                .foregroundStyle(forge.accent)
+                .foregroundStyle(forge.textTertiary)
                 .padding(.top, 3)
             Text(text)
                 .font(.forgeBody(14))

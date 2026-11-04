@@ -28,20 +28,7 @@ struct SignUpView: View {
                 PasswordField(placeholder: "Confirm password", text: $confirmPassword)
             }
 
-            Toggle(isOn: $rememberMe) {
-                Text("Remember me").font(.forgeBodyMedium(14)).foregroundStyle(forge.textSecondary)
-            }
-            .tint(forge.accent)
-
-            if rememberMe {
-                Toggle(isOn: $enableFaceID) {
-                    Label("Unlock with Face ID", systemImage: "faceid")
-                        .font(.forgeBodyMedium(14))
-                        .foregroundStyle(forge.textSecondary)
-                }
-                .tint(forge.accent)
-                .transition(.opacity)
-            }
+            AuthPersistenceOptions(rememberMe: $rememberMe, enableFaceID: $enableFaceID)
 
             if let errorMessage {
                 Text(errorMessage)
@@ -58,11 +45,8 @@ struct SignUpView: View {
             .forgeGlassPrimary()
             .disabled(displayName.isEmpty || email.isEmpty || password.isEmpty)
 
-            Button("Already have an account? Log In", action: switchToLogin)
-                .font(.forgeBodyMedium(14))
-                .foregroundStyle(forge.accent)
+            AuthSwitchLink(question: "Already have an account?", action: "Log in", onTap: switchToLogin)
         }
-        .padding(.horizontal, Space.xl)
     }
 
     private func submit() {

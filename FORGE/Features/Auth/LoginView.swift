@@ -22,20 +22,7 @@ struct LoginView: View {
                 PasswordField(placeholder: "Password", text: $password)
             }
 
-            Toggle(isOn: $rememberMe) {
-                Text("Remember me").font(.forgeBodyMedium(14)).foregroundStyle(forge.textSecondary)
-            }
-            .tint(forge.accent)
-
-            if rememberMe {
-                Toggle(isOn: $enableFaceID) {
-                    Label("Unlock with Face ID", systemImage: "faceid")
-                        .font(.forgeBodyMedium(14))
-                        .foregroundStyle(forge.textSecondary)
-                }
-                .tint(forge.accent)
-                .transition(.opacity)
-            }
+            AuthPersistenceOptions(rememberMe: $rememberMe, enableFaceID: $enableFaceID)
 
             if let errorMessage {
                 Text(errorMessage)
@@ -52,11 +39,8 @@ struct LoginView: View {
             .forgeGlassPrimary()
             .disabled(email.isEmpty || password.isEmpty)
 
-            Button("Don't have an account? Sign Up", action: switchToSignUp)
-                .font(.forgeBodyMedium(14))
-                .foregroundStyle(forge.accent)
+            AuthSwitchLink(question: "New here?", action: "Sign up", onTap: switchToSignUp)
         }
-        .padding(.horizontal, Space.xl)
     }
 
     private func submit() {
