@@ -47,7 +47,7 @@ struct WeekCalendarView: View {
                             bottomTrailingRadius: joinsRight ? 0 : radius,
                             topTrailingRadius: joinsRight ? 0 : radius
                         )
-                        .fill(status.color(forge)?.opacity(0.35) ?? Color.clear)
+                        .fill(status.calendarFill(forge) ?? Color.clear)
                     )
                     .overlay(
                         RoundedRectangle(cornerRadius: radius)

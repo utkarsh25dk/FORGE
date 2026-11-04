@@ -1,5 +1,32 @@
 import SwiftUI
 
+extension DayStatus {
+    /// Calendar fills are neutral on purpose: the only colour in the calendar is the
+    /// accent ring on today, so the eye goes there first and nowhere else. The three
+    /// statuses separate by weight rather than hue.
+    ///
+    /// Worked is heaviest because it is what the calendar is for. Missed sits clearly
+    /// above rest — a lapse is information you want, and a run of them should read as
+    /// plainly as a streak does. Rest is quietest: it is the absence of a decision.
+    ///
+    /// Hue carried this before. Weight is the weaker signal of the two, which is the
+    /// price of a single-accent calendar; the spacing below is chosen so the three
+    /// stay apart in both themes.
+    ///
+    /// `emphasis` scales the fill for marks too small to read at the base weight —
+    /// the year grid's dots and the legend's swatches.
+    func calendarFill(_ forge: ForgeColors, emphasis: Double = 1) -> Color? {
+        let weight: Double
+        switch self {
+        case .worked: weight = 0.32
+        case .missed: weight = 0.18
+        case .rest:   weight = 0.10
+        case .none:   return nil
+        }
+        return forge.textPrimary.opacity(min(weight * emphasis, 1))
+    }
+}
+
 struct IdentifiableDate: Identifiable {
     let date: Date
     var id: TimeInterval { date.timeIntervalSince1970 }
@@ -99,16 +126,16 @@ struct CalendarHeatmapView: View {
 
     private var legend: some View {
         HStack(spacing: Space.lg) {
-            legendItem(color: DayStatus.worked.color(forge), label: "Worked out")
-            legendItem(color: DayStatus.rest.color(forge), label: "Rest")
-            legendItem(color: DayStatus.missed.color(forge), label: "Missed")
+            legendItem(color: DayStatus.worked.calendarFill(forge, emphasis: 1.8), label: "Worked out")
+            legendItem(color: DayStatus.rest.calendarFill(forge, emphasis: 1.8), label: "Rest")
+            legendItem(color: DayStatus.missed.calendarFill(forge, emphasis: 1.8), label: "Missed")
         }
         .padding(.top, Space.xs)
     }
 
     private func legendItem(color: Color?, label: String) -> some View {
         HStack(spacing: 6) {
-            Capsule().fill(color?.opacity(0.6) ?? .clear).frame(width: 16, height: 6)
+            Capsule().fill(color ?? .clear).frame(width: 16, height: 6)
             Text(label).font(.forgeCaption(11)).foregroundStyle(forge.textSecondary)
         }
     }
