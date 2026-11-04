@@ -27,8 +27,8 @@ struct WeekCalendarView: View {
         let joinsLeft = index > 0 && status != .none && appState.dayStatus(for: days[index - 1]) == status
         let joinsRight = index < days.count - 1 && status != .none && appState.dayStatus(for: days[index + 1]) == status
         let radius: CGFloat = 19
-        let fill = appState.contributionFill(forge, for: day)
-        let level = appState.contributionLevel(for: day)
+        let fill = appState.dayFill(forge, for: day)
+        let ink = appState.dayInk(forge, for: day)
 
         return Button {
             onSelectDay(day)
@@ -39,7 +39,7 @@ struct WeekCalendarView: View {
                     .foregroundStyle(forge.textTertiary)
                 Text("\(cal.component(.day, from: day))")
                     .font(.forgeBodySemibold(15))
-                    .foregroundStyle(level > 0 ? fill.readableForeground : forge.textPrimary)
+                    .foregroundStyle(ink ?? forge.textPrimary)
                     .frame(maxWidth: .infinity)
                     .frame(height: 38)
                     .background(

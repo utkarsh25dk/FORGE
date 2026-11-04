@@ -47,15 +47,15 @@ struct MonthCalendarView: View {
         let joinRight = weekday != 7 && status != .none && nextStatus == status
         let radius: CGFloat = 8
         let isToday = day.isSameDay(as: Date())
-        let fill = appState.contributionFill(forge, for: day)
-        let level = appState.contributionLevel(for: day)
+        let fill = appState.dayFill(forge, for: day)
+        let ink = appState.dayInk(forge, for: day)
 
         return Button {
             onSelectDay(day)
         } label: {
             Text("\(cal.component(.day, from: day))")
                 .font(.forgeCaption(13))
-                .foregroundStyle(level > 0 ? fill.readableForeground : (status == .none ? forge.textSecondary : forge.textPrimary))
+                .foregroundStyle(ink ?? (status == .none ? forge.textSecondary : forge.textPrimary))
                 .frame(maxWidth: .infinity)
                 .frame(height: 40)
                 .background(

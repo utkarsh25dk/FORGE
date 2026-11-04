@@ -13,51 +13,82 @@ enum CalendarZoom: String, CaseIterable, Identifiable {
     var id: String { rawValue }
 }
 
-/// The one place the ramp's buckets live. The grid's colour and the key's labels both
-/// read from here, so the key can never end up describing a scale the grid isn't using.
-enum ContributionScale {
-    /// Inclusive upper bound of levels 0...3; anything past the last is the top level.
-    static let upperBounds = [0, 2, 4, 6]
+/// The buckets the calendar sorts a day's work into. Ten categories would make the
+/// grid confetti and most of them never appear; these are the distinctions you look
+/// for when you ask what you trained, plus a catch-all. Order is the legend's order.
+enum TrainingFamily: Int, CaseIterable {
+    case upper, lower, full, cardio, mobility, other
 
-    static func level(for count: Int) -> Int {
-        upperBounds.firstIndex { count <= $0 } ?? upperBounds.count
+    init(_ category: WorkoutCategory) {
+        switch category {
+        case .upperBody, .core: self = .upper
+        case .lowerBody: self = .lower
+        case .fullBody: self = .full
+        case .cardio, .hiit, .activity, .sports: self = .cardio
+        case .flexibility, .recovery: self = .mobility
+        default: self = .other
+        }
     }
 
-    /// "0", "1–2" … "7+", derived from the bounds rather than typed out beside them.
-    static var labels: [String] {
-        var out: [String] = []
-        var lower = 0
-        for bound in upperBounds {
-            out.append(lower == bound ? "\(bound)" : "\(lower)–\(bound)")
-            lower = bound + 1
+    var label: String {
+        switch self {
+        case .upper: return "Upper"
+        case .lower: return "Lower"
+        case .full: return "Full body"
+        case .cardio: return "Cardio"
+        case .mobility: return "Mobility"
+        case .other: return "Other"
         }
-        return out + ["\(lower)+"]
     }
 }
 
 extension AppState {
-    /// A day's training volume on the contribution ramp's 0...4.
-    ///
-    /// Status said only whether a day happened. Volume says how much, which is the
-    /// one thing a wall of squares can show that a wall of ticks cannot — and it is
-    /// what makes a heavy week look different from a week you showed up and left.
-    /// Warm-ups and cool-downs are excluded: they pad a session without being one.
-    func contributionLevel(for date: Date) -> Int {
-        let count = entries(on: date).filter { $0.isCompleted && !$0.isWarmUp && !$0.isCoolDown }.count
-        return ContributionScale.level(for: count)
+    /// The training families on a day, commonest first, capped at three. Capped because
+    /// a fourth band in an 11pt square is a line rather than a colour; ordered by count
+    /// so the day's main work is the band you read first.
+    func dayFamilies(on date: Date) -> [TrainingFamily] {
+        let done = entries(on: date).filter { $0.isCompleted && !$0.isWarmUp && !$0.isCoolDown }
+        var counts: [TrainingFamily: Int] = [:]
+        for entry in done { counts[TrainingFamily(entry.category), default: 0] += 1 }
+        return counts
+            .sorted { $0.value == $1.value ? $0.key.rawValue < $1.key.rawValue : $0.value > $1.value }
+            .prefix(3)
+            .map(\.key)
     }
 
-    /// The ramp colour for a day. A day you could have trained and didn't gets the
-    /// ramp's empty tone, so a gap is a visible thing rather than a hole; a day that
-    /// hasn't happened yet, or predates the account, gets nothing at all.
-    func contributionFill(_ forge: ForgeColors, for date: Date) -> Color {
-        let level = contributionLevel(for: date)
-        guard level == 0 else { return forge.contribution[level] }
-        return dayStatus(for: date) == .none ? .clear : forge.contribution[0]
+    /// A day's fill: one hard-edged band per family trained, all the same height.
+    ///
+    /// Equal rather than proportional, on purpose. One leg exercise among five upper-body
+    /// ones is a sliver at true scale and invisible at 11pt — and "did I train legs at
+    /// all" is the question this grid gets asked. A day you could have trained and didn't
+    /// keeps the empty tone, so a gap stays visible; a day that hasn't happened gets
+    /// nothing at all.
+    func dayFill(_ forge: ForgeColors, for date: Date) -> LinearGradient {
+        let families = dayFamilies(on: date)
+        guard !families.isEmpty else {
+            let empty = dayStatus(for: date) == .none ? Color.clear : forge.contribution[0]
+            return LinearGradient(colors: [empty, empty], startPoint: .top, endPoint: .bottom)
+        }
+        let step = 1.0 / Double(families.count)
+        let stops = families.enumerated().flatMap { index, fam -> [Gradient.Stop] in
+            let color = forge.family[fam.rawValue]
+            return [Gradient.Stop(color: color, location: Double(index) * step),
+                    Gradient.Stop(color: color, location: Double(index + 1) * step)]
+        }
+        return LinearGradient(stops: stops, startPoint: .top, endPoint: .bottom)
+    }
+
+    /// Ink for a day's numeral, legible against every band under it. Nil when untrained,
+    /// where the caller's own text colour applies.
+    func dayInk(_ forge: ForgeColors, for date: Date) -> Color? {
+        let families = dayFamilies(on: date)
+        guard !families.isEmpty else { return nil }
+        return Color.ink(legibleOn: families.map { forge.family[$0.rawValue] })
     }
 }
 
 struct CalendarHeatmapView: View {
+    @EnvironmentObject private var appState: AppState
     @Environment(\.forge) private var forge
 
     @Binding var zoom: CalendarZoom
@@ -131,34 +162,51 @@ struct CalendarHeatmapView: View {
         }
     }
 
-    /// One key for every zoom, because every zoom paints from the same ramp. Each swatch
-    /// carries the count it stands for: "Less → More" named a quantity the grid never
-    /// showed, so it told you there was a scale without telling you a scale of what.
+    private var visibleDays: [Date] {
+        let interval: DateInterval?
+        switch zoom {
+        case .week: interval = cal.dateInterval(of: .weekOfYear, for: anchor)
+        case .month: interval = cal.dateInterval(of: .month, for: anchor)
+        case .year: interval = cal.dateInterval(of: .year, for: anchor)
+        }
+        guard let interval else { return [] }
+        var days: [Date] = []
+        var day = interval.start
+        while day < interval.end {
+            days.append(day)
+            day = cal.date(byAdding: .day, value: 1, to: day) ?? interval.end
+        }
+        return days
+    }
+
+    /// Only the families actually on screen. A key listing work you never do is a key
+    /// you stop reading — and with nothing trained in range there is nothing to explain.
+    private var visibleFamilies: [TrainingFamily] {
+        var seen: Set<TrainingFamily> = []
+        for day in visibleDays { seen.formUnion(appState.dayFamilies(on: day)) }
+        return TrainingFamily.allCases.filter { seen.contains($0) }
+    }
+
+    /// One key for every zoom, because every zoom paints from the same families.
     private var legend: some View {
-        HStack(alignment: .bottom, spacing: 8) {
-            Text("exercises")
-                .font(.forgeCaption(11))
-                .foregroundStyle(forge.textSecondary)
-            Spacer(minLength: 0)
-            ForEach(Array(ContributionScale.labels.enumerated()), id: \.offset) { level, label in
-                VStack(spacing: 4) {
-                    RoundedRectangle(cornerRadius: 2, style: .continuous)
-                        .fill(forge.contribution[level])
-                        // The empty tone sits a hair off the card behind it, so without
-                        // this its label would float over nothing.
-                        .overlay {
-                            if level == 0 {
-                                RoundedRectangle(cornerRadius: 2, style: .continuous)
-                                    .stroke(forge.surfaceBorder, lineWidth: 0.5)
-                            }
+        let families = visibleFamilies
+        return VStack(alignment: .trailing, spacing: 6) {
+            ForEach(Array(stride(from: 0, to: families.count, by: 3)), id: \.self) { start in
+                HStack(spacing: 12) {
+                    ForEach(families[start..<min(start + 3, families.count)], id: \.rawValue) { family in
+                        HStack(spacing: 5) {
+                            RoundedRectangle(cornerRadius: 2, style: .continuous)
+                                .fill(forge.family[family.rawValue])
+                                .frame(width: 9, height: 9)
+                            Text(family.label)
+                                .font(.forgeCaption(11))
+                                .foregroundStyle(forge.textSecondary)
                         }
-                        .frame(width: 11, height: 11)
-                    Text(label)
-                        .font(.forgeCaption(10))
-                        .foregroundStyle(forge.textTertiary)
+                    }
                 }
             }
         }
+        .frame(maxWidth: .infinity, alignment: .trailing)
         .padding(.top, Space.xs)
     }
 
@@ -270,8 +318,9 @@ private struct ContributionGrid: View {
     private func cellView(_ day: Date) -> some View {
         let inYear = cal.isDate(day, equalTo: year, toGranularity: .year)
         let isToday = day.isSameDay(as: Date())
+        let blank = LinearGradient(colors: [.clear, .clear], startPoint: .top, endPoint: .bottom)
         return RoundedRectangle(cornerRadius: 2, style: .continuous)
-            .fill(inYear ? appState.contributionFill(forge, for: day) : .clear)
+            .fill(inYear ? appState.dayFill(forge, for: day) : blank)
             .frame(width: cell, height: cell)
             .overlay(
                 RoundedRectangle(cornerRadius: 2, style: .continuous)

@@ -39,12 +39,35 @@ extension Color {
     /// The contribution ramp runs dark-green to bright-green, so a single text colour
     /// fails at one end or the other — and which end flips between themes. Measuring
     /// the fill is self-maintaining: change the ramp and the numerals follow.
-    var readableForeground: Color {
+    var readableForeground: Color { Color.ink(legibleOn: [self]) }
+
+    var relativeLuminance: Double {
         var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
         UIColor(self).getRed(&r, green: &g, blue: &b, alpha: &a)
-        func channel(_ c: CGFloat) -> CGFloat { c <= 0.03928 ? c / 12.92 : pow((c + 0.055) / 1.055, 2.4) }
-        let luminance = 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b)
-        return luminance > 0.4 ? Color(hex: "0A0B0A") : Color(hex: "F4F7F3")
+        func channel(_ c: CGFloat) -> Double {
+            let v = Double(c)
+            return v <= 0.03928 ? v / 12.92 : pow((v + 0.055) / 1.055, 2.4)
+        }
+        return 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b)
+    }
+
+    /// The theme ink that stays legible on every colour it might sit on, picked by the
+    /// worst case: a numeral spanning two bands has to clear both of them.
+    ///
+    /// This compares the two inks rather than testing luminance against a threshold.
+    /// A threshold has to be guessed, and the guess here was 0.4 when the crossover is
+    /// nearer 0.18 — which put white text on mid blues and greens that wanted black.
+    static func ink(legibleOn colors: [Color]) -> Color {
+        let dark = Color(hex: "0A0B0A")
+        let light = Color(hex: "F4F7F3")
+        func worstContrast(_ ink: Color) -> Double {
+            let a = ink.relativeLuminance
+            return colors.map { color in
+                let b = color.relativeLuminance
+                return (max(a, b) + 0.05) / (min(a, b) + 0.05)
+            }.min() ?? 1
+        }
+        return worstContrast(dark) >= worstContrast(light) ? dark : light
     }
 }
 
@@ -116,6 +139,9 @@ struct ForgeColors {
     /// 1...4 are increasing training volume. Intensity encodes *how much* you did,
     /// which is the one thing a year of squares can show that a status cannot.
     let contribution: [Color]
+    /// Colours for the training families the calendar sorts days into, indexed by
+    /// `TrainingFamily.rawValue`. Six, not ten: a grid with ten hues is confetti.
+    let family: [Color]
 
     var backgroundGradient: LinearGradient {
         LinearGradient(colors: [backgroundGradTop, backgroundGradMid, backgroundGradBottom], startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -163,6 +189,14 @@ struct ForgeColors {
             Color(hex: "006D32"),
             Color(hex: "26A641"),
             Color(hex: "39D353")
+        ],
+        family: [
+            Color(hex: "3FB950"),
+            Color(hex: "58A6FF"),
+            Color(hex: "39C5CF"),
+            Color(hex: "D29922"),
+            Color(hex: "A371F7"),
+            Color(hex: "6E7681")
         ]
     )
 
@@ -194,6 +228,14 @@ struct ForgeColors {
             Color(hex: "40C463"),
             Color(hex: "30A14E"),
             Color(hex: "216E39")
+        ],
+        family: [
+            Color(hex: "1A7F37"),
+            Color(hex: "0969DA"),
+            Color(hex: "1B7C83"),
+            Color(hex: "9A6700"),
+            Color(hex: "8250DF"),
+            Color(hex: "656D76")
         ]
     )
 }
