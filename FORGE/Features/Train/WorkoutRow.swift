@@ -13,7 +13,7 @@ struct WorkoutRow: View {
             } label: {
                 Image(systemName: entry.isCompleted ? "checkmark.circle.fill" : "circle")
                     .font(.system(size: 22))
-                    .foregroundStyle(entry.isCompleted ? forge.accent : forge.textTertiary)
+                    .foregroundStyle(entry.isCompleted ? forge.success : forge.textTertiary)
                     .symbolEffect(.bounce, value: entry.isCompleted)
                     .frame(width: 44, height: 44)
             }

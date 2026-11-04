@@ -3,9 +3,12 @@ import SwiftUI
 // The four rules this file exists to hold. They are cheap to state and expensive to
 // rediscover, so they live here rather than in a document nobody opens.
 //
-// 1. One accent. `accent` carries interaction; `fireGradient` is reserved for a single
-//    hero moment per screen (see its own note below). Two gradients on one screen is
-//    not twice the emphasis, it is none.
+// 1. Two colours, two jobs. `accent` is what you *do* — taps, selection, the brand's
+//    own fire. `success` is what you *did* — a ticked exercise, a PR, an earned badge,
+//    the green of the contribution calendar. Never swap them: the palette turns to
+//    noise the moment a button and a checkmark are the same colour. `fireGradient`
+//    stays reserved for one hero moment per screen (see its own note below), because
+//    two gradients on one screen is not twice the emphasis, it is none.
 // 2. Flat surfaces. A surface is a flat fill plus a hairline border — never a glow
 //    halo, never a gradient fill. `forgeCard()` is the only card surface; depth comes
 //    from the border and the background behind it. (The screen background's gradient
@@ -94,6 +97,9 @@ struct ForgeColors {
     let accent: Color
     let accentSoft: Color
     let onAccent: Color
+    /// Achievement green, keyed to the contribution calendar. Everything marking work
+    /// already banked uses this; `accent` marks work you can start. A warning is amber
+    /// rather than accent so a caution never looks like just another button.
     let success: Color
     let warning: Color
     let danger: Color
@@ -143,14 +149,14 @@ struct ForgeColors {
         accent: Color(hex: "FA5F4A"),
         accentSoft: Color(hex: "FA5F4A").opacity(0.16),
         onAccent: Color(hex: "1F1102"),
-        success: Color(hex: "FA5F4A"),
-        warning: Color(hex: "FA5F4A"),
+        success: Color(hex: "3FB950"),
+        warning: Color(hex: "D29922"),
         danger: Color(hex: "FF6B5C"),
         divider: Color.white.opacity(0.07),
         dataSleep: Color(hex: "5CA8FF"),
         dataHydration: Color(hex: "5CE0D8"),
-        dayWorked: Color(hex: "FFB03C"),
-        dayRest: Color(hex: "8A7A63"),
+        dayWorked: Color(hex: "26A641"),
+        dayRest: Color(hex: "6E7681"),
         contribution: [
             Color(hex: "1E2224"),
             Color(hex: "0E4429"),
@@ -174,14 +180,14 @@ struct ForgeColors {
         accent: Color(hex: "C2410C"),
         accentSoft: Color(hex: "C2410C").opacity(0.12),
         onAccent: Color(hex: "FFFFFF"),
-        success: Color(hex: "C2410C"),
-        warning: Color(hex: "FA5F4A"),
+        success: Color(hex: "1A7F37"),
+        warning: Color(hex: "9A6700"),
         danger: Color(hex: "B84438"),
         divider: Color.black.opacity(0.05),
         dataSleep: Color(hex: "2B6CB0"),
         dataHydration: Color(hex: "0E8074"),
-        dayWorked: Color(hex: "C97A1E"),
-        dayRest: Color(hex: "A69072"),
+        dayWorked: Color(hex: "2DA44E"),
+        dayRest: Color(hex: "656D76"),
         contribution: [
             Color(hex: "EBEDF0"),
             Color(hex: "9BE9A8"),
@@ -305,11 +311,14 @@ extension View {
     func forgeGlassSecondary() -> some View { modifier(ForgeGlassSecondary()) }
 }
 
+/// Quiet until touched. A delete sits on every row of a list, so painting it `danger`
+/// at rest turns the whole right edge red and drowns out the green that marks work done.
+/// The glyph keeps the affordance; the colour arrives when the press does.
 struct ForgeDestructiveIconButtonStyle: ButtonStyle {
     @Environment(\.forge) private var forge
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .foregroundStyle(forge.danger)
+            .foregroundStyle(configuration.isPressed ? forge.danger : forge.textTertiary)
             .frame(width: 44, height: 44)
             .contentShape(Rectangle())
             .scaleEffect(configuration.isPressed ? 0.9 : 1)

@@ -182,11 +182,11 @@ struct ProfileView: View {
     private var statsRow: some View {
         HStack(spacing: Space.md) {
             Button { showWorkoutsDetail = true } label: {
-                StatTile(value: "\(appState.totalCompletedWorkouts)", label: "total workouts", icon: "checkmark.seal.fill")
+                StatTile(value: "\(appState.totalCompletedWorkouts)", label: "total workouts", icon: "checkmark.seal.fill", tint: forge.success)
             }
             .buttonStyle(.plain)
             Button { showBadgesDetail = true } label: {
-                StatTile(value: "\(appState.userData.game.earnedBadgeIds.count)", label: "badges earned", icon: "rosette")
+                StatTile(value: "\(appState.userData.game.earnedBadgeIds.count)", label: "badges earned", icon: "rosette", tint: forge.success)
             }
             .buttonStyle(.plain)
         }

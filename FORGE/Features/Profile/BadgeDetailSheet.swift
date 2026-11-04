@@ -37,7 +37,7 @@ struct BadgeDetailSheet: View {
                                 }
                                 Spacer(minLength: 0)
                                 Image(systemName: earned ? "checkmark.circle.fill" : "lock.fill")
-                                    .foregroundStyle(earned ? forge.textPrimary : forge.textTertiary)
+                                    .foregroundStyle(earned ? forge.success : forge.textTertiary)
                                     .font(.system(size: earned ? 18 : 14))
                             }
                             .padding(.vertical, Space.sm)

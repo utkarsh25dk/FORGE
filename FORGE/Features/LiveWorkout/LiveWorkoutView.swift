@@ -162,7 +162,7 @@ struct LiveWorkoutView: View {
             } else {
                 Label("Exercise complete", systemImage: "checkmark.circle.fill")
                     .font(.forgeBodySemibold(15))
-                    .foregroundStyle(forge.accent)
+                    .foregroundStyle(forge.success)
             }
         }
     }
@@ -177,7 +177,7 @@ struct LiveWorkoutView: View {
             if entry.isCompleted {
                 Label("Exercise complete", systemImage: "checkmark.circle.fill")
                     .font(.forgeBodySemibold(15))
-                    .foregroundStyle(forge.accent)
+                    .foregroundStyle(forge.success)
             } else if !showTimer {
                 Button {
                     timerSeconds = seconds(for: entry)
@@ -238,7 +238,7 @@ struct LiveWorkoutView: View {
     private var completionView: some View {
         VStack(spacing: Space.lg) {
             Spacer()
-            Image(systemName: "checkmark.seal.fill").font(.system(size: 56)).foregroundStyle(forge.accent)
+            Image(systemName: "checkmark.seal.fill").font(.system(size: 56)).foregroundStyle(forge.success)
             Text("Workout Complete").font(.forgeHeading(26)).foregroundStyle(forge.textPrimary)
             Text("Nice work — your progress has been saved.")
                 .font(.forgeBody(15)).foregroundStyle(forge.textSecondary)

@@ -17,7 +17,7 @@ struct PersonalRecordsView: View {
                 HStack(spacing: Space.sm) {
                     Image(systemName: "trophy.fill")
                         .font(.system(size: 15, weight: .semibold))
-                        .foregroundStyle(forge.accent)
+                        .foregroundStyle(forge.success)
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Personal Records").font(.forgeBodySemibold(15)).foregroundStyle(forge.textPrimary)
                         if !isExpanded {
@@ -44,7 +44,7 @@ struct PersonalRecordsView: View {
                         VStack(spacing: 2) {
                             ForEach(records.prefix(10), id: \.exerciseName) { record in
                                 HStack {
-                                    Image(systemName: "trophy.fill").foregroundStyle(forge.accent).font(.system(size: 14))
+                                    Image(systemName: "trophy.fill").foregroundStyle(forge.success).font(.system(size: 14))
                                     VStack(alignment: .leading, spacing: 2) {
                                         Text(record.exerciseName).font(.forgeBodyMedium(14)).foregroundStyle(forge.textPrimary)
                                         Text(record.date.formatted(.dateTime.month().day().year())).font(.forgeCaption(11)).foregroundStyle(forge.textTertiary)
