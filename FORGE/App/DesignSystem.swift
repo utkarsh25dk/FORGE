@@ -30,6 +30,21 @@ extension Color {
     }
 }
 
+extension Color {
+    /// Black or white, whichever is legible on this colour.
+    ///
+    /// The contribution ramp runs dark-green to bright-green, so a single text colour
+    /// fails at one end or the other — and which end flips between themes. Measuring
+    /// the fill is self-maintaining: change the ramp and the numerals follow.
+    var readableForeground: Color {
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        UIColor(self).getRed(&r, green: &g, blue: &b, alpha: &a)
+        func channel(_ c: CGFloat) -> CGFloat { c <= 0.03928 ? c / 12.92 : pow((c + 0.055) / 1.055, 2.4) }
+        let luminance = 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b)
+        return luminance > 0.4 ? Color(hex: "0A0B0A") : Color(hex: "F4F7F3")
+    }
+}
+
 // MARK: - Theme mode
 
 enum ThemeMode: String, Codable, CaseIterable, Identifiable {
@@ -91,6 +106,10 @@ struct ForgeColors {
     /// `danger`) so the streak calendar reads at a glance instead of by weight.
     let dayWorked: Color
     let dayRest: Color
+    /// Contribution ramp, lowest to highest: index 0 is a day with nothing on it,
+    /// 1...4 are increasing training volume. Intensity encodes *how much* you did,
+    /// which is the one thing a year of squares can show that a status cannot.
+    let contribution: [Color]
 
     var backgroundGradient: LinearGradient {
         LinearGradient(colors: [backgroundGradTop, backgroundGradMid, backgroundGradBottom], startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -131,7 +150,14 @@ struct ForgeColors {
         dataSleep: Color(hex: "5CA8FF"),
         dataHydration: Color(hex: "5CE0D8"),
         dayWorked: Color(hex: "FFB03C"),
-        dayRest: Color(hex: "8A7A63")
+        dayRest: Color(hex: "8A7A63"),
+        contribution: [
+            Color(hex: "1E2224"),
+            Color(hex: "0E4429"),
+            Color(hex: "006D32"),
+            Color(hex: "26A641"),
+            Color(hex: "39D353")
+        ]
     )
 
     static let light = ForgeColors(
@@ -155,7 +181,14 @@ struct ForgeColors {
         dataSleep: Color(hex: "2B6CB0"),
         dataHydration: Color(hex: "0E8074"),
         dayWorked: Color(hex: "C97A1E"),
-        dayRest: Color(hex: "A69072")
+        dayRest: Color(hex: "A69072"),
+        contribution: [
+            Color(hex: "EBEDF0"),
+            Color(hex: "9BE9A8"),
+            Color(hex: "40C463"),
+            Color(hex: "30A14E"),
+            Color(hex: "216E39")
+        ]
     )
 }
 

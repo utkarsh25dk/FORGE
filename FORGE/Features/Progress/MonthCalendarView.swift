@@ -4,7 +4,6 @@ struct MonthCalendarView: View {
     @EnvironmentObject private var appState: AppState
     @Environment(\.forge) private var forge
     var month: Date
-    var compact: Bool = false
     var onSelectDay: (Date) -> Void
 
     private var cal: Calendar { Calendar.forge }
@@ -24,28 +23,22 @@ struct MonthCalendarView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            if compact {
-                Text(month.formatted(.dateTime.month(.abbreviated)))
-                    .font(.forgeCaption(11))
-                    .foregroundStyle(forge.textSecondary)
-            }
-            LazyVGrid(columns: columns, spacing: 4) {
-                ForEach(Array(daysInGrid.enumerated()), id: \.offset) { _, day in
-                    if let day {
-                        dayCell(day)
-                    } else {
-                        Color.clear.frame(height: compact ? 14 : 40)
-                    }
+        LazyVGrid(columns: columns, spacing: 4) {
+            ForEach(Array(daysInGrid.enumerated()), id: \.offset) { _, day in
+                if let day {
+                    dayCell(day)
+                } else {
+                    Color.clear.frame(height: 40)
                 }
             }
         }
     }
 
+    /// Consecutive days sharing a status join into one bar, so a run reads as its
+    /// length. Within a run the fill still steps with each day's volume, which is why
+    /// joining by status rather than by colour matters: the bar stays whole while its
+    /// shade varies across it.
     private func dayCell(_ day: Date) -> some View {
-        if compact {
-            return AnyView(compactDayCell(day))
-        }
         let status = appState.dayStatus(for: day)
         let weekday = cal.component(.weekday, from: day)
         let prevStatus = appState.dayStatus(for: cal.date(byAdding: .day, value: -1, to: day)!)
@@ -54,13 +47,15 @@ struct MonthCalendarView: View {
         let joinRight = weekday != 7 && status != .none && nextStatus == status
         let radius: CGFloat = 8
         let isToday = day.isSameDay(as: Date())
+        let fill = appState.contributionFill(forge, for: day)
+        let level = appState.contributionLevel(for: day)
 
-        return AnyView(Button {
+        return Button {
             onSelectDay(day)
         } label: {
             Text("\(cal.component(.day, from: day))")
                 .font(.forgeCaption(13))
-                .foregroundStyle(status == .none ? forge.textSecondary : forge.textPrimary)
+                .foregroundStyle(level > 0 ? fill.readableForeground : (status == .none ? forge.textSecondary : forge.textPrimary))
                 .frame(maxWidth: .infinity)
                 .frame(height: 40)
                 .background(
@@ -70,38 +65,12 @@ struct MonthCalendarView: View {
                         bottomTrailingRadius: joinRight ? 0 : radius,
                         topTrailingRadius: joinRight ? 0 : radius
                     )
-                    .fill(status.calendarFill(forge) ?? Color.clear)
+                    .fill(fill)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: radius)
                         .stroke(isToday ? forge.accent : Color.clear, lineWidth: 1.5)
                 )
-        }
-        .buttonStyle(.plain))
-    }
-
-    /// Year-view cell: a faint, uniform grid square with a small color dot for status —
-    /// avoids the joined color-block look which reads as noise at this scale.
-    private func compactDayCell(_ day: Date) -> some View {
-        let status = appState.dayStatus(for: day)
-        let isToday = day.isSameDay(as: Date())
-        return Button {
-            onSelectDay(day)
-        } label: {
-            RoundedRectangle(cornerRadius: 3)
-                .stroke(forge.textTertiary.opacity(0.14), lineWidth: 0.75)
-                .background(
-                    RoundedRectangle(cornerRadius: 3)
-                        .fill(isToday ? forge.accent.opacity(0.12) : Color.clear)
-                )
-                .overlay {
-                    if let color = status.calendarFill(forge, emphasis: 2.4) {
-                        Circle()
-                            .fill(color)
-                            .frame(width: 7, height: 7)
-                    }
-                }
-                .frame(height: 14)
         }
         .buttonStyle(.plain)
     }
