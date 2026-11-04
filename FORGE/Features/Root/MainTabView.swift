@@ -13,11 +13,14 @@ enum ForgeTab: Int, CaseIterable, Hashable {
         }
     }
 
+    /// Tab symbols are filled, and say so explicitly: the bar renders all five at one
+    /// size, so a stroked symbol beside a solid one reads as a rank that isn't there.
+    /// Any replacement needs a `.fill` variant — `checklist` and `sparkles` have none.
     var icon: String {
         switch self {
         case .home: return "flame.fill"
-        case .train: return "checklist"
-        case .suggest: return "sparkles"
+        case .train: return "dumbbell.fill"
+        case .suggest: return "lightbulb.fill"
         case .progress: return "chart.bar.fill"
         case .profile: return "person.fill"
         }
@@ -32,23 +35,24 @@ struct MainTabView: View {
     var body: some View {
         TabView(selection: $tab) {
             Tab(ForgeTab.home.title, systemImage: ForgeTab.home.icon, value: ForgeTab.home) {
-                HomeView().forgeScreenBackground().tint(forge.accent)
+                HomeView().forgeScreenBackground()
             }
             Tab(ForgeTab.train.title, systemImage: ForgeTab.train.icon, value: ForgeTab.train) {
-                TrainView().forgeScreenBackground().tint(forge.accent)
+                TrainView().forgeScreenBackground()
             }
             Tab(ForgeTab.suggest.title, systemImage: ForgeTab.suggest.icon, value: ForgeTab.suggest) {
-                SuggestView().tint(forge.accent)
+                SuggestView()
             }
             Tab(ForgeTab.progress.title, systemImage: ForgeTab.progress.icon, value: ForgeTab.progress) {
-                ProgressDashboardView().forgeScreenBackground().tint(forge.accent)
+                ProgressDashboardView().forgeScreenBackground()
             }
             Tab(ForgeTab.profile.title, systemImage: ForgeTab.profile.icon, value: ForgeTab.profile) {
-                ProfileView().forgeScreenBackground().tint(forge.accent)
+                ProfileView().forgeScreenBackground()
             }
         }
         .sensoryFeedback(.selection, trigger: tab)
         .sensoryFeedback(.success, trigger: appState.toast)
+        // One accent, set once: it marks the selected tab and every control inside all five screens.
         .tint(forge.accent)
         .overlay(alignment: .bottom) {
             if let toast = appState.toast {
